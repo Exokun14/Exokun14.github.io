@@ -82,6 +82,71 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduce) {
   document.addEventListener('pointerover', e => cur.classList.toggle('big', !!e.target.closest('a,button,.card')));
 }
 
+// Marquee: clone the word group so it loops seamlessly
+const mq = $('.mq');
+if (mq) { const c = mq.cloneNode(true); c.setAttribute('aria-hidden', 'true'); mq.after(c); }
+
+// Featured carousel: arrows, dots, drag, keys, autoplay
+$$('.carousel').forEach(el => {
+  const vp = $('.viewport', el), tr = $('.track', el), sl = $$('.slide', el), bar = $('.bar i', el);
+  const cnt = $('.count', el), box = $('.dots', el);
+  const auto = reduce ? 0 : +el.dataset.autoplay || 0;
+  let i = 0, dx = 0, down = null, captured = false;
+  const dots = sl.map((_, k) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('aria-label', `Go to slide ${k + 1}`); b.onclick = () => go(k);
+    box.append(b); return b;
+  });
+  const step = () => sl[0].offsetWidth + (parseFloat(getComputedStyle(tr).columnGap) || 0);
+  const render = drag => {
+    tr.style.transition = drag ? 'none' : '';
+    tr.style.transform = `translateX(${-i * step() + dx}px)`;
+    sl.forEach((s, k) => { s.classList.toggle('active', k === i); s.inert = k !== i; });
+    dots.forEach((d, k) => d.setAttribute('aria-current', k === i));
+    cnt.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(sl.length).padStart(2, '0');
+    if (auto) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = `fill ${auto}ms linear forwards`; }
+  };
+  const go = n => { i = (n + sl.length) % sl.length; render(); };
+  $('.prev', el).onclick = () => go(i - 1);
+  $('.next', el).onclick = () => go(i + 1);
+  bar.addEventListener('animationend', () => go(i + 1));
+  el.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') go(i - 1); if (e.key === 'ArrowRight') go(i + 1); });
+  vp.addEventListener('pointerdown', e => { down = e.clientX; dx = 0; captured = false; });
+  vp.addEventListener('pointermove', e => {
+    if (down === null) return;
+    dx = e.clientX - down;
+    if (Math.abs(dx) > 6 && !captured) { vp.setPointerCapture(e.pointerId); captured = true; }
+    if (captured) render(true);
+  });
+  const end = () => {
+    if (down === null) return;
+    const m = dx; down = null; dx = 0;
+    if (m < -60) go(i + 1); else if (m > 60) go(i - 1); else render();
+  };
+  vp.addEventListener('pointerup', end); vp.addEventListener('pointercancel', end);
+  ['pointerenter', 'focusin'].forEach(t => el.addEventListener(t, () => el.classList.add('paused')));
+  ['pointerleave', 'focusout'].forEach(t => el.addEventListener(t, () => el.classList.remove('paused')));
+  new IntersectionObserver(e => el.classList.toggle('offscreen', !e[0].isIntersecting)).observe(el);
+  addEventListener('resize', () => render());
+  render();
+});
+
+// Stack row: arrows and mouse drag
+$$('.rowwrap').forEach(w => {
+  const row = $('.row', w);
+  const by = d => row.scrollBy({ left: d * (row.firstElementChild.offsetWidth + 20), behavior: reduce ? 'auto' : 'smooth' });
+  $('.prev', w).onclick = () => by(-1); $('.next', w).onclick = () => by(1);
+  let sx = 0, sl0 = 0, on = false, moved = false;
+  row.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; on = true; moved = false; sx = e.clientX; sl0 = row.scrollLeft; });
+  addEventListener('pointermove', e => {
+    if (!on) return;
+    const d = e.clientX - sx;
+    if (Math.abs(d) > 5) { moved = true; row.classList.add('dragging'); }
+    if (moved) row.scrollLeft = sl0 - d;
+  });
+  addEventListener('pointerup', () => { on = false; row.classList.remove('dragging'); });
+});
+
 // Drifting petals in the hero
 const cv = $('.petals');
 if (cv && !reduce) {

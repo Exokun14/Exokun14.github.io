@@ -49,26 +49,33 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 </section>
 
 <main>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="mq"><span>Next.js</span><span>TypeScript</span><span>Laravel</span><span>PHP</span><span>MySQL</span><span>Playwright</span><span>Electron</span></div></div></div>
+
   <section id="work" class="chapter">
     <div class="inner">
       <h2 class="reveal">Work</h2>
-      <ul class="journeys">
-        <li class="reveal">
-          <span class="year">2026</span>
-          <div><h3><a href="#">Project name</a></h3><p>One or two sentences: what it does, who uses it, and what you built.</p></div>
-          <span class="tech">Next.js, Laravel</span>
-        </li>
-        <li class="reveal">
-          <span class="year">2025</span>
-          <div><h3><a href="#">Project name</a></h3><p>Replace this with something you’re proud of, and link to the repo or live demo.</p></div>
-          <span class="tech">TypeScript, MySQL</span>
-        </li>
-        <li class="reveal">
-          <span class="year">2024</span>
-          <div><h3><a href="#">Project name</a></h3><p>Add more by copying one of these rows.</p></div>
-          <span class="tech">Playwright, Electron</span>
-        </li>
-      </ul>
+      <div class="carousel reveal" data-autoplay="7000" role="group" aria-roledescription="carousel" aria-label="Selected work" tabindex="0">
+        <div class="viewport"><div class="track">
+        <article class="slide" aria-label="1 of 3" style="--c1:#CFE0D8;--c2:#8FB0A3;--c3:#2F5D50">
+          <div class="art"></div>
+          <div class="body"><span class="num">01</span><h3>Project name</h3><p>One or two sentences: what it does, who uses it, and what you built.</p><span class="tech">Next.js, Laravel</span><a class="btn" href="#">View project</a></div>
+        </article>
+        <article class="slide" aria-label="2 of 3" style="--c1:#C9D6E6;--c2:#8CA3C4;--c3:#34476B">
+          <div class="art"></div>
+          <div class="body"><span class="num">02</span><h3>Project name</h3><p>Replace this with something you’re proud of. To use a screenshot, add style=&quot;--img:url(assets/img/shot.jpg)&quot; to the slide.</p><span class="tech">TypeScript, MySQL</span><a class="btn" href="#">View project</a></div>
+        </article>
+        <article class="slide" aria-label="3 of 3" style="--c1:#DDE3C2;--c2:#B3BC86;--c3:#47572E">
+          <div class="art"></div>
+          <div class="body"><span class="num">03</span><h3>Project name</h3><p>Add more slides by copying one of these blocks.</p><span class="tech">Playwright, Electron</span><a class="btn" href="#">View project</a></div>
+        </article>
+        </div></div>
+        <div class="controls">
+          <span class="count" aria-live="polite"></span>
+          <div class="dots"></div>
+          <div class="arrows"><button class="prev" type="button" aria-label="Previous project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><button class="next" type="button" aria-label="Next project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
+        </div>
+        <div class="bar" aria-hidden="true"><i></i></div>
+      </div>
     </div>
   </section>
 
@@ -77,10 +84,15 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
   <section id="stack" class="chapter">
     <div class="inner">
       <h2 class="reveal">Stack</h2>
-      <div class="arsenal reveal">
-        <div class="card"><h3>Frontend</h3><p>Next.js, React, TypeScript, Tailwind</p></div>
-        <div class="card"><h3>Backend</h3><p>Laravel, PHP, REST APIs, MySQL</p></div>
-        <div class="card"><h3>Tooling</h3><p>Git, Playwright, Electron</p></div>
+      <div class="rowwrap reveal">
+        <div class="row" tabindex="0" aria-label="Stack, scroll sideways">
+          <div class="card"><h3>Frontend</h3><p>Next.js, React, TypeScript, Tailwind</p></div>
+          <div class="card"><h3>Backend</h3><p>Laravel, PHP, REST APIs</p></div>
+          <div class="card"><h3>Data</h3><p>MySQL</p></div>
+          <div class="card"><h3>Testing</h3><p>Playwright</p></div>
+          <div class="card"><h3>Desktop and tooling</h3><p>Electron, Git</p></div>
+        </div>
+        <div class="arrows"><button class="prev" type="button" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><button class="next" type="button" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
       </div>
     </div>
   </section>
