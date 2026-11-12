@@ -5,67 +5,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Clarence · Full-stack developer</title>
 <meta name="description" content="Clarence is a full-stack developer in the Philippines building with Next.js, TypeScript and Laravel.">
+<script>
+document.documentElement.classList.add('js');
+try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<div class="wrap">
-  <nav aria-label="Main">
-    <span>Clarence</span>
-    <div><a href="#work">Work</a><a href="#stack">Stack</a><a href="#contact">Contact</a></div>
+<div class="loader" aria-hidden="true"><div><span class="seal">C</span><i></i></div></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+
+<nav class="rail" aria-label="Sections">
+  <a href="#top" aria-label="Home"></a><a href="#work" aria-label="Work"></a>
+  <a href="#stack" aria-label="Stack"></a><a href="#contact" aria-label="Contact"></a>
+</nav>
+
+<header class="topbar fade">
+  <a class="seal" href="#top" aria-label="Home">C</a>
+  <nav class="links" aria-label="Main">
+    <a href="#work">Work</a><a href="#stack">Stack</a><a href="#contact">Contact</a>
+    <button class="theme" type="button" aria-label="Switch light or dark theme"></button>
   </nav>
+</header>
 
-  <header class="hero">
+<section id="top" class="hero">
+  <canvas class="petals" aria-hidden="true"></canvas>
+  <svg class="layer l1" data-speed=".38" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true"><path class="m1" d="M0,250 Q90,120 180,230 T360,200 T540,120 T720,230 T900,150 T1080,240 T1260,140 T1440,230 V400 H0Z"/></svg>
+  <div class="mist mist-a" aria-hidden="true"></div>
+  <svg class="layer l2" data-speed=".22" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true"><path class="m2" d="M0,300 Q120,200 240,290 T480,250 T720,310 T960,230 T1200,300 T1440,250 V400 H0Z"/></svg>
+  <div class="mist mist-b" aria-hidden="true"></div>
+  <svg class="layer l3" data-speed=".08" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true"><path class="m3" d="M0,350 Q160,280 320,345 T640,320 T960,350 T1280,310 T1440,340 V400 H0Z"/></svg>
+
+  <div class="hero-copy">
     <h1>Clarence</h1>
-    <p>I’m a full-stack developer in the Philippines. I build web apps and internal tools with Next.js, TypeScript and Laravel, mostly for retail and operations teams.</p>
-    <a class="cta" href="#contact">Get in touch</a>
-  </header>
+    <p class="fade">Full-stack developer in the Philippines. I build web apps and internal tools for retail and operations teams.</p>
+  </div>
+  <p class="vertical fade" aria-hidden="true">Full-stack developer</p>
+  <span class="scroll fade" aria-hidden="true">Scroll</span>
+</section>
 
-  <section id="work" class="grid">
-    <h2>Selected work</h2>
-    <div>
-      <article class="project">
-        <h3><a href="#">Project name</a></h3>
-        <p>One or two sentences: what it does, who uses it, and what you built.</p>
-        <ul class="tags"><li>Next.js</li><li>Laravel</li></ul>
-      </article>
-      <article class="project">
-        <h3><a href="#">Project name</a></h3>
-        <p>Replace this with something you’re proud of, and link to the repo or live demo.</p>
-        <ul class="tags"><li>TypeScript</li><li>MySQL</li></ul>
-      </article>
-      <article class="project">
-        <h3><a href="#">Project name</a></h3>
-        <p>Add as many as you like by copying one of these blocks.</p>
-        <ul class="tags"><li>Playwright</li><li>Electron</li></ul>
-      </article>
+<main>
+  <section id="work" class="chapter">
+    <div class="inner">
+      <h2 class="reveal">Work</h2>
+      <ul class="journeys">
+        <li class="reveal">
+          <span class="year">2026</span>
+          <div><h3><a href="#">Project name</a></h3><p>One or two sentences: what it does, who uses it, and what you built.</p></div>
+          <span class="tech">Next.js, Laravel</span>
+        </li>
+        <li class="reveal">
+          <span class="year">2025</span>
+          <div><h3><a href="#">Project name</a></h3><p>Replace this with something you’re proud of, and link to the repo or live demo.</p></div>
+          <span class="tech">TypeScript, MySQL</span>
+        </li>
+        <li class="reveal">
+          <span class="year">2024</span>
+          <div><h3><a href="#">Project name</a></h3><p>Add more by copying one of these rows.</p></div>
+          <span class="tech">Playwright, Electron</span>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <section id="stack" class="grid">
-    <h2>Stack</h2>
-    <div class="stack">
-      <div><h3>Frontend</h3><p>Next.js, React, TypeScript, Tailwind</p></div>
-      <div><h3>Backend</h3><p>Laravel, PHP, REST APIs, MySQL</p></div>
-      <div><h3>Tooling</h3><p>Git, Playwright, Electron</p></div>
+  <svg class="brush" viewBox="0 0 600 24" aria-hidden="true"><path pathLength="1" d="M2,14 C80,4 140,22 230,12 S400,6 470,14 S560,10 598,12"/></svg>
+
+  <section id="stack" class="chapter">
+    <div class="inner">
+      <h2 class="reveal">Stack</h2>
+      <div class="arsenal reveal">
+        <div class="card"><h3>Frontend</h3><p>Next.js, React, TypeScript, Tailwind</p></div>
+        <div class="card"><h3>Backend</h3><p>Laravel, PHP, REST APIs, MySQL</p></div>
+        <div class="card"><h3>Tooling</h3><p>Git, Playwright, Electron</p></div>
+      </div>
     </div>
   </section>
 
-  <section id="contact" class="grid contact">
-    <h2>Contact</h2>
-    <div>
-      <a href="mailto:you@example.com">you@example.com</a>
-      <div class="links">
+  <section id="contact" class="chapter night">
+    <div class="inner">
+      <h2 class="reveal">Contact</h2>
+      <a class="mail reveal" href="mailto:you@example.com">you@example.com</a>
+      <div class="links reveal">
         <a href="https://github.com/Exokun14">GitHub</a>
         <a href="#">LinkedIn</a>
       </div>
     </div>
   </section>
+</main>
 
-  <footer>© <span id="y"></span> Clarence</footer>
-</div>
+<footer>© <span id="y"></span> Clarence</footer>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
