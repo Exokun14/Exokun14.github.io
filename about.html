@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About · Clarence</title>
-<meta name="description" content="About Clarence, the stack, and how this site is built.">
+<meta name="description" content="About Clarence, a full-stack developer in the Philippines, and the tools he works with.">
 <meta name="email" content="you@example.com">
 <meta name="github" content="https://github.com/Exokun14">
 <script>
@@ -14,7 +14,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=202611121714">
 </head>
 <body class="sub">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
@@ -33,7 +33,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <header class="topbar fade">
   <a class="seal" href="index.html" aria-label="Home">C</a>
   <nav class="links" aria-label="Main">
-    <a href="projects.html">Projects</a><a href="about.html" aria-current="page">About</a>
+    <a href="projects.html">Projects</a><a href="about.html" aria-current="page">About</a><a href="notes.html">Notes</a>
     <button class="kbd" type="button" aria-label="Open command palette">Search <kbd>Ctrl K</kbd></button>
     <button class="sound" type="button" aria-pressed="false" aria-label="Ambient sound"><i></i><i></i><i></i></button>
     <button class="theme" type="button" aria-label="Switch light or dark theme"></button>
@@ -45,7 +45,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
       <span class="eyebrow reveal">01</span>
       <h1 class="title reveal">About</h1>
       <div class="prose reveal">
-        <p class="intro">I’m Clarence, a full-stack developer in the Philippines. I work across Next.js and TypeScript on the frontend and Laravel on the backend, mostly on internal tools and retail systems.</p>
+        <p class="intro">Hi, I’m Clarence. I’m a full-stack developer in the Philippines. I build the tools that retail and operations teams use every day, from the screens people click through to the systems behind them.</p>
       </div>
     </div>
   </section>
@@ -53,13 +53,21 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
   <section class="chapter">
     <div class="inner">
       <span class="eyebrow reveal">02</span>
+      <h2 class="reveal">The journey</h2>
+      <ol class="timeline reveal" id="timeline"></ol>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">03</span>
       <h2 class="reveal">Stack</h2>
       <div class="rowwrap reveal">
         <div class="row" tabindex="0" aria-label="Stack, scroll sideways">
           <div class="card"><h3>Frontend</h3><p>Next.js, React, TypeScript, Tailwind</p></div>
           <div class="card"><h3>Backend</h3><p>Laravel, PHP, REST APIs</p></div>
           <div class="card"><h3>Data</h3><p>MySQL</p></div>
-          <div class="card"><h3>Testing</h3><p>Playwright</p></div>
+          <div class="card"><h3>Testing</h3><p>Automated browser tests</p></div>
           <div class="card"><h3>Desktop and tooling</h3><p>Electron, Git</p></div>
         </div>
         <div class="arrows"><button class="prev" type="button" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><button class="next" type="button" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
@@ -69,19 +77,49 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 
   <section class="chapter">
     <div class="inner">
-      <span class="eyebrow reveal">03</span>
-      <h2 class="reveal">How this is built</h2>
-      <div class="dwrap reveal"><svg class="diagram" data-flow="index.html|style.css|main.js|projects.js|GitHub Pages" aria-label="Site architecture"></svg></div>
+      <span class="eyebrow reveal">04</span>
+      <h2 class="reveal">What I use</h2>
+      <div class="grid reveal" id="uses-list"></div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">05</span>
+      <h2 class="reveal">Beyond code</h2>
+      <div class="grid reveal" id="beyond-list"></div>
+    </div>
+  </section>
+
+  <section id="photos" class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">06</span>
+      <h2 class="reveal">Photos</h2>
+      <div class="gallery reveal" id="photos-list"></div>
+    </div>
+  </section>
+
+  <section id="kind" class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">07</span>
+      <h2 class="reveal">Kind words</h2>
+      <div class="quotes reveal" id="kind-list"></div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">08</span>
+      <h2 class="reveal">How I work</h2>
       <ul class="facts reveal">
-        <li>No build step and no framework. It is plain HTML, CSS and JavaScript, served as is by GitHub Pages.</li>
-        <li>The home page weighs about 58 KB before compression (HTML, CSS, JavaScript and JSON), plus two Google fonts.</li>
-        <li>Projects live in one data file, data/projects.js. Adding an entry adds a slide, an envelope and a letter.</li>
-        <li>The heavier effects are optional. Falling leaves and the brush trail are off by default and can be switched on in Settings. Touch devices, low-core machines and Save-Data mode also skip the ink filters and birds. Reduced motion turns off animation everywhere.</li>
-        <li>A nightly GitHub Action writes my latest commits to a data file for the “Currently building” strip.</li>
-        <li>Playwright runs on every push, taking light and dark screenshots and checking that nothing overflows on a phone.</li>
+        <li>I start by understanding how people actually do their job, then build around that, not the other way round.</li>
+        <li>I like things simple. If a screen needs explaining, I go back and fix the screen.</li>
+        <li>I stay involved after launch, because the real feedback starts once people use it.</li>
+        <li>I would rather say “I don’t know yet” and find out than guess.</li>
       </ul>
     </div>
   </section>
+
   <section id="contact" class="chapter night">
     <svg class="ridge" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0,120 V70 Q120,10 240,60 T480,50 T720,30 T960,60 T1200,20 T1440,60 V120Z"/></svg>
     <div class="inner">
@@ -96,6 +134,8 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
   </section>
 </main>
 <footer>© <span id="y"></span> Clarence</footer>
-<script src="assets/js/main.js"></script>
+<script src="data/site.js?v=202611121714"></script>
+<script src="assets/js/sections.js?v=202611121714"></script>
+<script src="assets/js/main.js?v=202611121714"></script>
 </body>
 </html>

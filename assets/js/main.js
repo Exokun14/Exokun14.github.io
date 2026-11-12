@@ -168,6 +168,7 @@ const actions = [
   ['Home', () => { location.href = 'index.html'; }],
   ['Projects', () => { location.href = 'projects.html'; }],
   ['About', () => { location.href = 'about.html'; }],
+  ['Notes', () => { location.href = 'notes.html'; }],
   ['Toggle light or dark theme', toggleTheme],
   ['Copy email address', () => copyEmail()],
   ['Open GitHub', () => window.open(GH, '_blank', 'noopener')],
@@ -455,6 +456,22 @@ panel.addEventListener('change', e => {
   fxKick();
 });
 document.addEventListener('click', e => { if (!panel.hidden && !e.target.closest('.settings, .settings-btn')) closeSettings(); });
+
+// ---------- Page transition (loading screen) ----------
+const go = $('a[data-go]');
+if (go) {
+  go.addEventListener('click', e => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+    e.preventDefault();
+    const o = document.createElement('div');
+    o.className = 'go-loader'; o.setAttribute('role', 'status');
+    o.innerHTML = `<div><span class="seal">C</span><i></i><p>Opening ${esc(go.dataset.go)}</p></div>`;
+    body.append(o);
+    void o.offsetWidth; o.classList.add('on');
+    setTimeout(() => { location.href = go.href; }, reduce ? 400 : 1500);
+  });
+  addEventListener('pageshow', e => { if (e.persisted) $$('.go-loader').forEach(x => x.remove()); });
+}
 
 // ---------- Start ----------
 const start = () => { if (body.classList.contains('ready')) return; body.classList.add('ready'); onScroll(); };

@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const pages = ['index.html', 'projects.html', 'about.html'];
+const pages = ['index.html', 'projects.html', 'about.html', 'notes.html'];
 
 for (const p of pages) {
   for (const scheme of ['light', 'dark']) {

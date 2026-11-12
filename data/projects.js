@@ -1,45 +1,8 @@
 // Add a project by adding one object to this list.
 window.PROJECTS = [
   {
-    "id": "this-site",
-    "title": "This website",
-    "year": "2026",
-    "role": "Design and development",
-    "seal": "C",
-    "palette": [
-      "#CFE0D8",
-      "#8FB0A3",
-      "#2F5D50"
-    ],
-    "summary": "A hand-built portfolio in plain HTML, CSS and JavaScript, painted as one landscape that moves from dawn to night as you scroll.",
-    "details": "There is no framework and no build step. Projects load from a single JSON file and open as letters, each with a landscape generated from its name. Effects scale down on phones and low-power machines, a nightly GitHub Action fills the activity strip, and Playwright checks every page in light and dark on each push.",
-    "tech": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "GitHub Actions",
-      "Playwright"
-    ],
-    "flow": [
-      "projects.js",
-      "main.js",
-      "Letters",
-      "GitHub Pages"
-    ],
-    "links": [
-      {
-        "label": "Live site",
-        "url": "https://exokun14.github.io/"
-      },
-      {
-        "label": "Repository",
-        "url": "https://github.com/Exokun14/Exokun14.github.io"
-      }
-    ]
-  },
-  {
     "id": "project-one",
-    "title": "Project name",
+    "title": "Store operations dashboard",
     "year": "2026",
     "role": "Full-stack developer",
     "seal": "P",
@@ -48,8 +11,8 @@ window.PROJECTS = [
       "#8FB0A3",
       "#2F5D50"
     ],
-    "summary": "One or two sentences: what it does, who uses it, and what you built.",
-    "details": "Write a short paragraph here about the problem, your part in it, and how it turned out.",
+    "summary": "A dashboard that gives store managers one place to see stock, orders and daily sales, instead of juggling spreadsheets.",
+    "details": "The team was copying numbers between spreadsheets every morning and things slipped through. I built the whole thing with them: talked through how their day actually runs, then made something quick to read and hard to get wrong. It now replaces the morning spreadsheet routine.",
     "tech": [
       "Next.js",
       "Laravel",
@@ -59,7 +22,7 @@ window.PROJECTS = [
       "Laravel API",
       "MySQL",
       "Next.js dashboard",
-      "Electron client"
+      "Desktop app"
     ],
     "links": [
       {
@@ -70,7 +33,7 @@ window.PROJECTS = [
   },
   {
     "id": "project-two",
-    "title": "Another project",
+    "title": "Order and request tracker",
     "year": "2025",
     "role": "Full-stack developer",
     "seal": "A",
@@ -79,10 +42,11 @@ window.PROJECTS = [
       "#8CA3C4",
       "#34476B"
     ],
-    "summary": "Replace this with something you are proud of. Add an image path in an \"image\" field to show a screenshot.",
-    "details": "Another short paragraph. Keep it honest and specific.",
+    "summary": "An internal tool for logging requests, assigning them and seeing what is still waiting, so nothing gets lost in chat threads.",
+    "details": "Requests used to live in messages and memory. This gives everyone a shared list with clear owners and statuses. I kept it deliberately simple so people would actually use it.",
     "tech": [
       "TypeScript",
+      "Laravel",
       "MySQL"
     ],
     "flow": [
@@ -99,7 +63,7 @@ window.PROJECTS = [
   },
   {
     "id": "project-three",
-    "title": "A third project",
+    "title": "Desktop helper for the shop floor",
     "year": "2024",
     "role": "Developer",
     "seal": "T",
@@ -108,16 +72,16 @@ window.PROJECTS = [
       "#B3BC86",
       "#47572E"
     ],
-    "summary": "Add more projects by adding one entry to data/projects.js. No HTML needed.",
-    "details": "Each entry becomes a slide on the home page and an envelope on the projects page.",
+    "summary": "A small desktop app that handles a repetitive daily task for staff in a couple of clicks.",
+    "details": "Some jobs just need to be fast and work offline. I built this for the people who do the same task all day, and it saves them real time every shift.",
     "tech": [
-      "Playwright",
-      "Electron"
+      "Electron",
+      "TypeScript"
     ],
     "flow": [
-      "Test runner",
-      "Browser",
-      "Reports"
+      "Desktop app",
+      "Local data",
+      "Sync to server"
     ],
     "links": [
       {

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes · Clarence</title>
+<meta name="description" content="Short notes from Clarence on building tools and working with people.">
+<meta name="email" content="you@example.com">
+<meta name="github" content="https://github.com/Exokun14">
+<script>
+document.documentElement.classList.add('js');
+try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=202611121714">
+</head>
+<body class="sub">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <filter id="ink" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".008 .03" numOctaves="3" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="28"/></filter>
+  <filter id="ink2" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".02 .05" numOctaves="3" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="9"/></filter>
+  <filter id="soft"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="10"/></filter>
+  <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m1)"/><stop offset="1" style="stop-color:var(--m1);stop-opacity:.15"/></linearGradient>
+  <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m2)"/><stop offset="1" style="stop-color:var(--m2);stop-opacity:.55"/></linearGradient>
+  <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m3)"/><stop offset="1" style="stop-color:var(--m3)"/></linearGradient>
+  <linearGradient id="mistfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--bg);stop-opacity:0"/><stop offset=".5" style="stop-color:var(--bg);stop-opacity:.4"/><stop offset="1" style="stop-color:var(--bg);stop-opacity:0"/></linearGradient>
+</defs></svg>
+<div class="paper" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="sky" aria-hidden="true"><div class="stars"></div><div class="sun"></div></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<header class="topbar fade">
+  <a class="seal" href="index.html" aria-label="Home">C</a>
+  <nav class="links" aria-label="Main">
+    <a href="projects.html">Projects</a><a href="about.html">About</a><a href="notes.html" aria-current="page">Notes</a>
+    <button class="kbd" type="button" aria-label="Open command palette">Search <kbd>Ctrl K</kbd></button>
+    <button class="sound" type="button" aria-pressed="false" aria-label="Ambient sound"><i></i><i></i><i></i></button>
+    <button class="theme" type="button" aria-label="Switch light or dark theme"></button>
+  </nav>
+</header>
+<main>
+  <section class="chapter page-head">
+    <div class="inner">
+      <span class="eyebrow reveal">01</span>
+      <h1 class="title reveal">Notes</h1>
+      <p class="intro reveal">Short thoughts on building things and working with people.</p>
+    </div>
+  </section>
+  <section class="chapter" style="padding-top:0">
+    <div class="inner"><div id="notes-list" class="notes reveal"></div></div>
+  </section>
+  <section id="contact" class="chapter night">
+    <svg class="ridge" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0,120 V70 Q120,10 240,60 T480,50 T720,30 T960,60 T1200,20 T1440,60 V120Z"/></svg>
+    <div class="inner">
+      <span class="eyebrow reveal">Contact</span>
+      <a class="mail reveal" href="mailto:you@example.com">you@example.com</a>
+      <div class="copyrow reveal"><button class="seal seal-copy" type="button" aria-label="Copy email address">C</button><span>Click the seal to copy my email</span></div>
+      <div class="links reveal">
+        <a href="https://github.com/Exokun14">GitHub</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>© <span id="y"></span> Clarence</footer>
+<script src="data/site.js?v=202611121714"></script>
+<script src="assets/js/sections.js?v=202611121714"></script>
+<script src="assets/js/main.js?v=202611121714"></script>
+</body>
+</html>

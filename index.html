@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Clarence · Full-stack developer</title>
-<meta name="description" content="Clarence is a full-stack developer in the Philippines building with Next.js, TypeScript and Laravel.">
+<meta name="description" content="Clarence is a full-stack developer in the Philippines who builds practical tools for retail and operations teams.">
 <meta name="email" content="you@example.com">
 <meta name="github" content="https://github.com/Exokun14">
 <script>
@@ -14,7 +14,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=202611121714">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
@@ -34,7 +34,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <header class="topbar fade">
   <a class="seal" href="index.html" aria-label="Home">C</a>
   <nav class="links" aria-label="Main">
-    <a href="projects.html">Projects</a><a href="about.html">About</a>
+    <a href="projects.html">Projects</a><a href="about.html">About</a><a href="notes.html">Notes</a>
     <button class="kbd" type="button" aria-label="Open command palette">Search <kbd>Ctrl K</kbd></button>
     <button class="sound" type="button" aria-pressed="false" aria-label="Ambient sound"><i></i><i></i><i></i></button>
     <button class="theme" type="button" aria-label="Switch light or dark theme"></button>
@@ -50,14 +50,15 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
   <svg class="layer l3" data-speed=".08" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true"><path class="m3" d="M0,350 Q160,280 320,345 T640,320 T960,350 T1280,310 T1440,340 V400 H0Z"/></svg>
   <div class="hero-copy">
     <h1>Clarence</h1>
-    <p class="fade">Full-stack developer in the Philippines. I build web apps and internal tools for retail and operations teams.</p>
+    <p class="fade">Full-stack developer in the Philippines. I build practical tools that make everyday work easier for retail and operations teams.</p>
+    <a class="btn hero-btn fade" href="about.html" data-go="About">Learn more about me</a>
   </div>
   <p class="vertical fade" aria-hidden="true">Full-stack developer</p>
   <span class="scroll fade" aria-hidden="true">Scroll</span>
 </section>
 
 <main>
-  <div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="mq"><span>Next.js</span><span>TypeScript</span><span>Laravel</span><span>PHP</span><span>MySQL</span><span>Playwright</span><span>Electron</span></div></div></div>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="mq"><span>Next.js</span><span>TypeScript</span><span>Laravel</span><span>PHP</span><span>MySQL</span><span>Electron</span></div></div></div>
 
   <section id="work" class="chapter">
     <div class="inner">
@@ -73,7 +74,27 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
         <div class="bar" aria-hidden="true"><i></i></div>
       </div>
       <p class="more reveal"><a class="btn" href="projects.html">All projects</a></p>
-      <div class="activity reveal" hidden><span class="live">Currently building</span><ul></ul></div>
+    </div>
+  </section>
+
+  <section id="now" class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">02</span>
+      <h2 class="reveal">Right now</h2>
+      <p class="updated reveal" id="now-updated"></p>
+      <div class="grid reveal" id="now-list"></div>
+    </div>
+  </section>
+
+  <section id="hire" class="chapter">
+    <div class="inner work-box">
+      <span class="eyebrow reveal">03</span>
+      <h2 class="reveal">Work with me</h2>
+      <div class="reveal">
+        <p id="work-text"></p>
+        <ul class="facts" id="work-offers"></ul>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
     </div>
   </section>
 
@@ -92,7 +113,9 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
   </section>
 </main>
 <footer>© <span id="y"></span> Clarence</footer>
-<script src="data/projects.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="data/projects.js?v=202611121714"></script>
+<script src="data/site.js?v=202611121714"></script>
+<script src="assets/js/sections.js?v=202611121714"></script>
+<script src="assets/js/main.js?v=202611121714"></script>
 </body>
 </html>
