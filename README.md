@@ -8,7 +8,7 @@ Static site for GitHub Pages. No build step, no framework.
 
 ```
 index.html  projects.html  about.html
-data/projects.json      all projects (add one entry = new slide, envelope and letter)
+data/projects.js        all projects (add one entry = new slide, envelope and letter)
 data/activity.json      written nightly by .github/workflows/activity.yml
 assets/css  assets/js  assets/img
 tests/  playwright.config.js   Playwright checks (run by CI on every push)
@@ -17,12 +17,13 @@ publish.bat  open-site.bat     Windows helpers
 
 ## Add a project
 
-Add an object to `data/projects.json`. Optional `"image": "assets/img/shot.jpg"` shows a screenshot instead of the painted scene.
+Add an object to the list in `data/projects.js`. Optional `"image": "assets/img/shot.jpg"` shows a screenshot instead of the painted scene.
 
 ## Scripts (Windows)
 
 - `publish.bat` does everything: installs GitHub CLI if needed, logs you in, creates the `<username>.github.io` repo, commits, pulls, pushes and turns on Pages.
 - `open-site.bat` opens the live GitHub Pages URL.
+- `test.bat` starts a local test server and opens the site in your browser. `test.bat tests` runs the Playwright checks instead.
 
 ## Preview locally
 

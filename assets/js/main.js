@@ -171,7 +171,8 @@ const actions = [
   ['Toggle light or dark theme', toggleTheme],
   ['Copy email address', () => copyEmail()],
   ['Open GitHub', () => window.open(GH, '_blank', 'noopener')],
-  ['Toggle ambient sound', toggleSound]
+  ['Toggle ambient sound', toggleSound],
+  ['Open settings', () => gear.click()]
 ];
 const pin = $('input', pal), pul = $('ul', pal);
 const fill = q => {
@@ -193,7 +194,7 @@ pal.addEventListener('keydown', e => {
 $('.kbd').addEventListener('click', openPal);
 addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openPal(); }
-  if (e.key === 'Escape') closeAll();
+  if (e.key === 'Escape') { closeAll(); closeSettings(); }
 });
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-open]');
@@ -316,23 +317,23 @@ $$('.card').forEach(c => {
 const mq = $('.mq');
 if (mq) { const c = mq.cloneNode(true); c.setAttribute('aria-hidden', 'true'); mq.after(c); }
 
-// ---------- Projects data ----------
-fetch('data/projects.json', { cache: 'no-cache' }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(list => {
-  window.PROJECTS = list;
-  const car = $('.carousel');
-  if (car) { $('.track', car).innerHTML = list.map((p, i) => slideHTML(p, i, list.length)).join(''); initCarousel(car); }
-  const grid = $('#envelopes');
-  if (grid) {
-    grid.innerHTML = list.map(envHTML).join('');
-    const hit = list.find(p => p.id === location.hash.slice(1));
-    if (hit) openLetter(hit);
-  }
-}).catch(() => {
-  const msg = '<p class="intro">Projects could not be loaded. If you opened this file directly, serve the folder instead (for example with npx http-server). On GitHub Pages, check that data/projects.json was pushed.</p>';
+// ---------- Projects (from data/projects.js) ----------
+{
+  const list = window.PROJECTS;
   const car = $('.carousel'), grid = $('#envelopes');
-  if (car) car.insertAdjacentHTML('afterend', msg);
-  if (grid) grid.innerHTML = msg;
-});
+  if (Array.isArray(list) && list.length) {
+    if (car) { $('.track', car).innerHTML = list.map((p, i) => slideHTML(p, i, list.length)).join(''); initCarousel(car); }
+    if (grid) {
+      grid.innerHTML = list.map(envHTML).join('');
+      const hit = list.find(p => p.id === location.hash.slice(1));
+      if (hit) openLetter(hit);
+    }
+  } else if (car || grid) {
+    const msg = '<p class="intro">Projects could not be loaded. Check that data/projects.js exists next to index.html and was pushed to GitHub, then reload.</p>';
+    if (car) car.insertAdjacentHTML('afterend', msg);
+    if (grid) grid.innerHTML = msg;
+  }
+}
 
 // ---------- Currently building ----------
 const act = $('.activity');
@@ -354,27 +355,33 @@ if (flock && !reduce && !lite) {
   }
 }
 
-// ---------- Seasonal particles, ink brush and ripples ----------
+// ---------- Seasonal particles, ink brush and ripples (both off until switched on in Settings) ----------
 const fx = $('#fx');
-if (fx && !reduce && !lite) {
+let fxPrefs = {};
+try { fxPrefs = JSON.parse(localStorage.getItem('fx')) || {}; } catch (e) {}
+const fxOn = { leaves: !!fxPrefs.leaves, trail: !!fxPrefs.trail };
+const m0 = new Date().getMonth();
+const SEASON = m0 >= 2 && m0 <= 4 ? 'sakura' : m0 >= 5 && m0 <= 7 ? 'firefly' : m0 >= 8 && m0 <= 10 ? 'maple' : 'snow';
+let fxRaf = 0, fxKick = () => {};
+if (fx && !reduce) {
   const ctx = fx.getContext('2d');
   let W, H;
   const size = () => { W = fx.width = innerWidth; H = fx.height = innerHeight; };
   size(); addEventListener('resize', size);
-  const m = new Date().getMonth();
-  const season = m >= 2 && m <= 4 ? 'sakura' : m >= 5 && m <= 7 ? 'firefly' : m >= 8 && m <= 10 ? 'maple' : 'snow';
+  const season = SEASON;
   const half = [[0, -1], [.3, -.4], [.9, -.55], [.55, .05], [.85, .6], [.15, .45], [0, 1.1]];
   const cols = ['#C2410C', '#B3261E', '#D9902B'];
   const mk = init => ({ x: Math.random() * W, y: init ? Math.random() * H : -20, s: 5 + Math.random() * 7, v: .35 + Math.random() * .6,
     w: Math.random() * 6.28, r: Math.random() * 6.28, dr: (Math.random() - .5) * .03, c: cols[Math.random() * 3 | 0], a: Math.random() * 6.28 });
   const ps = Array.from({ length: 28 }, () => mk(true));
   const trail = [], rip = [];
-  addEventListener('pointermove', e => { trail.push({ x: e.clientX, y: e.clientY, t: performance.now() }); if (trail.length > 40) trail.shift(); });
-  addEventListener('pointerdown', e => rip.push({ x: e.clientX, y: e.clientY, t: performance.now() }));
+  addEventListener('pointermove', e => { if (!fxOn.trail) return; trail.push({ x: e.clientX, y: e.clientY, t: performance.now() }); if (trail.length > 40) trail.shift(); });
+  addEventListener('pointerdown', e => { if (fxOn.trail) rip.push({ x: e.clientX, y: e.clientY, t: performance.now() }); });
   const frame = now => {
     ctx.clearRect(0, 0, W, H);
+    if (!fxOn.leaves && !fxOn.trail) { fxRaf = 0; return; }
     const night = root.classList.contains('nm'), kind = night ? 'firefly' : season;
-    ps.forEach(p => {
+    if (fxOn.leaves) ps.forEach(p => {
       p.w += .01;
       if (kind === 'firefly') {
         p.a += (Math.random() - .5) * .2; p.x += Math.cos(p.a) * .35; p.y += Math.sin(p.a) * .35;
@@ -418,10 +425,36 @@ if (fx && !reduce && !lite) {
         ctx.beginPath(); ctx.arc(r.x, r.y, k * 90, 0, 6.28); ctx.stroke();
       });
     }
-    requestAnimationFrame(frame);
+    fxRaf = requestAnimationFrame(frame);
   };
-  requestAnimationFrame(frame);
+  fxKick = () => { if (!fxRaf && (fxOn.leaves || fxOn.trail)) fxRaf = requestAnimationFrame(frame); };
+  fxKick();
 }
+
+// ---------- Settings ----------
+const gear = document.createElement('button');
+gear.className = 'settings-btn'; gear.type = 'button';
+gear.setAttribute('aria-label', 'Settings'); gear.setAttribute('aria-expanded', 'false');
+gear.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>';
+$('.theme').before(gear);
+const panel = document.createElement('div');
+panel.className = 'settings'; panel.hidden = true;
+panel.setAttribute('role', 'group'); panel.setAttribute('aria-label', 'Effects settings');
+const names = { sakura: 'Sakura petals', firefly: 'Fireflies', maple: 'Maple leaves', snow: 'Snow' };
+const hint = SEASON === 'firefly' ? 'Fireflies drifting across the page' : `${names[SEASON]} in light mode, fireflies in dark mode`;
+const row = (key, label, note) => `<label class="sw"><input type="checkbox" role="switch" data-fx="${key}"${fxOn[key] ? ' checked' : ''}${reduce ? ' disabled' : ''}><i aria-hidden="true"></i><span>${label}<small>${note}</small></span></label>`;
+panel.innerHTML = `<p class="stitle">Effects</p>${row('leaves', 'Seasonal particles', hint)}${row('trail', 'Brush trail and ripples', 'Ink follows your pointer and ripples on click')}${reduce ? '<p class="snote">Unavailable because your device asks for reduced motion.</p>' : ''}`;
+body.append(panel);
+const closeSettings = () => { panel.hidden = true; gear.setAttribute('aria-expanded', 'false'); };
+gear.addEventListener('click', () => { const open = panel.hidden; panel.hidden = !open; gear.setAttribute('aria-expanded', String(open)); });
+panel.addEventListener('change', e => {
+  const k = e.target.dataset.fx;
+  if (!k) return;
+  fxOn[k] = e.target.checked;
+  try { localStorage.setItem('fx', JSON.stringify(fxOn)); } catch (err) {}
+  fxKick();
+});
+document.addEventListener('click', e => { if (!panel.hidden && !e.target.closest('.settings, .settings-btn')) closeSettings(); });
 
 // ---------- Start ----------
 const start = () => { if (body.classList.contains('ready')) return; body.classList.add('ready'); onScroll(); };

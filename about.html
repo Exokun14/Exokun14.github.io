@@ -71,12 +71,12 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
     <div class="inner">
       <span class="eyebrow reveal">03</span>
       <h2 class="reveal">How this is built</h2>
-      <div class="dwrap reveal"><svg class="diagram" data-flow="index.html|style.css|main.js|projects.json|GitHub Pages" aria-label="Site architecture"></svg></div>
+      <div class="dwrap reveal"><svg class="diagram" data-flow="index.html|style.css|main.js|projects.js|GitHub Pages" aria-label="Site architecture"></svg></div>
       <ul class="facts reveal">
         <li>No build step and no framework. It is plain HTML, CSS and JavaScript, served as is by GitHub Pages.</li>
         <li>The home page weighs about 58 KB before compression (HTML, CSS, JavaScript and JSON), plus two Google fonts.</li>
-        <li>Projects live in one JSON file. Adding an entry adds a slide, an envelope and a letter.</li>
-        <li>Effects come in two tiers. Desktop gets the full set: ink filters, falling leaves, birds, the brush cursor. Touch devices, low-core machines and Save-Data mode get a lighter page without them. Reduced motion turns off animation everywhere.</li>
+        <li>Projects live in one data file, data/projects.js. Adding an entry adds a slide, an envelope and a letter.</li>
+        <li>The heavier effects are optional. Falling leaves and the brush trail are off by default and can be switched on in Settings. Touch devices, low-core machines and Save-Data mode also skip the ink filters and birds. Reduced motion turns off animation everywhere.</li>
         <li>A nightly GitHub Action writes my latest commits to a data file for the “Currently building” strip.</li>
         <li>Playwright runs on every push, taking light and dark screenshots and checking that nothing overflows on a phone.</li>
       </ul>
