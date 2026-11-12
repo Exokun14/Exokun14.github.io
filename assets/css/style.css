@@ -477,3 +477,16 @@ h1.title{font:300 clamp(3.2rem,10vw,7rem)/.95 var(--display);letter-spacing:-.03
 .contact-list button{font:inherit;font-size:.85rem;color:inherit;background:none;border:1px solid currentColor;border-radius:999px;padding:.2rem .8rem;cursor:pointer;opacity:.8}
 .contact-list button:hover{opacity:1}
 @media(max-width:34rem){.contact-list li{grid-template-columns:1fr auto}.contact-list span{grid-column:1/-1;margin-bottom:-.4rem}}
+
+/* Role pills with a little flare */
+.roles{list-style:none;display:flex;flex-wrap:wrap;gap:.6rem;margin:1.75rem 0 0;padding:0}
+.roles li{position:relative;padding:.4rem 1.1rem;border-radius:999px;font:500 .95rem var(--body);letter-spacing:.04em;color:var(--ink);
+  border:1px solid var(--jade);background:color-mix(in srgb,var(--bg) 55%,transparent);overflow:hidden;isolation:isolate}
+.roles li::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);animation:shine 4.5s ease-in-out infinite}
+.roles li:nth-child(2)::before{animation-delay:.5s}.roles li:nth-child(3)::before{animation-delay:1s}
+.roles li::after{content:"";display:inline-block;width:.4rem;height:.4rem;margin-left:.6rem;background:var(--seal);transform:rotate(45deg);vertical-align:middle;animation:glow 2.4s ease-in-out infinite}
+@keyframes shine{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+@keyframes glow{50%{box-shadow:0 0 10px 2px var(--seal)}}
+.hero-btn{margin-top:1.5rem}
+.hero-btn:hover,.btn:hover{box-shadow:0 10px 30px -12px var(--seal)}
+@media(prefers-reduced-motion:reduce){.roles li::before,.roles li::after{animation:none}}

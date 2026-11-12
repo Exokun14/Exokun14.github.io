@@ -4,15 +4,16 @@ window.SITE = {
   now: {
     updated: 'November 2026',
     items: [
-      { label: 'Working on', text: 'Internal tools for a retail operations team: dashboards, request tracking and the small things that save people time.' },
+      { label: 'Working on', text: 'Handling projects, support and QA on the project team at GenieX.' },
       { label: 'Learning', text: 'Getting sharper at TypeScript and at designing systems that stay easy to change.' },
       { label: 'Enjoying', text: 'Good coffee, long walks and a decent playlist while I code.' }
     ]
   },
   timeline: [
-    { year: '2026', title: 'Full-stack developer', text: 'Building and looking after tools that retail and operations teams use every day.' },
-    { year: '2025', title: 'Taking on bigger projects', text: 'Started owning projects from the first conversation to launch and the support afterwards.' },
-    { year: '2024', title: 'Working professionally', text: 'Moved from learning on my own to building real tools for real teams.' }
+    { year: 'Feb 2026 to now', title: 'Technical Support, Project Team at GenieX', text: 'I joined GenieX in technical support. Since February 2026 I’ve been on the project team, handling projects and support and doing QA.' },
+    { year: 'After graduating', title: 'Helpdesk Analyst at Citco, Business Systems Support', text: 'I started as a six-month intern at Citco in Clark, then stayed on a contract for another six months as a Helpdesk Analyst with the Business Systems Support (BSS) team, helping colleagues keep their systems and tools working.' },
+    { year: '2024', title: 'Graduated from Bulacan State University', text: 'Finished my degree and started my career.' },
+    { year: 'Before graduating', title: 'Intern at Accenture Philippines', text: 'My pre-graduation internship, and my first look at how a large technology company works.' }
   ],
   uses: [
     { label: 'Editor', text: 'VS Code' },
@@ -29,8 +30,8 @@ window.SITE = {
     { title: 'Outdoors', text: 'Walks to clear my head after a long day of screens.' }
   ],
   work: {
-    text: 'I’m open to freelance projects and to the right full-time team. If you have a process that’s slow, a tool that’s clumsy or an idea that needs building, tell me about it.',
-    offers: ['Internal tools and dashboards', 'Web apps from idea to launch', 'Improving or rescuing an existing system']
+    text: 'Want to talk projects, QA or tech, or have an idea to build? Reach out. Years on the support side taught me to listen first and fix second.',
+    offers: ['Questions about my work or background', 'Ideas for small web projects', 'Or just saying hello']
   },
   photos: [
     // { src: 'assets/img/photo-1.jpg', alt: 'Short description', caption: 'Optional caption' }
@@ -39,14 +40,14 @@ window.SITE = {
     // { quote: 'What they said, in their words.', name: 'Their name', role: 'Their role or company' }
   ],
   notes: [
-    { id: 'start-boring', date: 'November 2026', title: 'Start with the boring version',
-      body: ['Most tools I’ve built began as something almost embarrassingly plain. A list, a form, a button that does one thing.',
-             'That’s on purpose. The plain version gets in front of real people quickly, and they tell me what actually matters. The clever ideas I had at my desk usually don’t survive that conversation.'] },
-    { id: 'watch-the-work', date: 'October 2026', title: 'Watch the work before building anything',
-      body: ['Before I write code I like to sit with the people who will use it and watch how they do the job today.',
-             'The workarounds are the interesting part. A sticky note on a monitor or a spreadsheet nobody admits to using usually points at the real problem.'] },
-    { id: 'easy-to-change', date: 'September 2026', title: 'Easy to change beats clever',
-      body: ['I used to be proud of clever code. These days I’m prouder of code that someone else can open six months from now and change without fear.',
-             'Plain names, small pieces and a bit of patience go a long way.'] }
+    { id: 'listen-first', date: 'November 2026', title: 'Listen before you fix',
+      body: ['The first thing a person says about a problem is rarely the real problem. Working on a helpdesk taught me to slow down and ask what they were actually trying to do.',
+             'Half the time the fix turns out to be different from what they first asked for.'] },
+    { id: 'plain-words', date: 'October 2026', title: 'Say it so anyone can follow',
+      body: ['If someone needs a dictionary to understand my answer, it’s not a good answer yet.',
+             'Plain words and clear steps respect people’s time, and they make the next call shorter.'] },
+    { id: 'write-it-down', date: 'September 2026', title: 'Write it down',
+      body: ['A fix that lives only in my head will be needed again at the worst possible moment.',
+             'A short note about what went wrong and what worked saves the next person, who is often me.'] }
   ]
 };

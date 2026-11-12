@@ -4,8 +4,8 @@ window.PROJECTS = [
     "id": "project-one",
     "title": "Store operations dashboard",
     "year": "2026",
-    "role": "Full-stack developer",
-    "seal": "P",
+    "role": "Project work",
+    "seal": "S",
     "palette": [
       "#CFE0D8",
       "#8FB0A3",
@@ -35,8 +35,8 @@ window.PROJECTS = [
     "id": "project-two",
     "title": "Order and request tracker",
     "year": "2025",
-    "role": "Full-stack developer",
-    "seal": "A",
+    "role": "Project work",
+    "seal": "O",
     "palette": [
       "#C9D6E6",
       "#8CA3C4",
@@ -65,8 +65,8 @@ window.PROJECTS = [
     "id": "project-three",
     "title": "Desktop helper for the shop floor",
     "year": "2024",
-    "role": "Developer",
-    "seal": "T",
+    "role": "Project work",
+    "seal": "D",
     "palette": [
       "#DDE3C2",
       "#B3BC86",
