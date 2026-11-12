@@ -317,7 +317,7 @@ const mq = $('.mq');
 if (mq) { const c = mq.cloneNode(true); c.setAttribute('aria-hidden', 'true'); mq.after(c); }
 
 // ---------- Projects data ----------
-fetch('data/projects.json').then(r => r.json()).then(list => {
+fetch('data/projects.json', { cache: 'no-cache' }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(list => {
   window.PROJECTS = list;
   const car = $('.carousel');
   if (car) { $('.track', car).innerHTML = list.map((p, i) => slideHTML(p, i, list.length)).join(''); initCarousel(car); }
@@ -327,7 +327,12 @@ fetch('data/projects.json').then(r => r.json()).then(list => {
     const hit = list.find(p => p.id === location.hash.slice(1));
     if (hit) openLetter(hit);
   }
-}).catch(() => {});
+}).catch(() => {
+  const msg = '<p class="intro">Projects could not be loaded. If you opened this file directly, serve the folder instead (for example with npx http-server). On GitHub Pages, check that data/projects.json was pushed.</p>';
+  const car = $('.carousel'), grid = $('#envelopes');
+  if (car) car.insertAdjacentHTML('afterend', msg);
+  if (grid) grid.innerHTML = msg;
+});
 
 // ---------- Currently building ----------
 const act = $('.activity');
