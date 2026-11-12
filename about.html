@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About · Clarence</title>
 <meta name="description" content="About Clarence, a full-stack developer in the Philippines, and the tools he works with.">
-<meta name="email" content="you@example.com">
+<meta name="email" content="johnclarence.joven@gmail.com">
 <meta name="github" content="https://github.com/Exokun14">
 <script>
 document.documentElement.classList.add('js');
@@ -14,9 +14,9 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=202611121714">
+<link rel="stylesheet" href="assets/css/style.css?v=202611121723">
 </head>
-<body class="sub">
+<body class="sub about">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
   <filter id="ink" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".008 .03" numOctaves="3" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="28"/></filter>
   <filter id="ink2" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".02 .05" numOctaves="3" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="9"/></filter>
@@ -39,24 +39,59 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
     <button class="theme" type="button" aria-label="Switch light or dark theme"></button>
   </nav>
 </header>
+<section id="top" class="hero">
+  <div class="birds" aria-hidden="true"></div>
+  <svg class="layer l1" data-speed=".38" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true"><path class="m1" d="M0,250 Q90,120 180,230 T360,200 T540,120 T720,230 T900,150 T1080,240 T1260,140 T1440,230 V400 H0Z"/></svg>
+  <div class="mb mb-a" aria-hidden="true"><div class="mist mist-a"></div></div>
+  <svg class="layer l2" data-speed=".22" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true"><path class="m2" d="M0,300 Q120,200 240,290 T480,250 T720,310 T960,230 T1200,300 T1440,250 V400 H0Z"/></svg>
+  <div class="mb mb-b" aria-hidden="true"><div class="mist mist-b"></div></div>
+  <svg class="layer l3" data-speed=".08" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true"><path class="m3" d="M0,350 Q160,280 320,345 T640,320 T960,350 T1280,310 T1440,340 V400 H0Z"/></svg>
+  <div class="hero-copy">
+    <h1>About me</h1>
+    <p class="fade">I’m Clarence, a full-stack developer in the Philippines. I build the tools that retail and operations teams use every day, from the screens people click through to the systems behind them.</p>
+  </div>
+  <p class="vertical fade" aria-hidden="true">Behind the work</p>
+  <span class="scroll fade" aria-hidden="true">Scroll</span>
+</section>
 <main>
-  <section class="chapter page-head">
+  <section class="chapter statement">
     <div class="inner">
-      <span class="eyebrow reveal">01</span>
-      <h1 class="title reveal">About</h1>
-      <div class="prose reveal">
-        <p class="intro">Hi, I’m Clarence. I’m a full-stack developer in the Philippines. I build the tools that retail and operations teams use every day, from the screens people click through to the systems behind them.</p>
+      <p class="big reveal">I build tools people <em>actually enjoy</em> using, quietly, carefully and built to last.</p>
+      <div class="glance reveal">
+        <div><small>Based in</small><b>The Philippines</b></div>
+        <div><small>Focus</small><b>Internal tools and web apps</b></div>
+        <div><small>Works with</small><b>Next.js, Laravel, MySQL</b></div>
+        <div><small>Open to</small><b>Freelance and full-time</b></div>
       </div>
     </div>
   </section>
 
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="mq"><span>Thoughtful</span><span>Reliable</span><span>Clear</span><span>Human</span><span>Built to last</span><span>Simple</span></div></div></div>
+
   <section class="chapter">
     <div class="inner">
-      <span class="eyebrow reveal">02</span>
+      <span class="eyebrow reveal">01</span>
       <h2 class="reveal">The journey</h2>
       <ol class="timeline reveal" id="timeline"></ol>
     </div>
   </section>
+
+  <svg class="brush" viewBox="0 0 600 24" aria-hidden="true"><path pathLength="1" d="M2,14 C80,4 140,22 230,12 S400,6 470,14 S560,10 598,12"/></svg>
+
+  <section class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">02</span>
+      <h2 class="reveal">How I work</h2>
+      <ul class="facts reveal">
+        <li>I start by understanding how people actually do their job, then build around that, not the other way round.</li>
+        <li>I like things simple. If a screen needs explaining, I go back and fix the screen.</li>
+        <li>I stay involved after launch, because the real feedback starts once people use it.</li>
+        <li>I would rather say “I don’t know yet” and find out than guess.</li>
+      </ul>
+    </div>
+  </section>
+
+  <svg class="brush" viewBox="0 0 600 24" aria-hidden="true"><path pathLength="1" d="M2,14 C80,4 140,22 230,12 S400,6 470,14 S560,10 598,12"/></svg>
 
   <section class="chapter">
     <div class="inner">
@@ -107,24 +142,17 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
     </div>
   </section>
 
-  <section class="chapter">
+  <section class="chapter cta">
     <div class="inner">
-      <span class="eyebrow reveal">08</span>
-      <h2 class="reveal">How I work</h2>
-      <ul class="facts reveal">
-        <li>I start by understanding how people actually do their job, then build around that, not the other way round.</li>
-        <li>I like things simple. If a screen needs explaining, I go back and fix the screen.</li>
-        <li>I stay involved after launch, because the real feedback starts once people use it.</li>
-        <li>I would rather say “I don’t know yet” and find out than guess.</li>
-      </ul>
+      <p class="big reveal">Have something that needs building? <em>Let’s talk.</em></p>
+      <p class="reveal"><a class="btn" href="#contact" data-contact>Say hello</a> <a class="btn ghost" href="projects.html">See my work</a></p>
     </div>
   </section>
-
   <section id="contact" class="chapter night">
     <svg class="ridge" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0,120 V70 Q120,10 240,60 T480,50 T720,30 T960,60 T1200,20 T1440,60 V120Z"/></svg>
     <div class="inner">
       <span class="eyebrow reveal">Contact</span>
-      <a class="mail reveal" href="mailto:you@example.com">you@example.com</a>
+      <a class="mail reveal" href="mailto:johnclarence.joven@gmail.com">johnclarence.joven@gmail.com</a>
       <div class="copyrow reveal"><button class="seal seal-copy" type="button" aria-label="Copy email address">C</button><span>Click the seal to copy my email</span></div>
       <div class="links reveal">
         <a href="https://github.com/Exokun14">GitHub</a>
@@ -134,8 +162,8 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
   </section>
 </main>
 <footer>© <span id="y"></span> Clarence</footer>
-<script src="data/site.js?v=202611121714"></script>
-<script src="assets/js/sections.js?v=202611121714"></script>
-<script src="assets/js/main.js?v=202611121714"></script>
+<script src="data/site.js?v=202611121723"></script>
+<script src="assets/js/sections.js?v=202611121723"></script>
+<script src="assets/js/main.js?v=202611121723"></script>
 </body>
 </html>

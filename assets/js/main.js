@@ -32,7 +32,7 @@ const h1 = $('.hero h1');
 if (h1) {
   const name = h1.textContent.trim();
   h1.setAttribute('aria-label', name);
-  h1.innerHTML = [...name].map((c, i) => `<span class="ch" aria-hidden="true" style="--i:${i}">${c}</span>`).join('');
+  h1.innerHTML = [...name].map((c, i) => `<span class="ch" aria-hidden="true" style="--i:${i}">${c === " " ? "&nbsp;" : c}</span>`).join('');
 }
 
 // ---------- Reveals ----------
@@ -92,10 +92,18 @@ letterWrap.innerHTML = '<article class="letter" role="dialog" aria-modal="true" 
 const pal = document.createElement('div');
 pal.className = 'letter-wrap';
 pal.innerHTML = '<div class="palette" role="dialog" aria-modal="true" aria-label="Command palette"><input type="text" placeholder="Type a command" aria-label="Command"><ul></ul></div>';
-body.append(letterWrap, pal);
+const PHONE = '09623058989', INTL = '639623058989';
+const hello = document.createElement('div');
+hello.className = 'letter-wrap';
+hello.innerHTML = `<article class="letter hello" role="dialog" aria-modal="true" aria-label="Contact details"><button class="close" type="button" aria-label="Close">×</button><div class="lbody"><span class="hanko" aria-hidden="true">C</span><p class="eyebrow">Say hello</p><h2>Let’s talk</h2><p class="lead">Reach me whichever way is easiest. I usually reply within a day.</p><ul class="contact-list">
+<li><span>Email</span><a href="mailto:${EMAIL}">${esc(EMAIL)}</a><button type="button" data-copy="${esc(EMAIL)}">Copy</button></li>
+<li><span>Phone</span><a href="tel:+${INTL}">${PHONE}</a><button type="button" data-copy="${PHONE}">Copy</button></li>
+<li><span>WhatsApp</span><a href="https://wa.me/${INTL}" target="_blank" rel="noopener">Message on WhatsApp</a></li>
+<li><span>Viber</span><a href="viber://chat?number=%2B${INTL}">Message on Viber</a></li></ul></div></article>`;
+body.append(letterWrap, pal, hello);
 const closeAll = () => {
-  if (!letterWrap.classList.contains('open') && !pal.classList.contains('open')) return;
-  letterWrap.classList.remove('open'); pal.classList.remove('open'); lock(false);
+  if (!letterWrap.classList.contains('open') && !pal.classList.contains('open') && !hello.classList.contains('open')) return;
+  letterWrap.classList.remove('open'); pal.classList.remove('open'); hello.classList.remove('open'); lock(false);
   if (lastFocus) lastFocus.focus();
 };
 const openLetter = (p, from) => {
@@ -110,7 +118,8 @@ const openLetter = (p, from) => {
   if (dg) setTimeout(() => dg.classList.add('go'), 700);
 };
 $('.close', letterWrap).addEventListener('click', closeAll);
-[letterWrap, pal].forEach(w => w.addEventListener('click', e => { if (e.target === w) closeAll(); }));
+$('.close', hello).addEventListener('click', closeAll);
+[letterWrap, pal, hello].forEach(w => w.addEventListener('click', e => { if (e.target === w) closeAll(); }));
 
 // copy email with a stamp
 const toast = document.createElement('div');
@@ -456,6 +465,19 @@ panel.addEventListener('change', e => {
   fxKick();
 });
 document.addEventListener('click', e => { if (!panel.hidden && !e.target.closest('.settings, .settings-btn')) closeSettings(); });
+
+// ---------- Contact pop-up ----------
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-contact]');
+  if (t) { e.preventDefault(); lastFocus = t; lock(true); hello.classList.add('open'); $('.close', hello).focus(); return; }
+  const c = e.target.closest('[data-copy]');
+  if (c) {
+    const v = c.dataset.copy;
+    (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).catch(() => {}).finally(() => {
+      const old = c.textContent; c.textContent = 'Copied'; setTimeout(() => { c.textContent = old; }, 1400);
+    });
+  }
+});
 
 // ---------- Page transition (loading screen) ----------
 const go = $('a[data-go]');
