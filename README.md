@@ -1,31 +1,29 @@
 # Personal website
 
-Static site for GitHub Pages. No build step.
+![CI](https://github.com/Exokun14/Exokun14.github.io/actions/workflows/ci.yml/badge.svg)
+
+Static site for GitHub Pages. No build step, no framework.
 
 ## Structure
 
 ```
-index.html
-publish.bat
-open-site.bat
-assets/
-  css/style.css
-  js/main.js
-  img/
-.nojekyll
-.gitignore
+index.html  projects.html  about.html
+data/projects.json      all projects (add one entry = new slide, envelope and letter)
+data/activity.json      written nightly by .github/workflows/activity.yml
+assets/css  assets/js  assets/img
+tests/  playwright.config.js   Playwright checks (run by CI on every push)
+publish.bat  open-site.bat     Windows helpers
 ```
 
-## Deploy
+## Add a project
 
-1. Push this folder to a GitHub repo (`<username>.github.io` for a root URL).
-2. Settings → Pages → Deploy from a branch → `main` / `(root)`.
-
-## Preview locally
-
-Open `index.html` in a browser, or run `python3 -m http.server` in this folder.
+Add an object to `data/projects.json`. Optional `"image": "assets/img/shot.jpg"` shows a screenshot instead of the painted scene.
 
 ## Scripts (Windows)
 
-- `publish.bat` does everything: installs GitHub CLI if needed, logs you in, creates the `<username>.github.io` repo, commits, pushes and turns on Pages. Optional message: `publish.bat "my message"`.
-- `open-site.bat` opens the live GitHub Pages URL in your browser.
+- `publish.bat` does everything: installs GitHub CLI if needed, logs you in, creates the `<username>.github.io` repo, commits, pulls, pushes and turns on Pages.
+- `open-site.bat` opens the live GitHub Pages URL.
+
+## Preview locally
+
+The pages load JSON, so use a server instead of double-clicking: `npx http-server` or `python -m http.server`.

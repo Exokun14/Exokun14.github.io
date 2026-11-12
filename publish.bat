@@ -50,6 +50,7 @@ git add -A
 git diff --cached --quiet
 if errorlevel 1 git commit -m "%MSG%"
 git branch -M main
+git pull --rebase origin main >nul 2>&1
 git push -u origin main
 if errorlevel 1 goto push_failed
 

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Clarence · Full-stack developer</title>
 <meta name="description" content="Clarence is a full-stack developer in the Philippines building with Next.js, TypeScript and Laravel.">
+<meta name="email" content="you@example.com">
+<meta name="github" content="https://github.com/Exokun14">
 <script>
 document.documentElement.classList.add('js');
 try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
@@ -15,31 +17,37 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<div class="loader" aria-hidden="true"><div><span class="seal">C</span><i></i></div></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <filter id="ink" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".008 .03" numOctaves="3" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="28"/></filter>
+  <filter id="ink2" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".02 .05" numOctaves="3" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="9"/></filter>
+  <filter id="soft"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="10"/></filter>
+  <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m1)"/><stop offset="1" style="stop-color:var(--m1);stop-opacity:.15"/></linearGradient>
+  <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m2)"/><stop offset="1" style="stop-color:var(--m2);stop-opacity:.55"/></linearGradient>
+  <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m3)"/><stop offset="1" style="stop-color:var(--m3)"/></linearGradient>
+  <linearGradient id="mistfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--bg);stop-opacity:0"/><stop offset=".5" style="stop-color:var(--bg);stop-opacity:.4"/><stop offset="1" style="stop-color:var(--bg);stop-opacity:0"/></linearGradient>
+</defs></svg>
+<div class="paper" aria-hidden="true"></div>
 <div class="progress" aria-hidden="true"></div>
-<div class="cursor" aria-hidden="true"></div>
-
-<nav class="rail" aria-label="Sections">
-  <a href="#top" aria-label="Home"></a><a href="#work" aria-label="Work"></a>
-  <a href="#stack" aria-label="Stack"></a><a href="#contact" aria-label="Contact"></a>
-</nav>
-
+<div class="loader" aria-hidden="true"><div><span class="seal">C</span><i></i></div></div>
+<div class="sky" aria-hidden="true"><div class="stars"></div><div class="sun"></div></div>
+<canvas id="fx" aria-hidden="true"></canvas>
 <header class="topbar fade">
-  <a class="seal" href="#top" aria-label="Home">C</a>
+  <a class="seal" href="index.html" aria-label="Home">C</a>
   <nav class="links" aria-label="Main">
-    <a href="#work">Work</a><a href="#stack">Stack</a><a href="#contact">Contact</a>
+    <a href="projects.html">Projects</a><a href="about.html">About</a>
+    <button class="kbd" type="button" aria-label="Open command palette">Search <kbd>Ctrl K</kbd></button>
+    <button class="sound" type="button" aria-pressed="false" aria-label="Ambient sound"><i></i><i></i><i></i></button>
     <button class="theme" type="button" aria-label="Switch light or dark theme"></button>
   </nav>
 </header>
 
 <section id="top" class="hero">
-  <canvas class="petals" aria-hidden="true"></canvas>
+  <div class="birds" aria-hidden="true"></div>
   <svg class="layer l1" data-speed=".38" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true"><path class="m1" d="M0,250 Q90,120 180,230 T360,200 T540,120 T720,230 T900,150 T1080,240 T1260,140 T1440,230 V400 H0Z"/></svg>
-  <div class="mist mist-a" aria-hidden="true"></div>
+  <div class="mb mb-a" aria-hidden="true"><div class="mist mist-a"></div></div>
   <svg class="layer l2" data-speed=".22" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true"><path class="m2" d="M0,300 Q120,200 240,290 T480,250 T720,310 T960,230 T1200,300 T1440,250 V400 H0Z"/></svg>
-  <div class="mist mist-b" aria-hidden="true"></div>
+  <div class="mb mb-b" aria-hidden="true"><div class="mist mist-b"></div></div>
   <svg class="layer l3" data-speed=".08" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true"><path class="m3" d="M0,350 Q160,280 320,345 T640,320 T960,350 T1280,310 T1440,340 V400 H0Z"/></svg>
-
   <div class="hero-copy">
     <h1>Clarence</h1>
     <p class="fade">Full-stack developer in the Philippines. I build web apps and internal tools for retail and operations teams.</p>
@@ -53,22 +61,10 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 
   <section id="work" class="chapter">
     <div class="inner">
-      <h2 class="reveal">Work</h2>
-      <div class="carousel reveal" data-autoplay="7000" role="group" aria-roledescription="carousel" aria-label="Selected work" tabindex="0">
-        <div class="viewport"><div class="track">
-        <article class="slide" aria-label="1 of 3" style="--c1:#CFE0D8;--c2:#8FB0A3;--c3:#2F5D50">
-          <div class="art"></div>
-          <div class="body"><span class="num">01</span><h3>Project name</h3><p>One or two sentences: what it does, who uses it, and what you built.</p><span class="tech">Next.js, Laravel</span><a class="btn" href="#">View project</a></div>
-        </article>
-        <article class="slide" aria-label="2 of 3" style="--c1:#C9D6E6;--c2:#8CA3C4;--c3:#34476B">
-          <div class="art"></div>
-          <div class="body"><span class="num">02</span><h3>Project name</h3><p>Replace this with something you’re proud of. To use a screenshot, add style=&quot;--img:url(assets/img/shot.jpg)&quot; to the slide.</p><span class="tech">TypeScript, MySQL</span><a class="btn" href="#">View project</a></div>
-        </article>
-        <article class="slide" aria-label="3 of 3" style="--c1:#DDE3C2;--c2:#B3BC86;--c3:#47572E">
-          <div class="art"></div>
-          <div class="body"><span class="num">03</span><h3>Project name</h3><p>Add more slides by copying one of these blocks.</p><span class="tech">Playwright, Electron</span><a class="btn" href="#">View project</a></div>
-        </article>
-        </div></div>
+      <span class="eyebrow reveal">01</span>
+      <h2 class="reveal">Featured work</h2>
+      <div class="carousel reveal" data-autoplay="7000" role="group" aria-roledescription="carousel" aria-label="Featured work" tabindex="0">
+        <div class="viewport"><div class="track"></div></div>
         <div class="controls">
           <span class="count" aria-live="polite"></span>
           <div class="dots"></div>
@@ -76,31 +72,18 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
         </div>
         <div class="bar" aria-hidden="true"><i></i></div>
       </div>
+      <p class="more reveal"><a class="btn" href="projects.html">All projects</a></p>
+      <div class="activity reveal" hidden><span class="live">Currently building</span><ul></ul></div>
     </div>
   </section>
 
   <svg class="brush" viewBox="0 0 600 24" aria-hidden="true"><path pathLength="1" d="M2,14 C80,4 140,22 230,12 S400,6 470,14 S560,10 598,12"/></svg>
-
-  <section id="stack" class="chapter">
-    <div class="inner">
-      <h2 class="reveal">Stack</h2>
-      <div class="rowwrap reveal">
-        <div class="row" tabindex="0" aria-label="Stack, scroll sideways">
-          <div class="card"><h3>Frontend</h3><p>Next.js, React, TypeScript, Tailwind</p></div>
-          <div class="card"><h3>Backend</h3><p>Laravel, PHP, REST APIs</p></div>
-          <div class="card"><h3>Data</h3><p>MySQL</p></div>
-          <div class="card"><h3>Testing</h3><p>Playwright</p></div>
-          <div class="card"><h3>Desktop and tooling</h3><p>Electron, Git</p></div>
-        </div>
-        <div class="arrows"><button class="prev" type="button" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><button class="next" type="button" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
-      </div>
-    </div>
-  </section>
-
   <section id="contact" class="chapter night">
+    <svg class="ridge" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0,120 V70 Q120,10 240,60 T480,50 T720,30 T960,60 T1200,20 T1440,60 V120Z"/></svg>
     <div class="inner">
-      <h2 class="reveal">Contact</h2>
+      <span class="eyebrow reveal">Contact</span>
       <a class="mail reveal" href="mailto:you@example.com">you@example.com</a>
+      <div class="copyrow reveal"><button class="seal seal-copy" type="button" aria-label="Copy email address">C</button><span>Click the seal to copy my email</span></div>
       <div class="links reveal">
         <a href="https://github.com/Exokun14">GitHub</a>
         <a href="#">LinkedIn</a>
@@ -108,7 +91,6 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
     </div>
   </section>
 </main>
-
 <footer>© <span id="y"></span> Clarence</footer>
 <script src="assets/js/main.js"></script>
 </body>

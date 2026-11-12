@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · Clarence</title>
+<meta name="description" content="About Clarence, the stack, and how this site is built.">
+<meta name="email" content="you@example.com">
+<meta name="github" content="https://github.com/Exokun14">
+<script>
+document.documentElement.classList.add('js');
+try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="sub">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <filter id="ink" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".008 .03" numOctaves="3" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="28"/></filter>
+  <filter id="ink2" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".02 .05" numOctaves="3" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="9"/></filter>
+  <filter id="soft"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="10"/></filter>
+  <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m1)"/><stop offset="1" style="stop-color:var(--m1);stop-opacity:.15"/></linearGradient>
+  <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m2)"/><stop offset="1" style="stop-color:var(--m2);stop-opacity:.55"/></linearGradient>
+  <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m3)"/><stop offset="1" style="stop-color:var(--m3)"/></linearGradient>
+  <linearGradient id="mistfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--bg);stop-opacity:0"/><stop offset=".5" style="stop-color:var(--bg);stop-opacity:.4"/><stop offset="1" style="stop-color:var(--bg);stop-opacity:0"/></linearGradient>
+</defs></svg>
+<div class="paper" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="sky" aria-hidden="true"><div class="stars"></div><div class="sun"></div></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<header class="topbar fade">
+  <a class="seal" href="index.html" aria-label="Home">C</a>
+  <nav class="links" aria-label="Main">
+    <a href="projects.html">Projects</a><a href="about.html" aria-current="page">About</a>
+    <button class="kbd" type="button" aria-label="Open command palette">Search <kbd>Ctrl K</kbd></button>
+    <button class="sound" type="button" aria-pressed="false" aria-label="Ambient sound"><i></i><i></i><i></i></button>
+    <button class="theme" type="button" aria-label="Switch light or dark theme"></button>
+  </nav>
+</header>
+<main>
+  <section class="chapter page-head">
+    <div class="inner">
+      <span class="eyebrow reveal">01</span>
+      <h1 class="title reveal">About</h1>
+      <div class="prose reveal">
+        <p class="intro">I’m Clarence, a full-stack developer in the Philippines. I work across Next.js and TypeScript on the frontend and Laravel on the backend, mostly on internal tools and retail systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">02</span>
+      <h2 class="reveal">Stack</h2>
+      <div class="rowwrap reveal">
+        <div class="row" tabindex="0" aria-label="Stack, scroll sideways">
+          <div class="card"><h3>Frontend</h3><p>Next.js, React, TypeScript, Tailwind</p></div>
+          <div class="card"><h3>Backend</h3><p>Laravel, PHP, REST APIs</p></div>
+          <div class="card"><h3>Data</h3><p>MySQL</p></div>
+          <div class="card"><h3>Testing</h3><p>Playwright</p></div>
+          <div class="card"><h3>Desktop and tooling</h3><p>Electron, Git</p></div>
+        </div>
+        <div class="arrows"><button class="prev" type="button" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><button class="next" type="button" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">03</span>
+      <h2 class="reveal">How this is built</h2>
+      <div class="dwrap reveal"><svg class="diagram" data-flow="index.html|style.css|main.js|projects.json|GitHub Pages" aria-label="Site architecture"></svg></div>
+      <ul class="facts reveal">
+        <li>No build step and no framework. It is plain HTML, CSS and JavaScript, served as is by GitHub Pages.</li>
+        <li>The home page weighs about 58 KB before compression (HTML, CSS, JavaScript and JSON), plus two Google fonts.</li>
+        <li>Projects live in one JSON file. Adding an entry adds a slide, an envelope and a letter.</li>
+        <li>Effects come in two tiers. Desktop gets the full set: ink filters, falling leaves, birds, the brush cursor. Touch devices, low-core machines and Save-Data mode get a lighter page without them. Reduced motion turns off animation everywhere.</li>
+        <li>A nightly GitHub Action writes my latest commits to a data file for the “Currently building” strip.</li>
+        <li>Playwright runs on every push, taking light and dark screenshots and checking that nothing overflows on a phone.</li>
+      </ul>
+    </div>
+  </section>
+  <section id="contact" class="chapter night">
+    <svg class="ridge" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0,120 V70 Q120,10 240,60 T480,50 T720,30 T960,60 T1200,20 T1440,60 V120Z"/></svg>
+    <div class="inner">
+      <span class="eyebrow reveal">Contact</span>
+      <a class="mail reveal" href="mailto:you@example.com">you@example.com</a>
+      <div class="copyrow reveal"><button class="seal seal-copy" type="button" aria-label="Copy email address">C</button><span>Click the seal to copy my email</span></div>
+      <div class="links reveal">
+        <a href="https://github.com/Exokun14">GitHub</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>© <span id="y"></span> Clarence</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
