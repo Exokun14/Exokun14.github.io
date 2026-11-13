@@ -578,21 +578,21 @@ h1.title{font:300 clamp(3.2rem,10vw,7rem)/.95 var(--display);letter-spacing:-.03
 .tnote{margin:1.5rem 0 0;text-align:center;font:italic 300 1.05rem var(--display);color:var(--muted)}
 .trail .halo{transform-box:fill-box;transform-origin:center}
 
-/* ===== Line art (recoloured with masks so it follows the theme) ===== */
-.art{pointer-events:none;background:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain}
+/* ===== Line art (plain background images, so it also works when opened from disk) ===== */
+.art{pointer-events:none;background-repeat:no-repeat;background-position:center;background-size:contain}
 
 /* Mountain behind the hero ridges: inks in from the bottom up */
-.art-fuji{-webkit-mask-image:url(../img/art-mountain.webp);mask-image:url(../img/art-mountain.webp);
-  --art-o:.42;position:absolute!important;z-index:0;left:auto;right:-13%;bottom:2%;width:min(80rem,118vw);aspect-ratio:2/1;height:auto;color:var(--ink);opacity:var(--art-o)}
-.nm .art-fuji{--art-o:.32}
+.art-fuji{background-image:url(../img/art-mountain.webp);
+  --art-o:.42;position:absolute!important;z-index:0;left:auto;right:-13%;bottom:2%;width:min(80rem,118vw);aspect-ratio:2/1;height:auto;opacity:var(--art-o)}
+.nm .art-fuji{--art-o:.32;filter:invert(1)}
 .js .art-fuji{opacity:0;clip-path:inset(100% 0 0 0)}
 body.ready .art-fuji{animation:inkrise 3s var(--ease) 1s forwards}
 @keyframes inkrise{to{opacity:var(--art-o);clip-path:inset(0)}}
 @media(max-width:40rem){.art-fuji{right:-42%;bottom:24%;width:150vw;--art-o:.3}.nm .art-fuji{--art-o:.22}}
 
-/* Standing samurai guarding the contact section */
-.art-samurai{-webkit-mask-image:url(../img/art-samurai-stand.webp);mask-image:url(../img/art-samurai-stand.webp);
-  position:absolute;z-index:0;right:clamp(.5rem,6vw,6rem);bottom:0;height:100%;aspect-ratio:900/1003;color:var(--night-ink);mix-blend-mode:difference;opacity:.18}
+/* Standing samurai guarding the contact section (light lines on the dark section) */
+.art-samurai{background-image:url(../img/art-samurai-stand.webp);filter:invert(1);
+  position:absolute;z-index:0;right:clamp(.5rem,6vw,6rem);bottom:0;height:100%;aspect-ratio:900/1003;mix-blend-mode:difference;opacity:.18}
 .js .art-samurai{opacity:0;transform:translateY(24px)}
 .js .night.arrived .art-samurai{animation:guard 2.6s var(--ease) .8s forwards}
 @keyframes guard{to{opacity:.34;transform:none}}
@@ -600,8 +600,9 @@ body.ready .art-fuji{animation:inkrise 3s var(--ease) 1s forwards}
 @media(max-width:47.99rem){.art-samurai{height:70%;right:0}.js .night.arrived .art-samurai{animation-name:guardsm}@keyframes guardsm{to{opacity:.2;transform:none}}}
 
 /* Sword-drawing samurai on the About page: the blade is drawn left to right */
-.art-draw{-webkit-mask-image:url(../img/art-samurai-draw.webp);mask-image:url(../img/art-samurai-draw.webp);
-  display:block;width:min(30rem,86%);aspect-ratio:3/2;margin:0 auto 1.5rem;color:var(--ink)}
+.art-draw{background-image:url(../img/art-samurai-draw.webp);
+  display:block;width:min(30rem,86%);aspect-ratio:3/2;margin:0 auto 1.5rem}
+.nm .art-draw{filter:invert(1)}
 .js .art-draw{clip-path:inset(0 100% 0 0);transition:opacity 1s var(--ease),transform 1.1s var(--ease),clip-path 2.4s cubic-bezier(.7,0,.2,1) .2s}
 .js .art-draw.in{clip-path:inset(0);opacity:.85}
 @media(prefers-reduced-motion:reduce){.js .art-draw{clip-path:none}.js .art-samurai{opacity:.34;transform:none}.js .art-fuji{opacity:var(--art-o);clip-path:none}}
