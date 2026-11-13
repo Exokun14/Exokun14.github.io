@@ -456,7 +456,7 @@ h1.title{font:300 clamp(3.2rem,10vw,7rem)/.95 var(--display);letter-spacing:-.03
 .cta{text-align:center;padding-bottom:clamp(5rem,14vh,9rem)}
 .cta .big{margin-inline:auto}
 .cta p:last-child{margin-top:2.25rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn.ghost{background:transparent;border-color:var(--line)}
+.btn.ghost{background-color:transparent;border-color:var(--line)}
 @media(prefers-reduced-motion:reduce){.big em::after{transform:scaleX(1);transition:none}.about .timeline::before{transform:none;transition:none}}
 
 /* Phone nav: make room for Notes */
