@@ -496,7 +496,7 @@ const inkScene = (label, dur) => {
   <div class="mist m-a"></div><div class="mist m-b"></div>
   ${petals}
   <div class="wcenter">
-    <div class="enso"><svg viewBox="0 0 200 200" aria-hidden="true"><path pathLength="1" d="M100,22 C148,18 184,56 180,102 C176,150 138,182 96,178 C54,174 20,140 24,98 C27,66 46,42 74,30" filter="url(#brush)"/></svg><span class="seal">C</span></div>
+    <div class="enso"><svg viewBox="0 0 200 200" aria-hidden="true"><path pathLength="1" d="M100,22 C148,18 184,56 180,102 C176,150 138,182 96,178 C54,174 20,140 24,98 C27,66 46,42 74,30" filter="url(#brush)"/></svg><span class="fox"></span></div>
     <p>${esc(label)}</p><i class="wline"></i>
   </div>
 </div>`;

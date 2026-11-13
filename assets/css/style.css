@@ -617,7 +617,7 @@ body.ready .art-fuji{animation:inkrise 3s var(--ease) 1s forwards}
 .art-wave{display:block;width:min(26rem,70%);aspect-ratio:3/2;margin:2.5rem auto -1rem}
 
 .art-sakura{background-image:url(../img/art-sakura.webp);--art-o:.55;right:-1rem;top:.5rem;width:min(28rem,75vw);aspect-ratio:2/1}
-.art-enso{background-image:url(../img/art-enso.webp);--art-o:.12;right:6%;top:50%;margin-top:-10rem;width:20rem;aspect-ratio:1312/1199;animation:ensospin 120s linear infinite}
+.art-enso{background-image:url(../img/art-enso.webp);--art-o:.12;right:2%;top:50%;margin-top:-10rem;width:20rem;aspect-ratio:1312/1199;animation:ensospin 120s linear infinite}
 @keyframes ensospin{to{rotate:360deg}}
 .art-dragon{background-image:url(../img/art-dragon-sword.webp);--art-o:.16;right:5%;top:3%;height:94%;aspect-ratio:2/3}
 .art-fox{background-image:url(../img/art-ninetail.webp);--art-o:.2;right:3%;top:.5rem;width:14rem;aspect-ratio:800/731}
@@ -652,3 +652,11 @@ body.ready .art-fuji{animation:inkrise 3s var(--ease) 1s forwards}
 .nm .art-koi,.nm .art-pine{filter:invert(1)}
 .nm .art-koi{--art-o:.18}.nm .art-pine{--art-o:.18}
 @media(prefers-reduced-motion:reduce){.art-koi{animation:none}}
+
+/* Kitsune mask: loader emblem (replaces the C seal) and mark inside the Get in touch enso */
+.ws .enso .fox{position:absolute;left:50%;top:50%;width:50%;aspect-ratio:640/709;background:url(../img/art-kitsune.webp) center/contain no-repeat;filter:invert(1);transform:translate(-50%,-50%) rotate(-4deg);animation:stamp2 .8s cubic-bezier(.2,.9,.2,1.2) calc(var(--dur) * .55) both}
+.art-mark{background-image:url(../img/art-kitsune.webp);position:absolute;z-index:0;--art-o:.4;right:calc(2% + 5.5rem);top:50%;margin-top:-5.8rem;width:9rem;aspect-ratio:640/709}
+.nm .art-mark{filter:invert(1);--art-o:.3}
+@media(max-width:47.99rem){.art-mark{width:6rem;right:.5rem;margin-top:-7.3rem}}
+.art-enso.reveal{--art-o:.14}.nm .art-enso.reveal{--art-o:.18}
+.art-mark.reveal{--art-o:.55}.nm .art-mark.reveal{--art-o:.5}
