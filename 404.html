@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Lost in the mist · Clarence Joven</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0a1a1c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--display:"Cormorant Garamond",Georgia,serif;--body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}html{overflow-x:hidden}
+body{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 36%,#12292b 0%,#0a1a1c 48%,#050c0e 100%);color:#E1EAE6;font:1rem/1.7 var(--body);display:grid;place-items:center;text-align:center;padding:1.5rem}
+.moon{position:absolute;left:50%;top:36%;width:min(70vw,30rem);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(190,225,215,.2),rgba(190,225,215,.06) 55%,transparent 70%);animation:glow 4s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.6;transform:translate(-50%,-50%) scale(.94)}to{opacity:1;transform:translate(-50%,-50%) scale(1.06)}}
+.ridges{position:absolute;left:0;right:0;bottom:0;width:100%;height:44%}
+.g1{fill:#1d4044}.g2{fill:#12292c}.g3{fill:#091719}
+.ridges path{stroke:#9fc2b4;stroke-opacity:.3;stroke-width:1.4;vector-effect:non-scaling-stroke}
+.mist{position:absolute;left:-30%;width:160%;height:24%;bottom:14%;filter:blur(18px);background:radial-gradient(ellipse at center,rgba(170,205,195,.26),transparent 68%);animation:drift 10s linear infinite alternate}
+@keyframes drift{from{transform:translateX(-6%)}to{transform:translateX(6%)}}
+.petal{position:absolute;top:-6%;width:.7rem;height:.7rem;border-radius:100% 0 100% 0;background:#c4574e;opacity:0;animation:fall 6s linear var(--d) infinite}
+@keyframes fall{0%{opacity:0;transform:translate(0,0) rotate(0)}10%{opacity:.7}90%{opacity:.5}100%{opacity:0;transform:translate(60px,110vh) rotate(420deg)}}
+main{position:relative;z-index:2;margin-top:-14vh}
+.num{font:300 clamp(6rem,24vw,14rem)/.9 var(--display);letter-spacing:-.04em;margin:0;background:linear-gradient(180deg,#f2f7f4,#7ea597);-webkit-background-clip:text;background-clip:text;color:transparent}
+.seal{display:inline-grid;place-items:center;width:3rem;height:3rem;background:#b3261e;color:#fff;font:500 1.7rem/1 var(--display);transform:rotate(-4deg);border-radius:3px;margin-top:.5rem}
+h1{font:italic 300 clamp(1.6rem,4vw,2.4rem)/1.2 var(--display);letter-spacing:.04em;margin:1.25rem 0 .5rem}
+p{margin:0 0 1.75rem;color:#9fb5ad}
+a.btn{display:inline-block;padding:.75rem 1.6rem;border:1px solid #9fc2b4;border-radius:999px;color:inherit;text-decoration:none;transition:background .3s,box-shadow .3s}
+a.btn:hover,a.btn:focus-visible{background:rgba(159,194,180,.14);box-shadow:0 10px 30px -12px #b3261e}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.petal{display:none}}
+</style>
+</head>
+<body>
+<div class="moon" aria-hidden="true"></div>
+<svg class="ridges" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
+  <path class="g1" d="M0,250 C100,170 200,170 300,220 S480,130 620,170 S800,250 920,190 S1120,110 1240,170 S1400,230 1440,200 V420 H0Z"/>
+  <path class="g2" d="M0,300 C120,250 240,240 360,280 S600,330 740,280 S960,230 1100,280 S1360,320 1440,280 V420 H0Z"/>
+  <path class="g3" d="M0,355 C160,320 300,330 440,350 S700,380 860,350 S1160,320 1300,345 S1420,360 1440,350 V420 H0Z"/>
+</svg>
+<div class="mist" aria-hidden="true"></div>
+<i class="petal" style="left:12%;--d:0s"></i><i class="petal" style="left:30%;--d:1.4s"></i><i class="petal" style="left:52%;--d:.7s"></i><i class="petal" style="left:71%;--d:2.2s"></i><i class="petal" style="left:88%;--d:3s"></i>
+<main>
+  <p class="num" aria-hidden="true">404</p>
+  <span class="seal" aria-hidden="true">C</span>
+  <h1>This path leads nowhere.</h1>
+  <p>The page you’re looking for has drifted off into the mist.</p>
+  <a class="btn" href="/">Back to the beginning</a>
+</main>
+</body>
+</html>
