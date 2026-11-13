@@ -99,7 +99,9 @@ hello.innerHTML = `<article class="letter hello" role="dialog" aria-modal="true"
 <li><span>Email</span><a href="mailto:${EMAIL}">${esc(EMAIL)}</a><button type="button" data-copy="${esc(EMAIL)}">Copy</button></li>
 <li><span>Phone</span><a href="tel:+${INTL}">${PHONE}</a><button type="button" data-copy="${PHONE}">Copy</button></li>
 <li><span>WhatsApp</span><a href="https://wa.me/${INTL}" target="_blank" rel="noopener">Message on WhatsApp</a></li>
-<li><span>Viber</span><a href="viber://chat?number=%2B${INTL}">Message on Viber</a></li></ul></div></article>`;
+<li><span>Viber</span><a href="viber://chat?number=%2B${INTL}">Message on Viber</a></li>
+<li><span>CV</span><a href="assets/Clarence-Joven-CV.pdf" download="Clarence-Joven-CV.pdf">Download my CV (PDF)</a></li>
+<li><span>LinkedIn</span><a href="https://www.linkedin.com/in/clarence-joven-853667293/" target="_blank" rel="noopener">Clarence Joven</a></li></ul></div></article>`;
 body.append(letterWrap, pal, hello);
 const closeAll = () => {
   if (!letterWrap.classList.contains('open') && !pal.classList.contains('open') && !hello.classList.contains('open')) return;
@@ -180,6 +182,7 @@ const actions = [
   ['Notes', () => { location.href = 'notes.html'; }],
   ['Toggle light or dark theme', toggleTheme],
   ['Copy email address', () => copyEmail()],
+  ['Download CV', () => { const a = document.createElement('a'); a.href = 'assets/Clarence-Joven-CV.pdf'; a.download = 'Clarence-Joven-CV.pdf'; a.click(); }],
   ['Open GitHub', () => window.open(GH, '_blank', 'noopener')],
   ['Toggle ambient sound', toggleSound],
   ['Open settings', () => gear.click()]

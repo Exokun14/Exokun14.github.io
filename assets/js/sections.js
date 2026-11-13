@@ -10,7 +10,9 @@ fill('#now-list', S.now.items.map(i => `<div class="card"><h3>${esc(i.label)}</h
 const nu = $('#now-updated'); if (nu) nu.textContent = 'Updated ' + S.now.updated;
 
 fill('#timeline', S.timeline.map(t => `<li><span class="yr">${esc(t.year)}</span><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p></li>`).join(''));
-fill('#uses-list', S.uses.map(u => `<div class="card"><h3>${esc(u.label)}</h3><p>${esc(u.text)}</p></div>`).join(''));
+fill('#cycle-list', S.cycle.map((c, i) => `<li><span class="yr">${String(i + 1).padStart(2, '0')}</span><h3>${esc(c.title)}</h3><p>${esc(c.text)}</p></li>`).join(''));
+fill('#learning-list', S.learning.map(u => `<div class="card"><h3>${esc(u.title)}</h3><p>${esc(u.text)}</p></div>`).join(''));
+fill('#trail-list', S.trails.map(t => `<li><span class="yr">${esc(t.date)}</span><h3>${esc(t.name)}</h3><p>${esc(t.note)}</p></li>`).join(''));
 fill('#beyond-list', S.beyond.map(b => `<div class="card"><h3>${esc(b.title)}</h3><p>${esc(b.text)}</p></div>`).join(''));
 
 const wt = $('#work-text'); if (wt) wt.textContent = S.work.text;

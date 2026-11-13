@@ -4,34 +4,42 @@ window.SITE = {
   now: {
     updated: 'November 2026',
     items: [
-      { label: 'Working on', text: 'Handling projects, support and QA on the project team at GenieX.' },
-      { label: 'Learning', text: 'Getting sharper at TypeScript and at designing systems that stay easy to change.' },
-      { label: 'Enjoying', text: 'Good coffee, long walks and a decent playlist while I code.' }
+      { label: 'Working on', text: 'Taking projects through the full cycle at GenieX: coordinating, documenting, testing, deploying and training clients.' },
+      { label: 'Latest climb', text: 'Mt. Arayat quad peak on November 7.' },
+      { label: 'On repeat', text: 'Benson Boone and Olivia Rodrigo.' }
     ]
   },
-  timeline: [
-    { year: 'Feb 2026 to now', title: 'Technical Support, Project Team at GenieX', text: 'I joined GenieX in technical support. Since February 2026 I’ve been on the project team, handling projects and support and doing QA.' },
-    { year: 'After graduating', title: 'Helpdesk Analyst at Citco, Business Systems Support', text: 'I started as a six-month intern at Citco in Clark, then stayed on a contract for another six months as a Helpdesk Analyst with the Business Systems Support (BSS) team, helping colleagues keep their systems and tools working.' },
-    { year: '2024', title: 'Graduated from Bulacan State University', text: 'Finished my degree and started my career.' },
-    { year: 'Before graduating', title: 'Intern at Accenture Philippines', text: 'My pre-graduation internship, and my first look at how a large technology company works.' }
+  cycle: [
+    { title: 'Coordinate', text: 'Keep project status clear and keep everyone, including the developers, on the same page.' },
+    { title: 'Document', text: 'Write things down so nothing lives only in someone’s head.' },
+    { title: 'Test', text: 'QA every update, by hand and with automation.' },
+    { title: 'Deploy', text: 'Release the update, including on the client’s own environment.' },
+    { title: 'Demo and train', text: 'Show clients how it works and train their team to use it.' }
   ],
-  uses: [
-    { label: 'Editor', text: 'VS Code' },
-    { label: 'Browser', text: 'Chrome, with a lot of tabs open' },
-    { label: 'Everyday stack', text: 'Next.js, TypeScript, Laravel, MySQL' },
-    { label: 'Version control', text: 'Git and GitHub' },
-    { label: 'Notes', text: 'Plain text files and a paper notebook' },
-    { label: 'Desk', text: 'Two monitors, a good chair and a lot of coffee' }
+  timeline: [
+    { year: 'Feb 2026 to now', title: 'Technical Support, Project Team at GenieX', text: 'I joined Genie Technologies Incorporated in technical support. Since February 2026 I’ve been on the project team, where I handle the full project cycle: coordinating with developers, writing documentation, testing, deploying, and running demos and training for clients.' },
+    { year: 'Aug 2024 to Aug 2025', title: 'Helpdesk Analyst at Citco, Business Systems Support', text: 'I started as a six-month intern at Citco in Clark, then stayed on a six-month contract as a Helpdesk Analyst with the Business Systems Support (BSS) team, helping colleagues keep their systems and tools working. Citco also trained me in networking, Linux, AWS and programming.' },
+    { year: '2024', title: 'Graduated from Bulacan State University', text: 'Bachelor of Science, major in Information and Communications Technology.' },
+    { year: '2024', title: 'Intern at Accenture Philippines', text: 'My pre-graduation internship, and my first look at how a large technology company works.' }
+  ],
+  learning: [
+    { title: 'Degree', text: 'BS in Information and Communications Technology, Bulacan State University' },
+    { title: 'Citco training', text: 'Networking, Linux, AWS and programming' },
+    { title: 'Certification', text: 'Microsoft Office' }
   ],
   beyond: [
-    { title: 'Music', text: 'Always something playing. It helps me think.' },
-    { title: 'Games', text: 'A good story-driven game is my favorite way to switch off.' },
-    { title: 'Food', text: 'Always up for trying a new place or cooking something simple at home.' },
-    { title: 'Outdoors', text: 'Walks to clear my head after a long day of screens.' }
+    { title: 'Music', text: 'Benson Boone, Olivia Rodrigo and soft pop rock.' },
+    { title: 'Games', text: 'Mobile Legends, Clash of Clans, RimWorld, Skyrim, GTA, Red Dead Redemption 2 and League of Legends.' },
+    { title: 'Hiking', text: 'My favorite way to reset. The trail log is just below.' }
+  ],
+  trails: [
+    { date: 'Nov 7, 2026', name: 'Mt. Arayat', note: 'Quad peak, my latest climb.' },
+    { date: 'Jun 12, 2026', name: 'Mt. Makiling', note: 'A major hike, done as a traverse.' },
+    { date: 'May 1, 2026', name: 'Mt. Romelo', note: 'A minor hike, and my mother mountain.' }
   ],
   work: {
-    text: 'Want to talk projects, QA or tech, or have an idea to build? Reach out. Years on the support side taught me to listen first and fix second.',
-    offers: ['Questions about my work or background', 'Ideas for small web projects', 'Or just saying hello']
+    text: 'Want to talk projects, QA or tech, or have a small web project in mind? I’m open to freelance work too. Reach out.',
+    offers: ['Freelance projects', 'Questions about my work or background', 'Or just saying hello']
   },
   photos: [
     // { src: 'assets/img/photo-1.jpg', alt: 'Short description', caption: 'Optional caption' }
@@ -46,8 +54,8 @@ window.SITE = {
     { id: 'plain-words', date: 'October 2026', title: 'Say it so anyone can follow',
       body: ['If someone needs a dictionary to understand my answer, it’s not a good answer yet.',
              'Plain words and clear steps respect people’s time, and they make the next call shorter.'] },
-    { id: 'write-it-down', date: 'September 2026', title: 'Write it down',
-      body: ['A fix that lives only in my head will be needed again at the worst possible moment.',
-             'A short note about what went wrong and what worked saves the next person, who is often me.'] }
+    { id: 'think-like-an-owner', date: 'September 2026', title: 'Think like an owner',
+      body: ['I try to treat every project as if it were mine. That means caring about the whole outcome, not just my part of it.',
+             'It changes the questions I ask: not “is my task done?” but “will this actually work for the people using it?”'] }
   ]
 };
