@@ -482,6 +482,26 @@ document.addEventListener('click', e => {
   }
 });
 
+// ---------- Ink loading scene ----------
+const inkScene = (label, dur) => {
+  const petals = [8, 19, 31, 47, 58, 72, 86].map((p, i) => `<i class="petal" style="left:${p}%;--d:${(i * .37).toFixed(2)}s;--s:${(.7 + (i % 3) * .25).toFixed(2)}"></i>`).join('');
+  return `<div class="ws" style="--dur:${dur}s">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="brush"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="7"/></filter></svg>
+  <div class="stars"></div><div class="moon"></div>
+  <svg class="ridges" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
+    <path class="rg g1" pathLength="1" d="M0,250 C100,170 200,170 300,220 S480,130 620,170 S800,250 920,190 S1120,110 1240,170 S1400,230 1440,200 V420 H0Z"/>
+    <path class="rg g2" pathLength="1" d="M0,300 C120,250 240,240 360,280 S600,330 740,280 S960,230 1100,280 S1360,320 1440,280 V420 H0Z"/>
+    <path class="rg g3" pathLength="1" d="M0,355 C160,320 300,330 440,350 S700,380 860,350 S1160,320 1300,345 S1420,360 1440,350 V420 H0Z"/>
+  </svg>
+  <div class="mist m-a"></div><div class="mist m-b"></div>
+  ${petals}
+  <div class="wcenter">
+    <div class="enso"><svg viewBox="0 0 200 200" aria-hidden="true"><path pathLength="1" d="M100,22 C148,18 184,56 180,102 C176,150 138,182 96,178 C54,174 20,140 24,98 C27,66 46,42 74,30" filter="url(#brush)"/></svg><span class="seal">C</span></div>
+    <p>${esc(label)}</p><i class="wline"></i>
+  </div>
+</div>`;
+};
+
 // ---------- Page transition (loading screen) ----------
 const go = $('a[data-go]');
 if (go) {
@@ -490,17 +510,21 @@ if (go) {
     e.preventDefault();
     const o = document.createElement('div');
     o.className = 'go-loader'; o.setAttribute('role', 'status');
-    o.innerHTML = `<div><span class="seal">C</span><i></i><p>Opening ${esc(go.dataset.go)}</p></div>`;
+    o.innerHTML = inkScene('Opening ' + go.dataset.go, 2.3);
     body.append(o);
     void o.offsetWidth; o.classList.add('on');
-    setTimeout(() => { location.href = go.href; }, reduce ? 400 : 1500);
+    setTimeout(() => { location.href = go.href; }, reduce ? 500 : 2600);
   });
   addEventListener('pageshow', e => { if (e.persisted) $$('.go-loader').forEach(x => x.remove()); });
 }
 
 // ---------- Start ----------
+const L0 = $('.loader');
+let seen = false; try { seen = sessionStorage.getItem('ink') === '1'; sessionStorage.setItem('ink', '1'); } catch (e) {}
+const loadMs = seen ? 1600 : 3000;
+if (L0) L0.innerHTML = inkScene('Loading', loadMs / 1000 - .3);
 const start = () => { if (body.classList.contains('ready')) return; body.classList.add('ready'); onScroll(); };
 onScroll();
-if (!$('.loader') || reduce) start(); else addEventListener('load', () => setTimeout(start, 1500));
-setTimeout(start, 4000);
+if (!$('.loader') || reduce) start(); else addEventListener('load', () => setTimeout(start, loadMs));
+setTimeout(start, 6000);
 })();
