@@ -606,3 +606,40 @@ body.ready .art-fuji{animation:inkrise 3s var(--ease) 1s forwards}
 .js .art-draw{clip-path:inset(0 100% 0 0);transition:opacity 1s var(--ease),transform 1.1s var(--ease),clip-path 2.4s cubic-bezier(.7,0,.2,1) .2s}
 .js .art-draw.in{clip-path:inset(0);opacity:.85}
 @media(prefers-reduced-motion:reduce){.js .art-draw{clip-path:none}.js .art-samurai{opacity:.34;transform:none}.js .art-fuji{opacity:var(--art-o);clip-path:none}}
+
+/* ===== More art ===== */
+.has-art{position:relative;overflow:hidden}
+.has-art>.inner{position:relative;z-index:1}
+.art-side{pointer-events:none}
+.art.reveal{--art-o:.5}
+.js .art.reveal.in{opacity:var(--art-o)}
+.art-sakura,.art-enso,.art-dragon,.art-fox,.art-katana,.art-kneel,.art-bamboo{position:absolute;z-index:0}
+.art-wave{display:block;width:min(26rem,70%);aspect-ratio:3/2;margin:2.5rem auto -1rem}
+
+.art-sakura{background-image:url(../img/art-sakura.webp);--art-o:.55;right:-1rem;top:.5rem;width:min(28rem,75vw);aspect-ratio:2/1}
+.art-enso{background-image:url(../img/art-enso.webp);--art-o:.12;right:6%;top:50%;margin-top:-10rem;width:20rem;aspect-ratio:1312/1199;animation:ensospin 120s linear infinite}
+@keyframes ensospin{to{rotate:360deg}}
+.art-dragon{background-image:url(../img/art-dragon-sword.webp);--art-o:.16;right:5%;top:3%;height:94%;aspect-ratio:2/3}
+.art-fox{background-image:url(../img/art-ninetail.webp);--art-o:.2;right:3%;top:.5rem;width:14rem;aspect-ratio:800/731}
+.art-katana{background-image:url(../img/art-katana-stand.webp);--art-o:.4;right:4%;bottom:.5rem;width:min(34rem,56vw);aspect-ratio:3/1}
+.art-kneel{background-image:url(../img/art-samurai-kneel.webp);--art-o:.3;right:6%;bottom:0;height:92%;aspect-ratio:800/847}
+.art-bamboo{background-image:url(../img/art-bamboo.webp);--art-o:.2;right:-1rem;top:0;height:min(100%,42rem);aspect-ratio:2/3}
+.art-wave{background-image:url(../img/art-wave.webp);--art-o:.45}
+.nm .art-sakura,.nm .art-enso,.nm .art-dragon,.nm .art-fox,.nm .art-katana,.nm .art-kneel,.nm .art-bamboo,.nm .art-wave,.nm .art-crane{filter:invert(1)}
+.nm .art-sakura{--art-o:.4}.nm .art-wave{--art-o:.35}.nm .art-enso{--art-o:.16}.nm .art-kneel{--art-o:.26}
+
+/* Crane drifting across the hero */
+.art-crane{background-image:url(../img/art-crane.webp);position:absolute;z-index:0;left:0;top:14%;width:clamp(5rem,11vw,9rem);aspect-ratio:700/640;opacity:0;
+  animation:crane 46s linear 4s infinite}
+@keyframes crane{0%{transform:translate(-15vw,18vh) rotate(-4deg);opacity:0}8%{opacity:.5}50%{transform:translate(55vw,2vh) rotate(2deg)}92%{opacity:.5}100%{transform:translate(112vw,-10vh) rotate(-3deg);opacity:0}}
+.nm .art-crane{filter:invert(1)}
+
+@media(max-width:47.99rem){
+  .art-dragon,.art-fox,.art-bamboo{display:none}
+  .art-katana{--art-o:.12;width:80vw;right:-10vw}
+  .art-kneel{--art-o:.12;right:-2rem}.nm .art-kneel{--art-o:.12}
+  .art-sakura{width:20rem}
+  .art-enso{width:13rem;right:-3rem}
+}
+@media(prefers-reduced-motion:reduce){.art-crane{display:none}.art-enso{animation:none}.js .art.reveal{opacity:var(--art-o)}}
+.art-draw{--art-o:.85}
