@@ -26,9 +26,9 @@ body{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50%
 @keyframes drift{from{transform:translateX(-6%)}to{transform:translateX(6%)}}
 .petal{position:absolute;top:-6%;width:.7rem;height:.7rem;border-radius:100% 0 100% 0;background:#c4574e;opacity:0;animation:fall 6s linear var(--d) infinite}
 @keyframes fall{0%{opacity:0;transform:translate(0,0) rotate(0)}10%{opacity:.7}90%{opacity:.5}100%{opacity:0;transform:translate(60px,110vh) rotate(420deg)}}
-.mask{position:absolute;left:50%;top:34%;width:min(64vw,26rem);aspect-ratio:1199/1312;transform:translate(-50%,-50%);background:url(/assets/img/art-kitsune-red.webp) center/contain no-repeat;opacity:.22;pointer-events:none;animation:bob 7s ease-in-out infinite alternate}
-@keyframes bob{from{transform:translate(-50%,-52%)}to{transform:translate(-50%,-48%)}}
-@media(prefers-reduced-motion:reduce){.mask{animation:none}}
+.gate{position:absolute;left:50%;top:40%;width:min(90vw,46rem);aspect-ratio:1200/863;transform:translate(-50%,-50%);background:url(/assets/img/art-torii.webp) center/contain no-repeat;filter:invert(1);opacity:.2;pointer-events:none;animation:bob 8s ease-in-out infinite alternate}
+@keyframes bob{from{transform:translate(-50%,-51%)}to{transform:translate(-50%,-49%)}}
+@media(prefers-reduced-motion:reduce){.gate{animation:none}}
 main{position:relative;z-index:2;margin-top:-14vh}
 .num{font:300 clamp(6rem,24vw,14rem)/.9 var(--display);letter-spacing:-.04em;margin:0;background:linear-gradient(180deg,#f2f7f4,#7ea597);-webkit-background-clip:text;background-clip:text;color:transparent}
 .seal{display:inline-grid;place-items:center;width:3rem;height:3rem;background:#b3261e;color:#fff;font:500 1.7rem/1 var(--display);transform:rotate(-4deg);border-radius:3px;margin-top:.5rem}
@@ -41,7 +41,7 @@ a.btn:hover,a.btn:focus-visible{background:rgba(159,194,180,.14);box-shadow:0 10
 </head>
 <body>
 <div class="moon" aria-hidden="true"></div>
-<div class="mask" aria-hidden="true"></div>
+<div class="gate" aria-hidden="true"></div>
 <svg class="ridges" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
   <path class="g1" d="M0,250 C100,170 200,170 300,220 S480,130 620,170 S800,250 920,190 S1120,110 1240,170 S1400,230 1440,200 V420 H0Z"/>
   <path class="g2" d="M0,300 C120,250 240,240 360,280 S600,330 740,280 S960,230 1100,280 S1360,320 1440,280 V420 H0Z"/>

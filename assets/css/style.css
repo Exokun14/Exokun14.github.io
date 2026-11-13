@@ -623,7 +623,7 @@ body.ready .art-fuji{animation:inkrise 3s var(--ease) 1s forwards}
 .art-fox{background-image:url(../img/art-ninetail.webp);--art-o:.2;right:3%;top:.5rem;width:14rem;aspect-ratio:800/731}
 .art-katana{background-image:url(../img/art-katana-stand.webp);--art-o:.4;right:4%;bottom:.5rem;width:min(34rem,56vw);aspect-ratio:3/1}
 .art-kneel{background-image:url(../img/art-samurai-kneel.webp);--art-o:.3;right:6%;bottom:0;height:92%;aspect-ratio:800/847}
-.art-bamboo{background-image:url(../img/art-bamboo.webp);--art-o:.2;right:-1rem;top:0;height:min(100%,42rem);aspect-ratio:2/3}
+.art-bamboo{background-image:url(../img/art-bamboo.webp);--art-o:.2;right:-1rem;top:0;height:min(100%,30rem);aspect-ratio:2/3}
 .art-wave{background-image:url(../img/art-wave.webp);--art-o:.45}
 .nm .art-sakura,.nm .art-enso,.nm .art-dragon,.nm .art-fox,.nm .art-katana,.nm .art-kneel,.nm .art-bamboo,.nm .art-wave,.nm .art-crane{filter:invert(1)}
 .nm .art-sakura{--art-o:.4}.nm .art-wave{--art-o:.35}.nm .art-enso{--art-o:.16}.nm .art-kneel{--art-o:.26}
@@ -643,3 +643,12 @@ body.ready .art-fuji{animation:inkrise 3s var(--ease) 1s forwards}
 }
 @media(prefers-reduced-motion:reduce){.art-crane{display:none}.art-enso{animation:none}.js .art.reveal{opacity:var(--art-o)}}
 .art-draw{--art-o:.85}
+
+/* Koi, pine */
+.art-koi,.art-pine{position:absolute;z-index:0}
+.art-koi{background-image:url(../img/art-koi.webp);--art-o:.2;right:6%;bottom:6rem;width:min(18rem,60vw);aspect-ratio:700/492;animation:koisway 9s ease-in-out infinite alternate}
+@keyframes koisway{from{rotate:-5deg}to{rotate:5deg}}
+.art-pine{background-image:url(../img/art-pine.webp);--art-o:.22;right:-2rem;bottom:0;width:min(26rem,80vw);aspect-ratio:1100/556}
+.nm .art-koi,.nm .art-pine{filter:invert(1)}
+.nm .art-koi{--art-o:.18}.nm .art-pine{--art-o:.18}
+@media(prefers-reduced-motion:reduce){.art-koi{animation:none}}
