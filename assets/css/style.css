@@ -574,3 +574,6 @@ h1.title{font:300 clamp(3.2rem,10vw,7rem)/.95 var(--display);letter-spacing:-.03
 .tl.latest small::after{content:" · latest";color:var(--seal,#b3261e)}
 @media(prefers-reduced-motion:reduce){.flow li::before{transform:none;transition:none}.flow li::after{opacity:1;transition:none}.trail .line{stroke-dashoffset:0;transition:none}.trail .area,.trail .peak{opacity:1;transform:none;transition:none}.trail .halo{animation:none}}
 @media(max-width:40rem){.tl.latest small::after{content:none}.tl small{font-size:.95rem}}
+
+.tnote{margin:1.5rem 0 0;text-align:center;font:italic 300 1.05rem var(--display);color:var(--muted)}
+.trail .halo{transform-box:fill-box;transform-origin:center}

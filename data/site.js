@@ -33,7 +33,7 @@ window.SITE = {
     { title: 'Hiking', text: 'My favorite way to reset. The trail log is just below.' }
   ],
   trails: [
-    { date: 'Nov 7, 2026', name: 'Mt. Arayat', note: 'Quad peak, my latest climb.' },
+    { date: 'Nov 7, 2026', name: 'Mt. Arayat', note: 'Quad peak, my latest and the toughest of the three.' },
     { date: 'Jun 12, 2026', name: 'Mt. Makiling', note: 'A major hike, done as a traverse.' },
     { date: 'May 1, 2026', name: 'Mt. Romelo', note: 'A minor hike, and my mother mountain.' }
   ],
