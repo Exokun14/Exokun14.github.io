@@ -529,3 +529,48 @@ h1.title{font:300 clamp(3.2rem,10vw,7rem)/.95 var(--display);letter-spacing:-.03
   .ws .enso path{stroke-dashoffset:0}
   .ws .wcenter p{opacity:.9}.ws .wline{width:6rem}.ws .petal{display:none}
 }
+
+/* About: project cycle as a horizontal flow */
+.flow{list-style:none;margin:2.75rem 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);counter-reset:f}
+.flow li{position:relative;padding:0 1.6rem 0 0}
+.flow .n{display:grid;place-items:center;width:2.9rem;height:2.9rem;border:1px solid var(--jade);border-radius:50%;font:italic 300 1.15rem var(--display);color:var(--jade);background:var(--bg);position:relative;z-index:1}
+.flow li::before{content:"";position:absolute;left:2.9rem;right:.2rem;top:1.45rem;height:1px;background:var(--jade);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) calc(var(--i,0) * .15s + .3s)}
+.flow li::after{content:"";position:absolute;right:.25rem;top:calc(1.45rem - 4px);width:8px;height:8px;border-top:1px solid var(--jade);border-right:1px solid var(--jade);transform:rotate(45deg);opacity:0;transition:opacity .4s ease calc(var(--i,0) * .15s + 1s)}
+.flow li:last-child::before,.flow li:last-child::after{display:none}
+.flow.in li::before{transform:scaleX(1)}.flow.in li::after{opacity:1}
+.flow li:nth-child(2){--i:1}.flow li:nth-child(3){--i:2}.flow li:nth-child(4){--i:3}
+.flow h3{font:500 1.5rem/1.15 var(--display);margin:1.1rem 0 .4rem}
+.flow p{margin:0;color:var(--muted);font-size:.95rem}
+@media(max-width:60rem){
+  .flow{grid-template-columns:1fr;gap:0}
+  .flow li{padding:0 0 2rem 4.2rem;min-height:5rem}
+  .flow .n{position:absolute;left:0;top:0}
+  .flow h3{margin:.2rem 0 .3rem}
+  .flow li::before{left:1.45rem;right:auto;top:2.9rem;bottom:0;width:1px;height:auto;transform:scaleY(0);transform-origin:top}
+  .flow li::after{right:auto;left:calc(1.45rem - 4px);top:auto;bottom:0;transform:rotate(135deg)}
+  .flow.in li::before{transform:scaleY(1)}
+}
+/* About: training as compact badges */
+.badges{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.badge{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .7rem;padding:.6rem 1.2rem;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--bg) 60%,transparent);font-size:.95rem;transition:border-color .3s,transform .3s var(--ease)}
+.badge:hover{border-color:var(--jade);transform:translateY(-2px)}
+.badge b{font:italic 300 1.15rem var(--display);color:var(--jade)}
+/* About: trail log as a mountain profile */
+.trail{margin-top:2.5rem;max-width:56rem;color:var(--jade)}
+.trail svg{display:block;width:100%;height:auto;overflow:visible}
+.trail .area{fill:url(#tfill);opacity:0;transition:opacity 1.2s ease 1s}
+.trail .line{fill:none;stroke:currentColor;stroke-width:1.6;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s var(--ease) .2s}
+.trail.in .line{stroke-dashoffset:0}.trail.in .area{opacity:1}
+.trail .dot{fill:var(--seal,#b3261e)}
+.trail .halo{fill:var(--seal,#b3261e);opacity:.18}
+.trail .peak{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.3);transition:opacity .5s ease,transform .6s var(--ease);transition-delay:calc(var(--i) * .7s + .9s)}
+.trail.in .peak{opacity:1;transform:none}
+.trail .peak:last-of-type .halo{animation:halo 2.4s ease-in-out infinite}
+@keyframes halo{50%{opacity:.4;transform:scale(1.5);transform-box:fill-box;transform-origin:center}}
+.tlabels{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:.6rem;text-align:center;color:var(--ink)}
+.tl small{display:block;font:italic 300 1.05rem var(--display);color:var(--jade)}
+.tl b{display:block;font:500 clamp(1.15rem,3.2vw,1.7rem)/1.15 var(--display)}
+.tl span{display:block;margin-top:.2rem;color:var(--muted);font-size:.88rem;line-height:1.4}
+.tl.latest small::after{content:" · latest";color:var(--seal,#b3261e)}
+@media(prefers-reduced-motion:reduce){.flow li::before{transform:none;transition:none}.flow li::after{opacity:1;transition:none}.trail .line{stroke-dashoffset:0;transition:none}.trail .area,.trail .peak{opacity:1;transform:none;transition:none}.trail .halo{animation:none}}
+@media(max-width:40rem){.tl.latest small::after{content:none}.tl small{font-size:.95rem}}

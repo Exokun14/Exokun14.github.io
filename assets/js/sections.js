@@ -10,10 +10,18 @@ fill('#now-list', S.now.items.map(i => `<div class="card"><h3>${esc(i.label)}</h
 const nu = $('#now-updated'); if (nu) nu.textContent = 'Updated ' + S.now.updated;
 
 fill('#timeline', S.timeline.map(t => `<li><span class="yr">${esc(t.year)}</span><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p></li>`).join(''));
-fill('#cycle-list', S.cycle.map((c, i) => `<li><span class="yr">${String(i + 1).padStart(2, '0')}</span><h3>${esc(c.title)}</h3><p>${esc(c.text)}</p></li>`).join(''));
-fill('#learning-list', S.learning.map(u => `<div class="card"><h3>${esc(u.title)}</h3><p>${esc(u.text)}</p></div>`).join(''));
-fill('#trail-list', S.trails.map(t => `<li><span class="yr">${esc(t.date)}</span><h3>${esc(t.name)}</h3><p>${esc(t.note)}</p></li>`).join(''));
+fill('#cycle-list', S.cycle.map((c, i) => `<li><span class="n">${String(i + 1).padStart(2, '0')}</span><h3>${esc(c.title)}</h3><p>${esc(c.text)}</p></li>`).join(''));
+fill('#learning-list', S.learning.map(u => `<span class="badge"><b>${esc(u.title)}</b>${esc(u.text)}</span>`).join(''));
 fill('#beyond-list', S.beyond.map(b => `<div class="card"><h3>${esc(b.title)}</h3><p>${esc(b.text)}</p></div>`).join(''));
+
+// Trail log: stylised mountain profile with one dot per peak (oldest on the left)
+(() => {
+  const T = S.trails.slice().reverse();
+  const X = [100, 300, 500], Y = [62, 28, 40];
+  const dots = T.map((t, i) => `<g class="peak" style="--i:${i}"><circle class="halo" cx="${X[i]}" cy="${Y[i]}" r="13"/><circle class="dot" cx="${X[i]}" cy="${Y[i]}" r="6"/></g>`).join('');
+  const labels = T.map((t, i) => `<div class="tl${i === T.length - 1 ? ' latest' : ''}"><small>${esc(t.date)}</small><b>${esc(t.name)}</b><span>${esc(t.note)}</span></div>`).join('');
+  fill('#trail-list', `<svg viewBox="0 0 600 140" role="img" aria-label="Stylised profile of three climbs"><defs><linearGradient id="tfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".28"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs><path class="area" d="M0,120 C40,118 70,70 100,62 S150,110 200,112 S250,40 300,28 S370,108 400,110 S460,52 500,40 S570,115 600,118 V140 H0Z"/><path class="line" pathLength="1" d="M0,120 C40,118 70,70 100,62 S150,110 200,112 S250,40 300,28 S370,108 400,110 S460,52 500,40 S570,115 600,118"/>${dots}</svg><div class="tlabels">${labels}</div>`);
+})();
 
 const wt = $('#work-text'); if (wt) wt.textContent = S.work.text;
 fill('#work-offers', S.work.offers.map(o => `<li>${esc(o)}</li>`).join(''));
