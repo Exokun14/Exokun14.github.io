@@ -32,7 +32,7 @@ playwright.config.js  package.json  site.webmanifest  favicon.ico  .nojekyll
 
 - Climb: add an object at the top of `trails` in `data/site.js` (`date`, `name`, `tag`, `tough` 1 to 4, `note`, optional `photo`, `alt`, `masl`).
 - Photo: add `{ src, alt, caption }` to `photos` in `data/site.js`. A Photos tab appears in the gallery.
-- Painting: add an entry to `paintings`.
+- Painting: add an entry to `paintings` with `src`, `title`, `alt`, `group` (sets the filter tab) and `w`, `h` (image size in pixels).
 - Guestbook: visitors sign by opening a GitHub issue titled `[Guestbook] ...` in the repo set in `guestbook`. Close an issue to remove it from the page. Issues must be enabled on the repo.
 
 ## Add a project

@@ -59,25 +59,26 @@ window.SITE = {
       body: ['I try to treat every project as if it were mine. That means caring about the whole outcome, not just my part of it.',
              'It changes the questions I ask: not “is my task done?” but “will this actually work for the people using it?”'] }
   ],
-  // Gallery: the paintings. Add your own photos to `photos` above and they show up under the Photos tab.
+  // Gallery: the paintings. `group` sets the filter tab, `w` and `h` are the image size in pixels (keeps the wall steady while images load).
+  // Add your own photos to `photos` above and they show up under the Photos tab.
   paintings: [
-    { src: 'assets/img/art-wave.webp', title: 'The wave', alt: 'Ink painting of a large curling ocean wave' },
-    { src: 'assets/img/art-crane.webp', title: 'Crane', alt: 'Ink painting of a crane with wings spread in flight' },
-    { src: 'assets/img/art-mountain.webp', title: 'Mountain', alt: 'Ink painting of a mountain peak with ridges' },
-    { src: 'assets/img/art-torii.webp', title: 'Torii', alt: 'Ink painting of a torii gate' },
-    { src: 'assets/img/art-koi.webp', title: 'Koi', alt: 'Ink painting of a koi fish swimming' },
-    { src: 'assets/img/art-sakura.webp', title: 'Sakura', alt: 'Ink painting of a cherry blossom branch' },
-    { src: 'assets/img/art-pine.webp', title: 'Pine', alt: 'Ink painting of a gnarled pine tree branch' },
-    { src: 'assets/img/art-bamboo.webp', title: 'Bamboo', alt: 'Ink painting of bamboo stalks' },
-    { src: 'assets/img/art-enso.webp', title: 'Ensō', alt: 'Ink brush circle, an enso' },
-    { src: 'assets/img/art-ninetail.webp', title: 'Nine tails', alt: 'Ink painting of a nine-tailed fox sitting' },
-    { src: 'assets/img/art-kitsune.webp', title: 'Kitsune', alt: 'Ink painting of a fox mask with cherry blossoms and tassels' },
-    { src: 'assets/img/art-kitsune-red.webp', title: 'Kitsune, in red', alt: 'White fox mask with red markings, tassels and bells', color: true },
-    { src: 'assets/img/art-dragon-sword.webp', title: 'Dragon and sword', alt: 'Ink painting of a dragon coiled around a sword' },
-    { src: 'assets/img/art-katana-stand.webp', title: 'Katana', alt: 'Ink painting of a katana resting on a stand' },
-    { src: 'assets/img/art-samurai-stand.webp', title: 'Samurai, standing', alt: 'Ink painting of a samurai in armour standing with hands on a sword' },
-    { src: 'assets/img/art-samurai-kneel.webp', title: 'Samurai, kneeling', alt: 'Ink painting of a samurai kneeling with a sword at his side' },
-    { src: 'assets/img/art-samurai-draw.webp', title: 'Samurai, drawing', alt: 'Ink painting of a samurai drawing a sword' }
+    { src: 'assets/img/art-wave.webp', title: 'The wave', alt: 'Ink painting of a large curling ocean wave', group: 'Nature', w: 1000, h: 667 },
+    { src: 'assets/img/art-crane.webp', title: 'Crane', alt: 'Ink painting of a crane with wings spread in flight', group: 'Nature', w: 700, h: 640 },
+    { src: 'assets/img/art-mountain.webp', title: 'Mountain', alt: 'Ink painting of a mountain peak with ridges', group: 'Nature', w: 1600, h: 800 },
+    { src: 'assets/img/art-torii.webp', title: 'Torii', alt: 'Ink painting of a torii gate', group: 'Spirits', w: 1200, h: 863 },
+    { src: 'assets/img/art-koi.webp', title: 'Koi', alt: 'Ink painting of a koi fish swimming', group: 'Nature', w: 700, h: 492 },
+    { src: 'assets/img/art-sakura.webp', title: 'Sakura', alt: 'Ink painting of a cherry blossom branch', group: 'Nature', w: 1100, h: 550 },
+    { src: 'assets/img/art-pine.webp', title: 'Pine', alt: 'Ink painting of a gnarled pine tree branch', group: 'Nature', w: 1100, h: 556 },
+    { src: 'assets/img/art-bamboo.webp', title: 'Bamboo', alt: 'Ink painting of bamboo stalks', group: 'Nature', w: 600, h: 900 },
+    { src: 'assets/img/art-enso.webp', title: 'Ensō', alt: 'Ink brush circle, an enso', group: 'Spirits', w: 700, h: 640 },
+    { src: 'assets/img/art-ninetail.webp', title: 'Nine tails', alt: 'Ink painting of a nine-tailed fox sitting', group: 'Spirits', w: 800, h: 731 },
+    { src: 'assets/img/art-kitsune.webp', title: 'Kitsune', alt: 'Ink painting of a fox mask with cherry blossoms and tassels', group: 'Spirits', w: 640, h: 709 },
+    { src: 'assets/img/art-kitsune-red.webp', title: 'Kitsune, in red', alt: 'White fox mask with red markings, tassels and bells', color: true, group: 'Spirits', w: 700, h: 766 },
+    { src: 'assets/img/art-dragon-sword.webp', title: 'Dragon and sword', alt: 'Ink painting of a dragon coiled around a sword', group: 'Spirits', w: 600, h: 900 },
+    { src: 'assets/img/art-katana-stand.webp', title: 'Katana', alt: 'Ink painting of a katana resting on a stand', group: 'Warriors', w: 1200, h: 400 },
+    { src: 'assets/img/art-samurai-stand.webp', title: 'Samurai, standing', alt: 'Ink painting of a samurai in armour standing with hands on a sword', group: 'Warriors', w: 900, h: 1003 },
+    { src: 'assets/img/art-samurai-kneel.webp', title: 'Samurai, kneeling', alt: 'Ink painting of a samurai kneeling with a sword at his side', group: 'Warriors', w: 800, h: 847 },
+    { src: 'assets/img/art-samurai-draw.webp', title: 'Samurai, drawing', alt: 'Ink painting of a samurai drawing a sword', group: 'Warriors', w: 1100, h: 733 }
   ],
   // Guestbook: visitors sign by opening a GitHub issue titled "[Guestbook] ..." in this repo.
   guestbook: { repo: 'Exokun14/Exokun14.github.io', prefix: '[Guestbook]' },

@@ -19,8 +19,8 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=202611191600">
-<link rel="stylesheet" href="assets/css/explore.css?v=202611191600">
+<link rel="stylesheet" href="assets/css/style.css?v=202611191700">
+<link rel="stylesheet" href="assets/css/explore.css?v=202611191700">
 </head>
 <body class="sub">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
@@ -52,14 +52,15 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
     <div class="inner">
       <span class="eyebrow reveal">01</span>
       <h1 class="title reveal">Guestbook</h1>
-      <p class="intro reveal">Stop by and leave a line. Say hi, tell me what you liked, or share a favourite trail.</p>
+      <p class="intro reveal">Stop by and hang a note. Say hi, tell me what you liked, or share a favourite trail. Each one is hung here like a wish on a shrine.</p>
     </div>
   </section>
   <section class="chapter" style="padding-top:0">
     <div class="inner">
       <div class="gb-actions reveal">
-        <a class="btn" id="gb-sign" href="https://github.com/" target="_blank" rel="noopener">Sign the guestbook</a>
+        <a class="btn gb-sign" id="gb-sign" href="https://github.com/" target="_blank" rel="noopener">Sign the guestbook</a>
         <p class="ex-hint">Signing opens a GitHub issue, so you need a free GitHub account. Entries show up here after you submit. I remove spam.</p>
+        <p class="gb-count" id="gb-count"></p>
       </div>
       <div class="gb-list" id="gb-list" aria-live="polite"></div>
     </div>
@@ -80,11 +81,11 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
   </section>
 </main>
 <footer>© <span id="y"></span> Clarence</footer>
-<script src="data/site.js?v=202611191600"></script>
-<script src="assets/js/sections.js?v=202611191600"></script>
+<script src="data/site.js?v=202611191700"></script>
+<script src="assets/js/sections.js?v=202611191700"></script>
 <script defer src="assets/js/stats.js"></script>
-<script src="assets/js/explore.js?v=202611191600"></script>
-<script src="assets/js/main.js?v=202611191600"></script>
-<script defer src="assets/js/chain.js?v=202611191600"></script>
+<script src="assets/js/explore.js?v=202611191700"></script>
+<script src="assets/js/main.js?v=202611191700"></script>
+<script defer src="assets/js/chain.js?v=202611191700"></script>
 </body>
 </html>

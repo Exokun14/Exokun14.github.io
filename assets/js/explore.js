@@ -77,25 +77,57 @@ if (hikes) {
 // ---------- Gallery ----------
 const grid = $('#g-grid');
 if (grid) {
-  const photos = (S.photos || []).map(p => ({ src: p.src, title: p.caption || p.alt || 'Photo', alt: p.alt || p.caption || '', kind: 'photo' }));
+  const pad = n => String(n).padStart(2, '0');
+  const photos = (S.photos || []).map(p => ({ src: p.src, title: p.caption || p.alt || 'Photo', alt: p.alt || p.caption || '', kind: 'photo', w: p.w, h: p.h }));
   const paints = (S.paintings || []).map(p => ({ ...p, kind: 'painting' }));
   const filters = $('#g-filters'), lb = $('#lightbox'), img = $('img', lb), cap = $('figcaption', lb);
-  let view = [], cur = 0, from = null;
-  const draw = kind => {
-    view = kind === 'photo' ? photos : kind === 'painting' ? paints : photos.concat(paints);
-    grid.innerHTML = view.map((p, i) => `<li style="--n:${Math.min(i, 12)}"><button class="gx-item" type="button" data-i="${i}" aria-label="View ${esc(p.title)}"><img class="${p.kind === 'painting' && !p.color ? 'ink' : ''}" src="${esc(p.src)}" alt="${esc(p.alt)}" loading="lazy" decoding="async"><span class="cap">${esc(p.title)}</span></button></li>`).join('');
-    $$('button', filters).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.k === kind)));
+  let view = [], cur = 0, from = null, kind = 'all', lastN = 0;
+  const inkCls = p => (p.kind === 'painting' && !p.color ? 'ink' : '');
+
+  // Masonry: each print goes into the shortest column, so the wall reads left to right
+  const colsFor = w => (w < 460 ? 2 : w < 700 ? 3 : 4);
+  const itemHTML = (p, i) => {
+    const dim = p.w && p.h ? ` width="${p.w}" height="${p.h}"` : '';
+    const tilt = [-.5, .4, -.3, .5][i % 4];
+    return `<div class="gx-w" role="listitem" style="--n:${i % 6};--tilt:${tilt}deg"><button class="gx-item" type="button" data-i="${i}" aria-label="View ${esc(p.title)}"><span class="gx-mat"><img class="${inkCls(p)}" src="${esc(p.src)}" alt="${esc(p.alt)}"${dim} loading="lazy" decoding="async"><span class="hanko" aria-hidden="true">${pad(i + 1)}</span></span><span class="gx-cap"><b>${esc(p.title)}</b><small>${esc(p.group || (p.kind === 'photo' ? 'Photo' : ''))}</small></span></button></div>`;
   };
-  const labels = [['all', 'All'], ['painting', 'Paintings']];
-  if (photos.length) labels.push(['photo', 'Photos']);
-  filters.innerHTML = labels.map(([k, l], i) => `<button type="button" data-k="${k}" aria-pressed="${i === 0}">${l}</button>`).join('');
+  const gio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); gio.unobserve(e.target); } }), { threshold: .08 });
+  const layout = () => {
+    const w = grid.clientWidth || 900, n = colsFor(w), cw = w / n;
+    lastN = n;
+    const cols = Array.from({ length: n }, () => ({ h: 0, html: '' }));
+    view.forEach((p, i) => {
+      const c = cols.reduce((a, b) => (b.h < a.h ? b : a));
+      c.h += (p.w && p.h ? p.h / p.w : .75) * cw + 90;
+      c.html += itemHTML(p, i);
+    });
+    grid.innerHTML = cols.map(c => `<div class="gx-col">${c.html}</div>`).join('');
+    $$('.gx-w', grid).forEach(el => gio.observe(el));
+  };
+  const draw = k => {
+    kind = k;
+    view = k === 'all' ? photos.concat(paints) : k === 'photo' ? photos : paints.filter(p => p.group === k);
+    layout();
+    $$('button', filters).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.k === k)));
+  };
+
+  // Filter tabs: All, one per group, Photos when there are any
+  const groups = [...new Set(paints.map(p => p.group).filter(Boolean))];
+  const labels = [['all', 'All', photos.length + paints.length]]
+    .concat(groups.map(g => [g, g, paints.filter(p => p.group === g).length]));
+  if (photos.length) labels.push(['photo', 'Photos', photos.length]);
+  filters.innerHTML = labels.map(([k, l, c], i) => `<button type="button" data-k="${esc(k)}" aria-pressed="${i === 0}">${esc(l)}<sup>${c}</sup></button>`).join('');
   if (labels.length < 3) filters.hidden = true;
   filters.addEventListener('click', e => { const b = e.target.closest('button'); if (b) draw(b.dataset.k); });
+  new ResizeObserver(() => { if (view.length && colsFor(grid.clientWidth || 900) !== lastN) layout(); }).observe(grid);
+
+  // Lightbox
   const show = i => {
     cur = (i + view.length) % view.length;
     const p = view[cur];
-    img.src = p.src; img.alt = p.alt; img.className = p.kind === 'painting' && !p.color ? 'ink' : '';
-    cap.innerHTML = `${esc(p.title)}<small>${cur + 1} of ${view.length}</small>`;
+    img.src = p.src; img.alt = p.alt; img.className = inkCls(p);
+    cap.innerHTML = `<span class="hanko" aria-hidden="true">${pad(cur + 1)}</span><span class="lb-t">${esc(p.title)}</span><small>${p.group ? esc(p.group) + ' · ' : ''}${cur + 1} of ${view.length}</small>`;
+    [cur + 1, cur - 1].forEach(k => { const q = view[(k + view.length) % view.length]; if (q) new Image().src = q.src; });
   };
   grid.addEventListener('click', e => {
     const b = e.target.closest('.gx-item'); if (!b) return;
@@ -245,21 +277,26 @@ if (mg) {
 const gb = $('#gb-list');
 if (gb) {
   const { repo, prefix } = S.guestbook;
-  const sign = $('#gb-sign');
-  sign.href = `https://github.com/${repo}/issues/new?title=${encodeURIComponent(prefix + ' ')}&body=${encodeURIComponent('<!-- Write your message below. This whole issue is shown publicly on the guestbook page. -->\n\n')}`;
-  const status = t => { gb.innerHTML = `<p class="ex-status">${t}</p>`; };
+  const signHref = `https://github.com/${repo}/issues/new?title=${encodeURIComponent(prefix + ' ')}&body=${encodeURIComponent('<!-- Write your message below. This whole issue is shown publicly on the guestbook page. -->\n\n')}`;
+  $$('.gb-sign').forEach(a => { a.href = signHref; });
+  const count = $('#gb-count');
+  const status = t => { gb.innerHTML = `<p class="ex-status">${t}</p>`; if (count) count.textContent = ''; };
   const okUrl = (u, start) => typeof u === 'string' && u.startsWith(start);
+  // The blank plaque: always the first one on the rack, and a second way to sign
+  const blank = first => `<a class="gb-entry gb-new gb-sign" href="${esc(signHref)}" target="_blank" rel="noopener" style="--n:0;--tilt:-1deg"><div class="ema"><i class="hole" aria-hidden="true"></i><span class="plus" aria-hidden="true">+</span><h3>${first ? 'Be the first' : 'Hang yours here'}</h3><p class="msg">Sign the guestbook. It opens a GitHub issue.</p></div></a>`;
   const render = items => {
-    if (!items.length) return status('No entries yet. Be the first to sign.');
-    gb.innerHTML = items.map((it, i) => {
+    if (count) count.textContent = items.length ? `${items.length} note${items.length === 1 ? '' : 's'} hung so far` : '';
+    if (!items.length) { gb.innerHTML = blank(true); return; }
+    gb.innerHTML = blank(false) + items.map((it, i) => {
       const user = it.user || {}, login = user.login || 'visitor';
       const head = String(it.title || '').slice(prefix.length).trim();
       const msg = String(it.body || '').replace(/<!--[\s\S]*?-->/g, '').trim().slice(0, 600);
-      const av = okUrl(user.avatar_url, 'https://avatars.githubusercontent.com/') ? `<img src="${esc(user.avatar_url)}${user.avatar_url.includes('?') ? '&' : '?'}s=96" alt="" width="45" height="45" loading="lazy">` : `<span class="av" aria-hidden="true">${esc(login[0].toUpperCase())}</span>`;
+      const av = okUrl(user.avatar_url, 'https://avatars.githubusercontent.com/') ? `<img src="${esc(user.avatar_url)}${user.avatar_url.includes('?') ? '&' : '?'}s=96" alt="" width="38" height="38" loading="lazy">` : `<span class="av" aria-hidden="true">${esc(login[0].toUpperCase())}</span>`;
       const who = okUrl(user.html_url, 'https://github.com/') ? `<a href="${esc(user.html_url)}" rel="noopener">${esc(login)}</a>` : esc(login);
       const date = new Date(it.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
       const src = okUrl(it.html_url, 'https://github.com/') ? `<a class="src" href="${esc(it.html_url)}" rel="noopener">View on GitHub</a>` : '';
-      return `<article class="gb-entry" style="--n:${Math.min(i, 10)}">${av}<div><p class="who"><b>${who}</b><time datetime="${esc(it.created_at)}">${esc(date)}</time></p>${head ? `<h3>${esc(head)}</h3>` : ''}${msg ? `<p class="msg">${esc(msg)}</p>` : ''}${src}</div></article>`;
+      const tilt = [-1.2, .9, -.6, 1.1][i % 4];
+      return `<article class="gb-entry" style="--n:${Math.min(i + 1, 10)};--tilt:${tilt}deg"><div class="ema"><i class="hole" aria-hidden="true"></i>${head ? `<h3>${esc(head)}</h3>` : ''}${msg ? `<p class="msg">${esc(msg)}</p>` : ''}<footer class="gb-by">${av}<p class="who"><b>${who}</b><time datetime="${esc(it.created_at)}">${esc(date)}</time></p>${src}</footer></div></article>`;
     }).join('');
   };
   const KEY = 'gbCache';
