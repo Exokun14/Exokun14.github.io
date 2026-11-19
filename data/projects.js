@@ -1,6 +1,44 @@
 // Add a project by adding one object to this list.
 window.PROJECTS = [
   {
+    "id": "aexeo",
+    "title": "Aexeo",
+    "year": "2026",
+    "role": "Project work",
+    "seal": "A",
+    "palette": [
+      "#D6DAEB",
+      "#8F98CB",
+      "#2F3768"
+    ],
+    "summary": "One platform for the customer side and the delivery side of the business: companies, licences, renewals, projects, learning and team schedules.",
+    "details": "On the customer side, Aexeo keeps the company list with its branches and licences, MSA renewals, pricing, the plugin masterlist and proposals, with a proposal builder and templates. On the delivery side there are projects in waterfall or agile (phases, milestones, tasks, mandays, QA and problem-and-solution tracking), a Teams area with the schedule, leave, weekend support and a daily email digest, and a weekly dashboard. Around that sit a learning center with courses and assessments, SimForge for building interactive simulations, a mailer with an email builder, analytics, patch notes and Aria, an in-app assistant. Roles and permissions come from the database, so a new role needs no code change. The frontend is Next.js on a Laravel backend.",
+    "tech": [
+      "Next.js",
+      "TypeScript",
+      "Laravel",
+      "MySQL",
+      "Prisma"
+    ],
+    "flow": [
+      "Next.js frontend",
+      "Laravel API",
+      "MySQL",
+      "Realtime updates",
+      "Daily email digest"
+    ],
+    "links": [
+      {
+        "label": "Frontend repository",
+        "url": "#"
+      },
+      {
+        "label": "Backend repository",
+        "url": "#"
+      }
+    ]
+  },
+  {
     "id": "cms-tool",
     "title": "CMS backup and migration tool",
     "year": "2026",
