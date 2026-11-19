@@ -1,5 +1,39 @@
 [
   {
+    "id": "cms-tool",
+    "title": "CMS backup and migration tool",
+    "year": "2026",
+    "role": "Project work",
+    "seal": "C",
+    "palette": [
+      "#E8D9CC",
+      "#C4977F",
+      "#6B3F2E"
+    ],
+    "summary": "A small desktop tool that backs up, restores and seeds a CMS database without anyone touching the command line.",
+    "details": "Setting up a new menu used to mean hand-editing migration files, dumping the database and hoping the images came along. I wrapped all of that in one window: back up the content and images into a single zip, restore it on another server, turn a menu dataset into a migration, and see what is still pending before anything runs. Anything that wipes data asks for a backup first and makes you type the database name. It builds into one portable exe, so it just gets copied to whichever machine needs it.",
+    "tech": [
+      "C#",
+      "WPF",
+      "PowerShell",
+      "PHP",
+      "MySQL"
+    ],
+    "flow": [
+      "Menu dataset (.md)",
+      "Migration file",
+      "Laravel migrate",
+      "CMS database",
+      "Backup zip"
+    ],
+    "links": [
+      {
+        "label": "Repository",
+        "url": "#"
+      }
+    ]
+  },
+  {
     "id": "project-one",
     "title": "Store operations dashboard",
     "year": "2026",
