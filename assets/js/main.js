@@ -377,9 +377,9 @@ if (flock && !reduce && !lite) {
 const fx = $('#fx');
 let fxPrefs = {};
 try { fxPrefs = JSON.parse(localStorage.getItem('fx')) || {}; } catch (e) {}
-const fxOn = { leaves: !!fxPrefs.leaves, trail: !!fxPrefs.trail };
+const fxOn = { leaves: fxPrefs.leaves !== false, trail: !!fxPrefs.trail };
 const m0 = new Date().getMonth();
-const SEASON = m0 >= 2 && m0 <= 4 ? 'sakura' : m0 >= 5 && m0 <= 7 ? 'firefly' : m0 >= 8 && m0 <= 10 ? 'maple' : 'snow';
+const SEASON = 'sakura';
 let fxRaf = 0, fxKick = () => {};
 if (fx && !reduce) {
   const ctx = fx.getContext('2d');
@@ -390,15 +390,16 @@ if (fx && !reduce) {
   const half = [[0, -1], [.3, -.4], [.9, -.55], [.55, .05], [.85, .6], [.15, .45], [0, 1.1]];
   const cols = ['#C2410C', '#B3261E', '#D9902B'];
   const mk = init => ({ x: Math.random() * W, y: init ? Math.random() * H : -20, s: 5 + Math.random() * 7, v: .35 + Math.random() * .6,
-    w: Math.random() * 6.28, r: Math.random() * 6.28, dr: (Math.random() - .5) * .03, c: cols[Math.random() * 3 | 0], a: Math.random() * 6.28 });
-  const ps = Array.from({ length: 28 }, () => mk(true));
+    w: Math.random() * 6.28, r: Math.random() * 6.28, dr: (Math.random() - .5) * .03, c: cols[Math.random() * 3 | 0], a: Math.random() * 6.28, k: Math.random() * 3 | 0, f: Math.random() * 6.28, z: .55 + Math.random() * .45 });
+  const pinks = ['#F6BFCD', '#FAD5DE', '#EE9DB2'];
+  const ps = Array.from({ length: 34 }, () => mk(true));
   const trail = [], rip = [];
   addEventListener('pointermove', e => { if (!fxOn.trail) return; trail.push({ x: e.clientX, y: e.clientY, t: performance.now() }); if (trail.length > 40) trail.shift(); });
   addEventListener('pointerdown', e => { if (fxOn.trail) rip.push({ x: e.clientX, y: e.clientY, t: performance.now() }); });
   const frame = now => {
     ctx.clearRect(0, 0, W, H);
     if (!fxOn.leaves && !fxOn.trail) { fxRaf = 0; return; }
-    const night = root.classList.contains('nm'), kind = night ? 'firefly' : season;
+    const night = root.classList.contains('nm'), kind = season;
     if (fxOn.leaves) ps.forEach(p => {
       p.w += .01;
       if (kind === 'firefly') {
@@ -416,7 +417,13 @@ if (fx && !reduce) {
         ctx.fillStyle = 'rgba(255,255,255,.95)'; ctx.strokeStyle = 'rgba(120,140,155,.35)';
         ctx.beginPath(); ctx.arc(0, 0, p.s * .35, 0, 6.28); ctx.fill(); ctx.stroke();
       } else if (kind === 'sakura') {
-        ctx.fillStyle = 'rgba(242,176,196,.85)'; ctx.beginPath(); ctx.ellipse(0, 0, p.s, p.s * .5, 0, 0, 6.28); ctx.fill();
+        p.f += .03; const L = p.s * 1.25 * p.z;
+        ctx.scale(.55 + .45 * Math.abs(Math.cos(p.f)), 1); ctx.globalAlpha = (night ? .8 : .92) * p.z;
+        ctx.fillStyle = pinks[p.k]; ctx.beginPath();
+        ctx.moveTo(0, -L); ctx.bezierCurveTo(L * .95, -L * .9, L * 1.05, L * .3, L * .14, L);
+        ctx.lineTo(0, L * .78); ctx.lineTo(-L * .14, L);
+        ctx.bezierCurveTo(-L * 1.05, L * .3, -L * .95, -L * .9, 0, -L); ctx.fill();
+        ctx.strokeStyle = 'rgba(214,112,138,.35)'; ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(0, -L * .5); ctx.lineTo(0, L * .55); ctx.stroke();
       } else {
         ctx.fillStyle = p.c; ctx.globalAlpha = .85; ctx.beginPath();
         half.forEach(([x, y], i) => ctx[i ? 'lineTo' : 'moveTo'](x * p.s, y * p.s));
@@ -459,7 +466,7 @@ const panel = document.createElement('div');
 panel.className = 'settings'; panel.hidden = true;
 panel.setAttribute('role', 'group'); panel.setAttribute('aria-label', 'Effects settings');
 const names = { sakura: 'Sakura petals', firefly: 'Fireflies', maple: 'Maple leaves', snow: 'Snow' };
-const hint = SEASON === 'firefly' ? 'Fireflies drifting across the page' : `${names[SEASON]} in light mode, fireflies in dark mode`;
+const hint = 'Sakura petals drifting across the page';
 const row = (key, label, note) => `<label class="sw"><input type="checkbox" role="switch" data-fx="${key}"${fxOn[key] ? ' checked' : ''}${reduce ? ' disabled' : ''}><i aria-hidden="true"></i><span>${label}<small>${note}</small></span></label>`;
 panel.innerHTML = `<p class="stitle">Effects</p>${row('leaves', 'Seasonal particles', hint)}${row('trail', 'Brush trail and ripples', 'Ink follows your pointer and ripples on click')}${reduce ? '<p class="snote">Unavailable because your device asks for reduced motion.</p>' : ''}`;
 body.append(panel);

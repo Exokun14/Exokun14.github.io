@@ -709,3 +709,4 @@ html.has-chain.can-scroll .chain-seal{display:grid}
 .chain-hit:hover+.chain-seal,.chain-hit.drag+.chain-seal{box-shadow:0 8px 18px -6px rgba(0,0,0,.65)}
 .chain-petal{position:fixed;z-index:59;width:9px;height:11px;pointer-events:none;opacity:0;background:linear-gradient(135deg,#F8D3D9,#E49AA8);border-radius:80% 0 80% 0;box-shadow:0 1px 3px rgba(0,0,0,.18)}
 @media print{.chain-rail,.chain-ticks,.chain,.chain-hit,.chain-seal,.chain-petal{display:none!important}}
+
