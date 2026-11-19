@@ -19,7 +19,7 @@ for (const p of pages) {
 
 test('a project letter opens and closes', async ({ page }) => {
   await page.goto('/projects.html');
-  await page.locator('.env').first().click();
+  await page.locator('.pj-open').first().click();
   await expect(page.locator('.letter-wrap.open')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.locator('.letter-wrap.open')).toHaveCount(0);

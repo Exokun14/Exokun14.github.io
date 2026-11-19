@@ -7,14 +7,21 @@ Static site for GitHub Pages. No build step, no framework.
 ## Structure
 
 ```
-index.html  projects.html  about.html  notes.html
-services.html  trail.html  gallery.html  playground.html  guestbook.html
-data/site.js            text for About, Notes, trail log (trails), gallery (paintings, photos), guestbook repo
-data/projects.js        all projects (add one entry = new slide, envelope and letter)
-data/activity.json      written nightly by .github/workflows/activity.yml
-assets/css  assets/js  assets/img
-tests/  playwright.config.js   Playwright checks (run by CI on every push)
-publish.bat  open-site.bat     Windows helpers
+index.html  projects.html  about.html  notes.html  services.html
+trail.html  gallery.html  playground.html  guestbook.html  404.html
+                        Pages stay in the root so GitHub Pages URLs don't change.
+
+data/
+  site.js               text for About, Notes, trail log (trails), gallery (paintings, photos), guestbook repo
+  projects.js           all projects (add one entry = new slide, scroll and letter)
+  activity.json         written nightly by .github/workflows/activity.yml
+assets/
+  css/  js/  img/       styles, scripts, images
+  Clarence-Joven-CV.pdf
+tests/                  Playwright checks (run by CI on every push)
+scripts/                Windows helpers: publish, open-site, test, backup, setup-counter
+.github/workflows/      ci.yml (tests) and activity.yml (nightly activity feed)
+playwright.config.js  package.json  site.webmanifest  favicon.ico  .nojekyll
 ```
 
 ## Hire me page
@@ -34,10 +41,14 @@ Add an object to the list in `data/projects.js`. Optional `"image": "assets/img/
 
 ## Scripts (Windows)
 
-- `publish.bat` does everything: installs GitHub CLI if needed, logs you in, creates the `<username>.github.io` repo, commits, pulls, pushes and turns on Pages.
-- `open-site.bat` opens the live GitHub Pages URL.
-- `test.bat` starts a local test server and opens the site in your browser. `test.bat tests` runs the Playwright checks instead.
+Run these from anywhere (double-click or from a terminal). They all work from the site root.
+
+- `scripts\publish.bat` does everything: installs GitHub CLI if needed, logs you in, creates the `<username>.github.io` repo, commits, pulls, pushes and turns on Pages.
+- `scripts\open-site.bat` opens the live GitHub Pages URL.
+- `scripts\test.bat` starts a local test server and opens the site in your browser. `scripts\test.bat tests` runs the Playwright checks instead.
+- `scripts\backup.bat` zips the site into `backups/` (git-ignored).
+- `scripts\setup-counter.bat` switches on the GoatCounter visitor counter in `assets/js/stats.js`.
 
 ## Preview locally
 
-The pages load JSON, so use a server instead of double-clicking: `npx http-server` or `python -m http.server`.
+The pages load JSON, so use a server instead of double-clicking: `npm start`, `npx http-server` or `python -m http.server`.

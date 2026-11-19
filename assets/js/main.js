@@ -91,7 +91,8 @@ const scene = seed => {
 const vars = p => `--c1:${p.palette[0]};--c2:${p.palette[1]};--c3:${p.palette[2]}`;
 const art = p => p.image ? `<div class="art shot"><img src="${esc(p.image)}" alt="" loading="lazy"></div>` : `<div class="art">${scene(p.title)}</div>`;
 const slideHTML = (p, i, n) => `<article class="slide" aria-label="${i + 1} of ${n}" style="${vars(p)}">${art(p)}<div class="body"><span class="hanko" aria-hidden="true">${esc(p.seal)}</span><span class="num">${String(i + 1).padStart(2, '0')}</span><h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p><span class="tech">${esc(p.tech.join(', '))}</span><button class="btn" type="button" data-open="${esc(p.id)}">Open letter</button></div></article>`;
-const envHTML = p => `<button class="env" type="button" data-open="${esc(p.id)}" style="${vars(p)}" aria-label="Open the letter about ${esc(p.title)}">${art(p)}<span class="flap"></span><span class="label"><b>${esc(p.title)}</b><small>${esc(p.year)}</small></span><span class="hanko" aria-hidden="true">${esc(p.seal)}</span></button>`;
+const KANJI = '一二三四五六七八九十';
+const pjHTML = (p, i) => `<article class="pj reveal" style="${vars(p)}"><span class="pj-kanji" aria-hidden="true">${KANJI[i] || i + 1}</span><div class="pj-scroll" data-open="${esc(p.id)}"><span class="pj-cord" aria-hidden="true"></span><span class="pj-rod" aria-hidden="true"></span><div class="pj-unroll"><div class="pj-paint"><div class="pj-mount"><div class="pj-frame">${art(p)}<span class="hanko" aria-hidden="true">${esc(p.seal)}</span></div></div></div></div><span class="pj-rod" aria-hidden="true"></span></div><div class="pj-body"><p class="pj-meta"><span class="pj-no">${String(i + 1).padStart(2, '0')}</span><span>${esc(p.year)}</span><span>${esc(p.role)}</span></p><h2 class="pj-title">${esc(p.title)}</h2><p class="pj-sum">${esc(p.summary)}</p><ul class="pj-tags">${p.tech.map(t => `<li>${esc(t)}</li>`).join('')}</ul><button class="pj-open" type="button" data-open="${esc(p.id)}" aria-label="Open the letter about ${esc(p.title)}"><span>Read the letter</span><i aria-hidden="true"></i></button></div></article>`;
 
 // ---------- Letters and palette ----------
 let lastFocus = null;
@@ -348,11 +349,26 @@ if (mq) { const c = mq.cloneNode(true); c.setAttribute('aria-hidden', 'true'); m
 // ---------- Projects (from data/projects.js) ----------
 {
   const list = window.PROJECTS;
-  const car = $('.carousel'), grid = $('#envelopes');
+  const car = $('.carousel'), grid = $('#folio');
   if (Array.isArray(list) && list.length) {
     if (car) { $('.track', car).innerHTML = list.map((p, i) => slideHTML(p, i, list.length)).join(''); initCarousel(car); }
     if (grid) {
-      grid.innerHTML = list.map(envHTML).join('');
+      grid.innerHTML = list.map(pjHTML).join('');
+      const cards = $$('.pj', grid);
+      cards.forEach(watch);
+      // Side rail: kanji numerals light up for the project in view
+      const rail = document.createElement('nav');
+      rail.className = 'pj-rail';
+      rail.setAttribute('aria-hidden', 'true');
+      rail.innerHTML = list.map((_, i) => `<span>${KANJI[i] || i + 1}</span>`).join('');
+      body.append(rail);
+      const live = new Set();
+      const pio = new IntersectionObserver(es => {
+        es.forEach(e => { const i = cards.indexOf(e.target); if (e.isIntersecting) live.add(i); else live.delete(i); });
+        [...rail.children].forEach((s, i) => s.classList.toggle('on', live.has(i)));
+        rail.classList.toggle('show', live.size > 0);
+      }, { rootMargin: '-45% 0px -45% 0px' });
+      cards.forEach(c => pio.observe(c));
       const hit = list.find(p => p.id === location.hash.slice(1));
       if (hit) openLetter(hit);
     }
