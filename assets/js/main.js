@@ -33,6 +33,16 @@ if (h1) {
   const name = h1.textContent.trim();
   h1.setAttribute('aria-label', name);
   h1.innerHTML = [...name].map((c, i) => `<span class="ch" aria-hidden="true" style="--i:${i}">${c === " " ? "&nbsp;" : c}</span>`).join('');
+  // Entrance driven directly by the Web Animations API, so it plays on its own: it does not wait for
+  // body.ready or the page load, ignores OS motion settings, and re-runs on back/forward and tab focus.
+  const letters = [...h1.querySelectorAll('.ch')];
+  const rise = [{ opacity: 0, transform: 'translateY(80%) rotate(6deg)', filter: 'blur(8px)' }, { opacity: 1, transform: 'none', filter: 'blur(0px)' }];
+  const playName = () => letters.forEach((l, i) => {
+    l.getAnimations().forEach(a => a.cancel());
+    l.animate(rise, { duration: 1400, delay: 400 + i * 80, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' });
+  });
+  if (document.visibilityState === 'visible') playName(); else document.addEventListener('visibilitychange', playName, { once: true });
+  addEventListener('pageshow', e => { if (e.persisted) playName(); });
 }
 
 // ---------- Reveals ----------

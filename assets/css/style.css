@@ -817,3 +817,12 @@ html.has-chain.can-scroll .chain-seal{display:grid}
 
 /* About: alternate the kanji watermarks left/right down the page (art stays on the empty right side) */
 .ab-flip .ab-wm{right:auto;left:clamp(1rem,7%,7rem)}
+
+/* Notes: balance the page. 随筆 was wrapping into two columns (nowrap fixes it); on wide screens the
+   decoration is spread left and right instead of all sitting on the right. */
+.nx-vert{white-space:nowrap}
+@media(min-width:90rem){
+  .nx-vert{right:auto;left:calc(50% - 31rem - 11rem)}
+  .nx-sec .art-bamboo{right:auto;left:-2rem}
+  .nx-note .nx-ink{right:-5rem}
+}
