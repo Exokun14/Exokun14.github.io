@@ -764,3 +764,24 @@ html.has-chain.can-scroll .chain-seal{display:grid}
 @media print{.nx-side,.nx-vert,.nx-copy,.nx-ink{display:none!important}.nx{display:block}}
 
 .has-art:has(.nx){overflow:visible;overflow-x:clip}
+
+/* About page */
+@counter-style kanji-num{system:fixed;symbols:"壱" "弐" "参" "肆" "伍" "陸" "漆" "捌" "玖" "拾";suffix:"";fallback:decimal}
+.ab-vert{position:absolute;z-index:6;right:clamp(7rem,21%,24rem);top:clamp(6rem,15vh,9rem);writing-mode:vertical-rl;font:800 clamp(5rem,13vw,10rem)/1 var(--jp);color:var(--ink);opacity:.2;filter:url(#ink2);pointer-events:none;user-select:none}
+.ab-ch{position:relative;overflow-x:clip}
+.ab-ch>.inner{position:relative;z-index:1}
+.ab-ch[data-k]::before{content:attr(data-k);position:absolute;z-index:0;right:clamp(1rem,7%,7rem);top:clamp(2rem,7vh,4.5rem);font:800 clamp(9rem,22vw,17rem)/1 var(--jp);color:var(--ink);opacity:.055;filter:url(#ink2);pointer-events:none;user-select:none}
+.ab-k{display:grid;place-items:center;width:1.9rem;height:1.9rem;margin-bottom:.4rem;background:var(--seal);color:#F6EDE6;border-radius:3px;font:500 1rem/1 var(--jp);font-style:normal;transform:rotate(-4deg)}
+.about .ab-way{position:relative;counter-reset:w;display:block;max-width:37rem;margin:2.5rem 0 0}
+.about .ab-way::before,.about .ab-way::after{content:"";position:absolute;left:1.2rem;top:2.4rem;bottom:2.4rem;width:1px;background:var(--line)}
+.about .ab-way::after{left:calc(1.2rem - .5px);width:2px;background:var(--seal);transform:scaleY(1);transform-origin:50% 0}
+.about .ab-way.ab-live::after{transform:scaleY(var(--read,0))}
+.about .ab-way li{counter-increment:w;position:relative;padding:1.4rem 0 1.4rem 4.25rem;border-left:0;font:400 clamp(1.25rem,2.4vw,1.65rem)/1.4 var(--display);color:var(--ink);transition:opacity .6s}
+.about .ab-way li::before{content:counter(w,kanji-num);position:absolute;left:0;top:1.35rem;display:grid;place-items:center;width:2.4rem;height:2.4rem;background:var(--seal);color:#F6EDE6;border-radius:3px;font:500 1.15rem/1 var(--jp);transform:rotate(-4deg);z-index:1}
+.about .ab-way.ab-live li{opacity:.38}
+.about .ab-way.ab-live li.on{opacity:1}
+.about .timeline.ab-live::before{transform:scaleY(var(--read,0));transition:none;background:var(--seal)}
+.about .timeline.ab-live li::before{background:var(--bg);border:1px solid var(--line);box-shadow:none;transition:background .5s,border-color .5s}
+.about .timeline.ab-live li.on::before{background:var(--seal);border-color:var(--seal);box-shadow:0 0 0 6px color-mix(in srgb,var(--seal) 18%,transparent)}
+@media(max-width:40rem){.ab-vert{right:1rem;top:6rem;opacity:.1}.about .ab-way li{padding-left:3.6rem}}
+@media(prefers-reduced-motion:reduce){.about .ab-way li{transition:none}}
