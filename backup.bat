@@ -9,7 +9,8 @@ REM  (no node_modules, .git, test reports, zips or logs)
 REM ============================================
 
 REM ---- Settings ----
-set "PROJECT=portfolio-site"
+REM Name used for the zip file and the root folder inside it.
+set "PROJECT=personal-website"
 set "BACKUP_DIR=%CD%\backups"
 REM Set to 1 to include .env files (they may hold secrets)
 set "INCLUDE_ENV=0"
@@ -52,9 +53,10 @@ if errorlevel 8 (
     exit /b 1
 )
 
-REM ---- Zip it ----
+REM ---- Zip it (one root folder named after the project, forward-slash paths) ----
 echo Zipping...
-powershell -NoProfile -Command "Add-Type -AssemblyName System.IO.Compression.FileSystem; if(Test-Path $env:ZIP_PATH){Remove-Item $env:ZIP_PATH -Force}; [IO.Compression.ZipFile]::CreateFromDirectory($env:STAGE, $env:ZIP_PATH, [IO.Compression.CompressionLevel]::Optimal, $true)"
+if exist "%ZIP_PATH%" del /f /q "%ZIP_PATH%"
+powershell -NoProfile -Command "Add-Type -AssemblyName System.IO.Compression,System.IO.Compression.FileSystem; $s=(Resolve-Path -LiteralPath $env:STAGE).Path; $fs=[IO.File]::Open($env:ZIP_PATH,'Create'); $z=New-Object IO.Compression.ZipArchive($fs,'Create'); Get-ChildItem -LiteralPath $s -Recurse -File -Force | ForEach-Object { $n=$env:PROJECT+'/'+$_.FullName.Substring($s.Length+1).Replace('\','/'); [void][IO.Compression.ZipFileExtensions]::CreateEntryFromFile($z,$_.FullName,$n,'Optimal') }; $z.Dispose(); $fs.Dispose()"
 
 if exist "%STAGE_ROOT%" rmdir /s /q "%STAGE_ROOT%"
 
@@ -70,6 +72,7 @@ for %%F in ("%ZIP_PATH%") do set "ZIP_SIZE=%%~zF"
 echo.
 echo ============================================
 echo  Backup complete.
+echo  Root folder inside zip: %PROJECT%
 echo  %ZIP_PATH%
 echo  Size: %ZIP_SIZE% bytes
 echo ============================================
