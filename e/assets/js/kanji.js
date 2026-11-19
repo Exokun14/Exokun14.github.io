@@ -67,7 +67,7 @@ const lookup = el => el.dataset.mean
 const overText = (x, y) => {
   const t = document.elementFromPoint(x, y);
   if (!t) return false;
-  if (t.closest('a, button, input, textarea, img, svg, figure, .nx-ol')) return true;
+  if (t.closest('a, button, input, textarea, .nx-ol')) return true;
   return [...t.childNodes].some(n => n.nodeType === 3 && n.nodeValue.trim());
 };
 
@@ -76,10 +76,8 @@ const hit = (x, y) => {
     for (const el of document.querySelectorAll(sel)) {
       const r = el.getBoundingClientRect();
       if (x < r.left || x > r.right || y < r.top || y > r.bottom || !r.width) continue;
-      if (kind === 'tile') {
-        const t = document.elementFromPoint(x, y);
-        if (t === el || el.contains(t)) return { el, r, big: false };
-      } else if (!overText(x, y)) return { el, r, big: r.height > 150 };
+      if (kind === 'tile') return { el, r, big: false };
+      if (!overText(x, y)) return { el, r, big: r.height > 150 };
     }
   }
   // CSS-counter numerals on the "How I work" list (::before squares, not real nodes)
@@ -185,17 +183,21 @@ const probe = () => {
   timer = setTimeout(() => { if (armed) open(armed); }, DELAY);
 };
 
-addEventListener('pointermove', e => {
-  if (e.pointerType === 'touch') return;
+let lastTouch = 0;                                      // taps also fire compat mouse events; ignore them
+const move = e => {
+  if (e.pointerType === 'touch' || e.pointerType === 'pen' || Date.now() - lastTouch < 800) return;
   mx = e.clientX; my = e.clientY;
   if (!ptick) ptick = requestAnimationFrame(probe);
-}, { passive: true });
+};
+addEventListener('pointermove', move, { passive: true, capture: true });
+addEventListener('mousemove', move, { passive: true, capture: true });   // fallback
 
 // ---- touch / pen: tap to open, tap again or elsewhere to close ----
 let down = null, hideT = 0;
-addEventListener('pointerdown', e => { down = e.pointerType === 'mouse' ? null : { x: e.clientX, y: e.clientY }; }, { passive: true });
+addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') lastTouch = Date.now(); down = e.pointerType === 'mouse' ? null : { x: e.clientX, y: e.clientY }; }, { passive: true });
 addEventListener('pointerup', e => {
   if (e.pointerType === 'mouse' || !down) return;
+  lastTouch = Date.now();
   const moved = Math.hypot(e.clientX - down.x, e.clientY - down.y) > 10;
   down = null;
   if (moved) return;                                   // it was a scroll/drag
