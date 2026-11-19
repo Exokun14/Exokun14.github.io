@@ -14,14 +14,30 @@ fill('#cycle-list', S.cycle.map((c, i) => `<li><span class="n">${String(i + 1).p
 fill('#learning-list', S.learning.map(u => `<span class="badge"><b>${esc(u.title)}</b>${esc(u.text)}</span>`).join(''));
 fill('#beyond-list', S.beyond.map(b => `<div class="card"><h3>${esc(b.title)}</h3><p>${esc(b.text)}</p></div>`).join(''));
 
-// Trail log: stylised mountain profile with one dot per peak (oldest on the left)
-(() => {
-  const T = S.trails.slice().reverse();
-  const X = [100, 300, 500], Y = [82, 54, 22]; // taller = tougher
-  const dots = T.map((t, i) => `<g class="peak" style="--i:${i}"><circle class="halo" cx="${X[i]}" cy="${Y[i]}" r="13"/><circle class="dot" cx="${X[i]}" cy="${Y[i]}" r="6"/></g>`).join('');
-  const labels = T.map((t, i) => `<div class="tl${i === T.length - 1 ? ' latest' : ''}"><small>${esc(t.date)}</small><b>${esc(t.name)}</b><span>${esc(t.note)}</span></div>`).join('');
-  fill('#trail-list', `<svg viewBox="0 0 600 140" role="img" aria-label="Stylised profile of three climbs"><defs><linearGradient id="tfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".28"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs><path class="area" d="M0,124 C40,122 70,94 100,82 S150,116 200,116 S250,68 300,54 S370,108 400,110 S460,36 500,22 S570,100 600,114 V140 H0Z"/><path class="line" pathLength="1" d="M0,124 C40,122 70,94 100,82 S150,116 200,116 S250,68 300,54 S370,108 400,110 S460,36 500,22 S570,100 600,114"/>${dots}</svg><div class="tlabels">${labels}</div><p class="tnote">The taller the peak, the tougher the climb.</p>`);
-})();
+// Trail log: stylised mountain profile with one dot per peak (oldest on the left).
+// `list` is newest first. Peak height comes from `tough` (1 to 4). Used by About and the Trail page.
+const trailProfile = (list, labels) => {
+  const T = list.slice().reverse(), n = T.length;
+  if (!n) return '';
+  const X = T.map((_, i) => 600 * (i + .5) / n);
+  const Y = T.map(t => Math.max(14, 110 - 29 * (t.tough || 2)));
+  const pts = [[0, 124]];
+  X.forEach((x, i) => { if (i) pts.push([(X[i - 1] + x) / 2, 114]); pts.push([x, Y[i]]); });
+  pts.push([600, 114]);
+  let d = 'M' + pts[0].join(',');
+  for (let i = 1; i < pts.length; i++) {
+    const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], mx = (x0 + x1) / 2;
+    d += `C${mx},${y0} ${mx},${y1} ${x1},${y1}`;
+  }
+  const dots = T.map((t, i) => `<g class="peak" style="--i:${i}"><circle class="halo" cx="${X[i]}" cy="${Y[i]}" r="13"/><circle class="dot" cx="${X[i]}" cy="${Y[i]}" r="6"/>${labels ? '' : `<text class="pk-n" x="${X[i]}" y="${Y[i] - 20}" text-anchor="middle">${i + 1}</text>`}</g>`).join('');
+  const lab = labels ? `<div class="tlabels" style="grid-template-columns:repeat(${n},1fr)">${T.map((t, i) => `<div class="tl${i === n - 1 ? ' latest' : ''}"><small>${esc(t.date)}</small><b>${esc(t.name)}</b><span>${esc(t.note)}</span></div>`).join('')}</div>` : '';
+  return `<svg viewBox="0 0 600 140" role="img" aria-label="Stylised profile of ${n} climb${n === 1 ? '' : 's'}, taller peaks are tougher"><defs><linearGradient id="tfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".28"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs><path class="area" d="${d}V140H0Z"/><path class="line" pathLength="1" d="${d}"/>${dots}</svg>${lab}<p class="tnote">The taller the peak, the tougher the climb.</p>`;
+};
+window.trailProfile = trailProfile;
+if ($('#trail-list')) {
+  const full = !!$('#trail-list.trail-full');
+  fill('#trail-list', trailProfile(full ? S.trails : S.trails.slice(0, 3), !full));
+}
 
 const wt = $('#work-text'); if (wt) wt.textContent = S.work.text;
 fill('#work-offers', S.work.offers.map(o => `<li>${esc(o)}</li>`).join(''));

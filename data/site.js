@@ -32,10 +32,11 @@ window.SITE = {
     { title: 'Games', text: 'Mobile Legends, Clash of Clans, RimWorld, Skyrim, GTA, Red Dead Redemption 2 and League of Legends.' },
     { title: 'Hiking', text: 'My favorite way to reset. The trail log is just below.' }
   ],
+  // Newest first. tough: 1 (easy) to 4 (hardest) sets the peak height. Optional: photo, alt, masl (elevation in metres).
   trails: [
-    { date: 'Nov 7, 2026', name: 'Mt. Arayat', note: 'Quad peak, my latest and the toughest of the three.' },
-    { date: 'Jun 12, 2026', name: 'Mt. Makiling', note: 'A major hike, done as a traverse.' },
-    { date: 'May 1, 2026', name: 'Mt. Romelo', note: 'A minor hike, and my mother mountain.' }
+    { date: 'Nov 7, 2026', name: 'Mt. Arayat', tag: 'Quad peak', tough: 3, note: 'Quad peak, my latest and the toughest of the three.' },
+    { date: 'Jun 12, 2026', name: 'Mt. Makiling', tag: 'Traverse', tough: 2, note: 'A major hike, done as a traverse.' },
+    { date: 'May 1, 2026', name: 'Mt. Romelo', tag: 'Minor hike', tough: 1, note: 'A minor hike, and my mother mountain.' }
   ],
   work: {
     text: 'Want to talk projects, QA or tech, or have a small web project in mind? I’m open to freelance work too. Reach out.',
@@ -57,5 +58,27 @@ window.SITE = {
     { id: 'think-like-an-owner', date: 'September 2026', title: 'Think like an owner',
       body: ['I try to treat every project as if it were mine. That means caring about the whole outcome, not just my part of it.',
              'It changes the questions I ask: not “is my task done?” but “will this actually work for the people using it?”'] }
-  ]
+  ],
+  // Gallery: the paintings. Add your own photos to `photos` above and they show up under the Photos tab.
+  paintings: [
+    { src: 'assets/img/art-wave.webp', title: 'The wave', alt: 'Ink painting of a large curling ocean wave' },
+    { src: 'assets/img/art-crane.webp', title: 'Crane', alt: 'Ink painting of a crane with wings spread in flight' },
+    { src: 'assets/img/art-mountain.webp', title: 'Mountain', alt: 'Ink painting of a mountain peak with ridges' },
+    { src: 'assets/img/art-torii.webp', title: 'Torii', alt: 'Ink painting of a torii gate' },
+    { src: 'assets/img/art-koi.webp', title: 'Koi', alt: 'Ink painting of a koi fish swimming' },
+    { src: 'assets/img/art-sakura.webp', title: 'Sakura', alt: 'Ink painting of a cherry blossom branch' },
+    { src: 'assets/img/art-pine.webp', title: 'Pine', alt: 'Ink painting of a gnarled pine tree branch' },
+    { src: 'assets/img/art-bamboo.webp', title: 'Bamboo', alt: 'Ink painting of bamboo stalks' },
+    { src: 'assets/img/art-enso.webp', title: 'Ensō', alt: 'Ink brush circle, an enso' },
+    { src: 'assets/img/art-ninetail.webp', title: 'Nine tails', alt: 'Ink painting of a nine-tailed fox sitting' },
+    { src: 'assets/img/art-kitsune.webp', title: 'Kitsune', alt: 'Ink painting of a fox mask with cherry blossoms and tassels' },
+    { src: 'assets/img/art-kitsune-red.webp', title: 'Kitsune, in red', alt: 'White fox mask with red markings, tassels and bells', color: true },
+    { src: 'assets/img/art-dragon-sword.webp', title: 'Dragon and sword', alt: 'Ink painting of a dragon coiled around a sword' },
+    { src: 'assets/img/art-katana-stand.webp', title: 'Katana', alt: 'Ink painting of a katana resting on a stand' },
+    { src: 'assets/img/art-samurai-stand.webp', title: 'Samurai, standing', alt: 'Ink painting of a samurai in armour standing with hands on a sword' },
+    { src: 'assets/img/art-samurai-kneel.webp', title: 'Samurai, kneeling', alt: 'Ink painting of a samurai kneeling with a sword at his side' },
+    { src: 'assets/img/art-samurai-draw.webp', title: 'Samurai, drawing', alt: 'Ink painting of a samurai drawing a sword' }
+  ],
+  // Guestbook: visitors sign by opening a GitHub issue titled "[Guestbook] ..." in this repo.
+  guestbook: { repo: 'Exokun14/Exokun14.github.io', prefix: '[Guestbook]' }
 };

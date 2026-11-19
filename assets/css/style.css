@@ -660,3 +660,25 @@ body.ready .art-fuji{animation:inkrise 3s var(--ease) 1s forwards}
 @media(max-width:47.99rem){.art-mark{width:6rem;right:.5rem;margin-top:-7.3rem}}
 .art-enso.reveal{--art-o:.14}.nm .art-enso.reveal{--art-o:.18}
 .art-mark.reveal{--art-o:.55}.nm .art-mark.reveal{--art-o:.5}
+
+/* Explore menu in the top bar */
+.explore{position:relative}
+.explore summary{list-style:none;position:relative;display:flex;align-items:center;gap:.4rem;font-weight:500;cursor:pointer;user-select:none}
+.explore summary::-webkit-details-marker{display:none}
+.explore summary::before{content:"";order:2;width:.38rem;height:.38rem;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .3s var(--ease)}
+.explore[open] summary::before{transform:translateY(1px) rotate(225deg)}
+.explore summary::after{content:"";position:absolute;left:0;right:0;bottom:-.2rem;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.explore summary:hover::after,.explore summary[aria-current]::after,.explore[open] summary::after{transform:scaleX(1);transform-origin:left}
+.explore .menu{position:absolute;right:-.75rem;top:calc(100% + .9rem);min-width:12rem;display:grid;gap:.1rem;padding:.5rem;border:1px solid var(--line);border-radius:10px;background:var(--bg);box-shadow:0 20px 50px -20px rgba(0,0,0,.45);animation:menuin .35s var(--ease)}
+@keyframes menuin{from{opacity:0;transform:translateY(-8px)}}
+.explore .menu a{padding:.55rem .8rem;border-radius:6px;white-space:nowrap}
+.explore .menu a::after{display:none}
+.explore .menu a:hover,.explore .menu a:focus-visible{background:rgba(var(--petal),.15)}
+.explore .menu a[aria-current]{color:var(--jade)}
+.explore .menu .only-sm{display:none}
+@media(max-width:40rem){.links .hide-sm{display:none}.explore .menu .only-sm{display:block}}
+@media(prefers-reduced-motion:reduce){.explore .menu{animation:none}}
+/* Home page: Explore cards */
+.grid a.card{display:block;color:inherit;text-decoration:none}
+.grid a.card h3::after{content:"\2192";margin-left:.5rem;display:inline-block;opacity:.4;transition:transform .4s var(--ease),opacity .3s}
+.grid a.card:hover h3::after,.grid a.card:focus-visible h3::after{transform:translateX(.35rem);opacity:1}

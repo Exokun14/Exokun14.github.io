@@ -7,13 +7,22 @@ Static site for GitHub Pages. No build step, no framework.
 ## Structure
 
 ```
-index.html  projects.html  about.html
+index.html  projects.html  about.html  notes.html
+trail.html  gallery.html  playground.html  guestbook.html
+data/site.js            text for About, Notes, trail log (trails), gallery (paintings, photos), guestbook repo
 data/projects.js        all projects (add one entry = new slide, envelope and letter)
 data/activity.json      written nightly by .github/workflows/activity.yml
 assets/css  assets/js  assets/img
 tests/  playwright.config.js   Playwright checks (run by CI on every push)
 publish.bat  open-site.bat     Windows helpers
 ```
+
+## Add a climb, a photo or a painting
+
+- Climb: add an object at the top of `trails` in `data/site.js` (`date`, `name`, `tag`, `tough` 1 to 4, `note`, optional `photo`, `alt`, `masl`).
+- Photo: add `{ src, alt, caption }` to `photos` in `data/site.js`. A Photos tab appears in the gallery.
+- Painting: add an entry to `paintings`.
+- Guestbook: visitors sign by opening a GitHub issue titled `[Guestbook] ...` in the repo set in `guestbook`. Close an issue to remove it from the page. Issues must be enabled on the repo.
 
 ## Add a project
 

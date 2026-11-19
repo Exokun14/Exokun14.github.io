@@ -19,7 +19,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=202611132100">
+<link rel="stylesheet" href="assets/css/style.css?v=202611191000">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
@@ -39,7 +39,8 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <header class="topbar fade">
   <a class="seal" href="index.html" aria-label="Home">C</a>
   <nav class="links" aria-label="Main">
-    <a href="projects.html">Projects</a><a href="about.html">About</a><a href="notes.html">Notes</a>
+    <a href="projects.html">Projects</a><a href="about.html">About</a><a class="hide-sm" href="notes.html">Notes</a>
+    <details class="explore"><summary>Explore</summary><div class="menu"><a class="only-sm" href="notes.html">Notes</a><a href="trail.html">Trail log</a><a href="gallery.html">Gallery</a><a href="playground.html">Playground</a><a href="guestbook.html">Guestbook</a></div></details>
     <button class="kbd" type="button" aria-label="Open command palette">Search <kbd>Ctrl K</kbd></button>
     <button class="sound" type="button" aria-pressed="false" aria-label="Ambient sound"><i></i><i></i><i></i></button>
     <button class="theme" type="button" aria-label="Switch light or dark theme"></button>
@@ -95,6 +96,19 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
     </div>
   </section>
 
+  <section id="explore" class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">00</span>
+      <h2 class="reveal">Explore</h2>
+      <div class="grid reveal">
+        <a class="card" href="trail.html"><h3>Trail log</h3><p>Every mountain I have climbed, drawn as a profile.</p></a>
+        <a class="card" href="gallery.html"><h3>Gallery</h3><p>Ink paintings and photos. Click to look closer.</p></a>
+        <a class="card" href="playground.html"><h3>Playground</h3><p>An ink pad to draw on and a memory game.</p></a>
+        <a class="card" href="guestbook.html"><h3>Guestbook</h3><p>Stop by and leave a line.</p></a>
+      </div>
+    </div>
+  </section>
+
   <section id="hire" class="chapter has-art">
     <div class="art art-enso reveal" aria-hidden="true"></div>
     <div class="art art-mark reveal" aria-hidden="true"></div>
@@ -126,10 +140,10 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
   </section>
 </main>
 <footer>© <span id="y"></span> Clarence</footer>
-<script src="data/projects.js?v=202611132100"></script>
-<script src="data/site.js?v=202611132100"></script>
-<script src="assets/js/sections.js?v=202611132100"></script>
+<script src="data/projects.js?v=202611191000"></script>
+<script src="data/site.js?v=202611191000"></script>
+<script src="assets/js/sections.js?v=202611191000"></script>
 <script defer src="assets/js/stats.js"></script>
-<script src="assets/js/main.js?v=202611132100"></script>
+<script src="assets/js/main.js?v=202611191000"></script>
 </body>
 </html>

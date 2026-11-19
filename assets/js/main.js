@@ -180,6 +180,10 @@ const actions = [
   ['Projects', () => { location.href = 'projects.html'; }],
   ['About', () => { location.href = 'about.html'; }],
   ['Notes', () => { location.href = 'notes.html'; }],
+  ['Trail log', () => { location.href = 'trail.html'; }],
+  ['Gallery', () => { location.href = 'gallery.html'; }],
+  ['Playground', () => { location.href = 'playground.html'; }],
+  ['Guestbook', () => { location.href = 'guestbook.html'; }],
   ['Toggle light or dark theme', toggleTheme],
   ['Copy email address', () => copyEmail()],
   ['Download CV', () => { const a = document.createElement('a'); a.href = 'assets/Clarence-Joven-CV.pdf'; a.download = 'Clarence-Joven-CV.pdf'; a.click(); }],
@@ -516,6 +520,15 @@ if (go) {
     setTimeout(() => { location.href = go.href; }, reduce ? 500 : 2600);
   });
   addEventListener('pageshow', e => { if (e.persisted) $$('.go-loader').forEach(x => x.remove()); });
+}
+
+// ---------- Explore menu ----------
+const xm = $('.explore');
+if (xm) {
+  const shut = back => { if (xm.open) { xm.open = false; if (back) $('summary', xm).focus(); } };
+  document.addEventListener('click', e => { if (!xm.contains(e.target)) shut(); });
+  xm.addEventListener('keydown', e => { if (e.key === 'Escape') shut(true); });
+  xm.addEventListener('focusout', e => { if (e.relatedTarget && !xm.contains(e.relatedTarget)) shut(); });
 }
 
 // ---------- Start ----------

@@ -19,7 +19,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=202611132100">
+<link rel="stylesheet" href="assets/css/style.css?v=202611191000">
 </head>
 <body class="sub about">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
@@ -38,7 +38,8 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <header class="topbar fade">
   <a class="seal" href="index.html" aria-label="Home">C</a>
   <nav class="links" aria-label="Main">
-    <a href="projects.html">Projects</a><a href="about.html" aria-current="page">About</a><a href="notes.html">Notes</a>
+    <a href="projects.html">Projects</a><a href="about.html" aria-current="page">About</a><a class="hide-sm" href="notes.html">Notes</a>
+    <details class="explore"><summary>Explore</summary><div class="menu"><a class="only-sm" href="notes.html">Notes</a><a href="trail.html">Trail log</a><a href="gallery.html">Gallery</a><a href="playground.html">Playground</a><a href="guestbook.html">Guestbook</a></div></details>
     <button class="kbd" type="button" aria-label="Open command palette">Search <kbd>Ctrl K</kbd></button>
     <button class="sound" type="button" aria-pressed="false" aria-label="Ambient sound"><i></i><i></i><i></i></button>
     <button class="theme" type="button" aria-label="Switch light or dark theme"></button>
@@ -153,6 +154,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
       <span class="eyebrow reveal">00</span>
       <h2 class="reveal">Trail log</h2>
       <div class="trail reveal" id="trail-list"></div>
+      <p class="more reveal"><a class="btn ghost" href="trail.html">Full trail log</a></p>
     </div>
   </section>
 
@@ -195,9 +197,9 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
   </section>
 </main>
 <footer>© <span id="y"></span> Clarence</footer>
-<script src="data/site.js?v=202611132100"></script>
-<script src="assets/js/sections.js?v=202611132100"></script>
+<script src="data/site.js?v=202611191000"></script>
+<script src="assets/js/sections.js?v=202611191000"></script>
 <script defer src="assets/js/stats.js"></script>
-<script src="assets/js/main.js?v=202611132100"></script>
+<script src="assets/js/main.js?v=202611191000"></script>
 </body>
 </html>
