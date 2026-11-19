@@ -11,18 +11,56 @@
 .stat h3{font:500 clamp(1.8rem,5vw,2.5rem)/1.1 var(--display);margin:.25rem 0 0}
 .trail-full .peak{transition-delay:calc(var(--i) * .35s + .9s)}
 .pk-n{font:italic 300 13px var(--display);fill:var(--ink)}
-.hikes{list-style:none;margin:3.5rem 0 0;padding:0;max-width:48rem}
-.hike{display:grid;grid-template-columns:3.5rem 1fr;gap:1rem;padding:1.6rem 0;border-top:1px solid var(--line)}
-.hike:last-child{border-bottom:1px solid var(--line)}
-.hike .no{font:300 2.4rem/1 var(--display);color:var(--jade)}
+.tr-stats b{font-size:clamp(1.5rem,3.2vw,2.1rem)}
+
+/* The range: one flagged peak per climb */
+.tr-range{position:relative;max-width:62rem;margin:3rem 0 0}
+.tr-range svg{display:block;width:100%;height:auto;overflow:visible;color:var(--jade)}
+.tr-line{fill:none;stroke:var(--jade);stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.6s var(--ease) .2s}
+.tr-range.in .tr-line{stroke-dashoffset:0}
+.tr-area{fill:url(#trfill);opacity:0;transition:opacity 1.4s ease 1s}
+.tr-range.in .tr-area{opacity:1}
+.tr-peak{opacity:0;transform:translateY(14px);transition:opacity .6s ease calc(var(--j) * .55s + 1.1s),transform .9s var(--ease) calc(var(--j) * .55s + 1.1s)}
+.tr-range.in .tr-peak{opacity:1;transform:none}
+.tr-hit{fill:transparent;cursor:pointer}
+.tr-dot{fill:var(--lit)}
+.tr-halo{fill:var(--lit);opacity:.16;transform-box:fill-box;transform-origin:center;transition:transform .5s var(--ease),opacity .5s}
+.tr-peak.latest .tr-halo{animation:halo 2.4s ease-in-out infinite}
+.tr-pole{stroke:var(--ink);stroke-width:1.6;fill:none;opacity:.7}
+.tr-pennant{fill:var(--lit)}
+.tr-flag{transform-box:fill-box;transform-origin:50% 100%;transition:transform .5s var(--ease)}
+.tr-num{fill:var(--ink);font:italic 300 22px var(--display);text-anchor:middle;transition:fill .4s}
+.tr-peak.hot .tr-halo{opacity:.4;transform:scale(1.9);animation:none}
+.tr-peak.hot .tr-flag{transform:scaleY(1.12)}
+.tr-peak.hot .tr-num{fill:var(--lit)}
+
+/* The log: stamped waypoints on a dashed trail */
+.hikes{position:relative;list-style:none;margin:4rem 0 0;padding:0;max-width:52rem}
+.hikes::before{content:"";position:absolute;left:2.2rem;top:2.5rem;bottom:2.5rem;border-left:2px dashed var(--line);transform:scaleY(0);transform-origin:top;transition:transform 2.4s var(--ease) .3s}
+.hikes.in::before{transform:scaleY(1)}
+.hike{position:relative;display:grid;grid-template-columns:4.4rem minmax(0,1fr);gap:1.5rem;padding:1.6rem 1rem 1.6rem 0;border-radius:6px;transition:background .5s}
+.hike.hot{background:linear-gradient(90deg,rgba(var(--petal),.08),transparent 75%)}
+.hk-stamp{position:relative;z-index:1;display:grid;place-items:center;width:4.4rem;height:4.4rem;border:2px solid var(--lit);border-radius:50%;background:var(--bg);color:var(--lit);box-shadow:inset 0 0 0 4px var(--bg),inset 0 0 0 5px color-mix(in srgb,var(--lit) 45%,transparent);transform:rotate(-8deg);transition:transform .6s var(--ease),background .4s,color .4s}
+.hike:nth-child(even) .hk-stamp{transform:rotate(5deg)}
+.hk-stamp b{font:700 1.9rem/1 var(--jp)}
+.hike:hover .hk-stamp,.hike.hot .hk-stamp{transform:rotate(0) scale(1.08);background:var(--lit);color:#F6EDE6}
+.hike.latest .hk-stamp::after{content:"";position:absolute;inset:-6px;border:1px solid var(--lit);border-radius:50%;opacity:.5;animation:hkRing 2.4s ease-out infinite}
+@keyframes hkRing{from{transform:scale(.92);opacity:.6}to{transform:scale(1.3);opacity:0}}
 .hike .meta{margin:0;font:italic 300 1.15rem var(--display);color:var(--jade)}
-.hike h2{font:500 clamp(1.8rem,4.5vw,2.4rem)/1.1 var(--display);margin:.1rem 0 .45rem;letter-spacing:-.01em}
-.hike p{margin:0;color:var(--muted)}
-.hike .photo{display:block;width:100%;max-width:26rem;margin-top:1rem;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--line);border-radius:6px}
-.tough{display:inline-flex;gap:.3rem;margin-top:.8rem;align-items:center;font-size:.85rem;color:var(--muted)}
+.hk-new{display:inline-block;margin-right:.7rem;padding:.1rem .55rem;border:1px solid var(--lit);border-radius:2px;color:var(--lit);font:500 .62rem/1.5 var(--body);letter-spacing:.2em;text-transform:uppercase;vertical-align:middle}
+.hike h2{font:500 clamp(1.9rem,4.8vw,2.7rem)/1.08 var(--display);margin:.15rem 0 .5rem;letter-spacing:-.01em}
+.hike .note{margin:0;max-width:34rem;color:var(--muted)}
+.hike .photo{display:block;width:100%;max-width:26rem;margin-top:1.1rem;padding:.45rem;aspect-ratio:4/3;object-fit:cover;background:var(--tile);border:1px solid var(--line);border-radius:3px;box-shadow:0 14px 30px -18px rgba(0,0,0,.45);transform:rotate(-1deg)}
+.tough{display:inline-flex;gap:.3rem;margin-top:.9rem;align-items:center;font-size:.85rem;color:var(--muted)}
 .tough i{width:.75rem;height:.7rem;background:var(--line);clip-path:polygon(50% 0,100% 100%,0 100%)}
-.tough i.on{background:var(--seal)}
+.tough i.on{background:var(--lit)}
 .tough span{margin-left:.35rem}
+@media(max-width:40rem){
+  .hikes::before{left:1.7rem}
+  .hike{grid-template-columns:3.4rem minmax(0,1fr);gap:1rem}
+  .hk-stamp{width:3.4rem;height:3.4rem}
+  .hk-stamp b{font-size:1.5rem}
+}
 .explore-cta{margin-top:2rem}
 
 /* ---- Gallery ---- */

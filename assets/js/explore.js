@@ -15,19 +15,63 @@ const store = {
 // ---------- Trail log ----------
 const hikes = $('#hike-list');
 if (hikes) {
-  const T = S.trails, pad = n => String(n).padStart(2, '0');
-  const toughest = T.reduce((a, b) => ((b.tough || 0) > (a.tough || 0) ? b : a), T[0]);
-  const days = Math.max(0, Math.floor((Date.now() - new Date(T[0].date)) / 864e5));
-  const ago = isNaN(days) ? '' : days === 0 ? 'Today' : days === 1 ? '1 day ago' : days + ' days ago';
-  const stat = (k, v) => `<div class="card stat"><small>${esc(k)}</small><h3>${esc(v)}</h3></div>`;
-  $('#trail-stats').innerHTML = stat('Climbs logged', T.length) + stat('Latest', T[0].name) + (ago ? stat('Last climb', ago) : '') + stat('Toughest so far', toughest.name);
-  hikes.innerHTML = T.map((t, i) => {
-    const lvl = Math.min(4, Math.max(1, t.tough || 2));
-    const meta = [t.date, t.tag, t.masl ? t.masl.toLocaleString() + ' m' : ''].filter(Boolean).join(' · ');
-    const tough = `<span class="tough" role="img" aria-label="Toughness ${lvl} of 4">${[1, 2, 3, 4].map(n => `<i class="${n <= lvl ? 'on' : ''}"></i>`).join('')}</span>`;
-    const photo = t.photo ? `<img class="photo" src="${esc(t.photo)}" alt="${esc(t.alt || t.name)}" loading="lazy">` : '';
-    return `<li class="hike"><span class="no" aria-hidden="true">${pad(T.length - i)}</span><div><p class="meta">${esc(meta)}</p><h2>${esc(t.name)}</h2><p>${esc(t.note)}</p>${tough}${photo}</div></li>`;
-  }).join('');
+  const T = S.trails || [], n = T.length;
+  const KN = '一二三四五六七八九十';
+  const kj = k => KN[k - 1] || String(k);
+  const rangeEl = $('#trail-range'), statsEl = $('#trail-stats');
+  if (!n) {
+    hikes.innerHTML = '<li class="ex-status">No climbs logged yet.</li>';
+    [rangeEl, statsEl].forEach(el => { if (el) el.hidden = true; });
+  } else {
+    // Stats strip
+    const toughest = T.reduce((a, b) => ((b.tough || 0) > (a.tough || 0) ? b : a), T[0]);
+    const days = Math.max(0, Math.floor((Date.now() - new Date(T[0].date)) / 864e5));
+    const ago = isNaN(days) ? '' : days === 0 ? 'Today' : days === 1 ? '1 day ago' : days + ' days ago';
+    const stat = (k, v) => `<div><small>${esc(k)}</small><b>${esc(v)}</b></div>`;
+    if (statsEl) statsEl.innerHTML = stat('Climbs logged', T.length) + stat('Latest', T[0].name) + (ago ? stat('Last climb', ago) : '') + stat('Toughest so far', toughest.name);
+
+    // The range: one peak per climb, oldest on the left, flags numbered to match the list
+    if (rangeEl) {
+      const W = 800, H = 400, base = 330, L = T.slice().reverse();
+      const X = L.map((_, j) => W * (j + .5) / n);
+      const Y = L.map(t => base - 62 * Math.min(4, Math.max(1, t.tough || 2)));
+      const pts = [[0, base + 16]];
+      X.forEach((x, j) => { if (j) pts.push([(X[j - 1] + x) / 2, base - 12]); pts.push([x, Y[j]]); });
+      pts.push([W, base + 16]);
+      let d = 'M' + pts[0].join(',');
+      for (let k = 1; k < pts.length; k++) { const [x0, y0] = pts[k - 1], [x1, y1] = pts[k], mx = (x0 + x1) / 2; d += `C${mx},${y0} ${mx},${y1} ${x1},${y1}`; }
+      const hills = (b, a1, f1, a2, f2, ph) => {
+        let h = 'M0,' + H;
+        for (let x = 0; x <= W; x += 20) h += `L${x},${(b - a1 * Math.sin(x / f1 + ph) - a2 * Math.sin(x / f2 + ph * 2.3)).toFixed(1)}`;
+        return h + `L${W},${H}Z`;
+      };
+      const peaks = L.map((t, j) => {
+        const i = n - 1 - j, x = X[j].toFixed(1), y = Y[j];
+        return `<g class="tr-peak${i === 0 ? ' latest' : ''}" data-i="${i}" style="--j:${j}"><title>${esc(t.name)}</title><circle class="tr-hit" cx="${x}" cy="${y}" r="34"/><circle class="tr-halo" cx="${x}" cy="${y}" r="16"/><g class="tr-flag"><path class="tr-pole" d="M${x},${y}V${y - 46}"/><path class="tr-pennant" d="M${x},${y - 46}l28,8l-28,8Z"/></g><circle class="tr-dot" cx="${x}" cy="${y}" r="6"/><text class="tr-num" x="${x}" y="${y - 56}">${j + 1}</text></g>`;
+      }).join('');
+      rangeEl.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Profile of ${n} climb${n === 1 ? '' : 's'}, oldest on the left. Taller peaks were tougher."><defs><linearGradient id="trfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".3"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs><circle cx="112" cy="110" r="44" style="fill:var(--seal)" opacity=".8" filter="url(#ink2)"/><path d="${hills(230, 38, 95, 18, 41, 1)}" fill="url(#g1)" filter="url(#ink2)"/><path d="${hills(285, 30, 70, 14, 33, 2.4)}" fill="url(#g2)" filter="url(#ink2)"/><rect y="250" width="${W}" height="90" fill="url(#mistfade)"/><path class="tr-area" d="${d}V${H}H0Z"/><path class="tr-line" pathLength="1" d="${d}"/>${peaks}</svg><figcaption class="tnote">The taller the peak, the tougher the climb.</figcaption>`;
+    }
+
+    // The log: stamped waypoints on a dashed trail
+    hikes.innerHTML = T.map((t, i) => {
+      const lvl = Math.min(4, Math.max(1, t.tough || 2));
+      const meta = [t.date, t.tag, t.masl ? t.masl.toLocaleString() + ' m' : ''].filter(Boolean).join(' · ');
+      const tough = `<span class="tough" role="img" aria-label="Toughness ${lvl} of 4">${[1, 2, 3, 4].map(k => `<i class="${k <= lvl ? 'on' : ''}"></i>`).join('')}</span>`;
+      const photo = t.photo ? `<img class="photo" src="${esc(t.photo)}" alt="${esc(t.alt || t.name)}" loading="lazy">` : '';
+      return `<li class="hike${i === 0 ? ' latest' : ''}" data-i="${i}"><span class="hk-stamp" aria-hidden="true"><b>${kj(n - i)}</b></span><div class="hk-body"><p class="meta">${i === 0 ? '<span class="hk-new">Latest</span>' : ''}${esc(meta)}</p><h2>${esc(t.name)}</h2><p class="note">${esc(t.note)}</p>${tough}${photo}</div></li>`;
+    }).join('');
+
+    // Link the list and the range: hover or scroll to a climb and its peak lights up
+    const peaks = $$('.tr-peak', rangeEl || document.createElement('div')), items = $$('.hike', hikes);
+    const hot = i => {
+      peaks.forEach(p => p.classList.toggle('hot', +p.dataset.i === i));
+      items.forEach(h => h.classList.toggle('hot', +h.dataset.i === i));
+    };
+    items.forEach(h => h.addEventListener('pointerenter', () => hot(+h.dataset.i)));
+    peaks.forEach(p => p.addEventListener('pointerenter', () => hot(+p.dataset.i)));
+    const hio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) hot(+e.target.dataset.i); }), { rootMargin: '-40% 0px -40% 0px' });
+    items.forEach(h => hio.observe(h));
+  }
 }
 
 // ---------- Gallery ----------
