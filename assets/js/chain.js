@@ -4,7 +4,7 @@
 (() => {
 'use strict';
 const root = document.documentElement;
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduce = false /* OS reduce-motion ignored on purpose */;
 const NS = 'http://www.w3.org/2000/svg';
 const SEAL_H = 26, TAIL = 36, Y0 = 20, BOT = 10;    // px
 root.classList.add('has-chain');

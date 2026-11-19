@@ -13,7 +13,7 @@ const intro = document.querySelector('.page-head .intro');
 if (intro) {
   const m = document.createElement('p'); m.className = 'nx-meta reveal';
   m.innerHTML = `<span>${notes.length} ${notes.length === 1 ? 'note' : 'notes'}</span><span>${mins} min of reading</span><span>Latest: ${esc(notes[0].dataset.date)}</span>`;
-  intro.after(m); if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !document.documentElement.classList.contains('js')) m.classList.add('in'); else requestAnimationFrame(() => setTimeout(() => m.classList.add('in'), 250));
+  intro.after(m); if (false /* OS reduce-motion ignored on purpose */ || !document.documentElement.classList.contains('js')) m.classList.add('in'); else requestAnimationFrame(() => setTimeout(() => m.classList.add('in'), 250));
 }
 
 // Index

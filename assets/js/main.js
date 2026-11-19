@@ -3,7 +3,7 @@
 const $ = (s, c = document) => c.querySelector(s);
 const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 const root = document.documentElement, body = document.body;
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduce = false /* OS reduce-motion ignored on purpose */;
 const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
 // Lighter tier: Save-Data, low core count, or touch
 const lite = !!(navigator.connection && navigator.connection.saveData) || (navigator.hardwareConcurrency || 8) < 4 || !fine;

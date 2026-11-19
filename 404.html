@@ -28,7 +28,7 @@ body{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50%
 @keyframes fall{0%{opacity:0;transform:translate(0,0) rotate(0)}10%{opacity:.7}90%{opacity:.5}100%{opacity:0;transform:translate(60px,110vh) rotate(420deg)}}
 .gate{position:absolute;left:50%;top:40%;width:min(90vw,46rem);aspect-ratio:1200/863;transform:translate(-50%,-50%);background:url(/assets/img/art-torii.webp) center/contain no-repeat;filter:invert(1);opacity:.2;pointer-events:none;animation:bob 8s ease-in-out infinite alternate}
 @keyframes bob{from{transform:translate(-50%,-51%)}to{transform:translate(-50%,-49%)}}
-@media(prefers-reduced-motion:reduce){.gate{animation:none}}
+@media(prefers-reduced-motion:reduce) and (min-width:99999px){.gate{animation:none}}
 main{position:relative;z-index:2;margin-top:-14vh}
 .num{font:300 clamp(6rem,24vw,14rem)/.9 var(--display);letter-spacing:-.04em;margin:0;background:linear-gradient(180deg,#f2f7f4,#7ea597);-webkit-background-clip:text;background-clip:text;color:transparent}
 .seal{display:inline-grid;place-items:center;width:3rem;height:3rem;background:#b3261e;color:#fff;font:500 1.7rem/1 var(--display);transform:rotate(-4deg);border-radius:3px;margin-top:.5rem}
@@ -36,7 +36,7 @@ h1{font:italic 300 clamp(1.6rem,4vw,2.4rem)/1.2 var(--display);letter-spacing:.0
 p{margin:0 0 1.75rem;color:#9fb5ad}
 a.btn{display:inline-block;padding:.75rem 1.6rem;border:1px solid #9fc2b4;border-radius:999px;color:inherit;text-decoration:none;transition:background .3s,box-shadow .3s}
 a.btn:hover,a.btn:focus-visible{background:rgba(159,194,180,.14);box-shadow:0 10px 30px -12px #b3261e}
-@media(prefers-reduced-motion:reduce){*{animation:none!important}.petal{display:none}}
+@media(prefers-reduced-motion:reduce) and (min-width:99999px){*{animation:none!important}.petal{display:none}}
 </style>
 </head>
 <body>

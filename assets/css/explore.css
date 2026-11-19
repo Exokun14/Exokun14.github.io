@@ -83,7 +83,7 @@
 .mem-card.done{cursor:default}
 .mem-card:not(.up):not(.done):hover .front{transform:translateY(-3px)}
 .mem-msg{min-height:2rem;margin:1.1rem 0 0;font:italic 300 1.4rem var(--display);color:var(--jade)}
-@media(prefers-reduced-motion:reduce){.mem-card i{transition:none}.gx li{animation:none}.lb img{animation:none}}
+@media(prefers-reduced-motion:reduce) and (min-width:99999px){.mem-card i{transition:none}.gx li{animation:none}.lb img{animation:none}}
 
 /* ---- Guestbook ---- */
 .gb-actions{margin-bottom:2.5rem}

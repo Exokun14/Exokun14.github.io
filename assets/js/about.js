@@ -1,7 +1,7 @@
 // About page: scroll-linked reading lines for "How I work" and "The journey".
 (() => {
 'use strict';
-if (matchMedia('(prefers-reduced-motion: reduce)').matches) { document.querySelectorAll('.ab-way li').forEach(li => li.classList.add('on')); return; }
+if (false /* OS reduce-motion ignored on purpose */) { document.querySelectorAll('.ab-way li').forEach(li => li.classList.add('on')); return; }
 const way = document.querySelector('.ab-way'), tl = document.getElementById('timeline');
 const lists = [way, tl].filter(Boolean);
 if (!lists.length) return;

@@ -4,7 +4,7 @@
 // The kanji stay decorative / aria-hidden.
 (() => {
 'use strict';
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduce = false /* OS reduce-motion ignored on purpose */;
 const DELAY = 420;                         // dwell before the water answers (ms)
 
 // kanji -> [reading, meaning]
