@@ -813,7 +813,5 @@ html.has-chain.can-scroll .chain-seal{display:grid}
 @media(prefers-reduced-motion:reduce){.kj-ring{display:none}.kj-tip *{animation:none!important}.kj-refl{transform:scaleY(-1)}}
 @media print{.kj-tip,.kj-ring{display:none!important}}
 
-/* About: alternate kanji watermarks and art left/right down the page */
+/* About: alternate the kanji watermarks left/right down the page (art stays on the empty right side) */
 .ab-flip .ab-wm{right:auto;left:clamp(1rem,7%,7rem)}
-.art-dragon.art-l{right:auto;left:5%}
-.art-pine.art-l{right:auto;left:-2rem}
