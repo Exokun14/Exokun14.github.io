@@ -47,7 +47,16 @@ fill('#work-offers', S.work.offers.map(o => `<li>${esc(o)}</li>`).join(''));
 if (S.photos.length) fill('#photos-list', S.photos.map(p => `<figure><img src="${esc(p.src)}" alt="${esc(p.alt || '')}" loading="lazy">${p.caption ? `<figcaption>${esc(p.caption)}</figcaption>` : ''}</figure>`).join('')); else hide('#photos');
 if (S.kind.length) fill('#kind-list', S.kind.map(k => `<blockquote><p>${esc(k.quote)}</p><footer>${esc(k.name)}${k.role ? ', ' + esc(k.role) : ''}</footer></blockquote>`).join('')); else hide('#kind');
 
-fill('#notes-list', S.notes.map(n => `<article class="note" id="${esc(n.id)}"><p class="date">${esc(n.date)}</p><h2>${esc(n.title)}</h2>${n.body.map(p => `<p>${esc(p)}</p>`).join('')}</article>`).join(''));
+const NUM = ['壱', '弐', '参', '肆', '伍', '陸', '漆', '捌', '玖', '拾'];
+fill('#notes-list', S.notes.map((n, i) => {
+  const mins = Math.max(1, Math.round(n.body.join(' ').split(/\s+/).length / 200));
+  return `<article class="nx-note reveal" id="${esc(n.id)}" data-mins="${mins}" data-num="${NUM[i] || i + 1}" data-title="${esc(n.title)}" data-date="${esc(n.date)}">
+  <i class="nx-ink" aria-hidden="true">${esc(n.kanji || '筆')}</i>
+  <header><p class="date"><span class="nx-num" aria-hidden="true">${NUM[i] || i + 1}</span>${esc(n.date)}<span class="nx-mins">${mins} min read</span></p><h2>${esc(n.title)}</h2></header>
+  <div class="nx-body">${n.body.map((p, k) => `<p${k ? '' : ' class="lead"'}>${esc(p)}</p>`).join('')}</div>
+  <div class="nx-foot"><button class="nx-copy" type="button" data-id="${esc(n.id)}">Copy link</button></div>
+</article>`;
+}).join(''));
 
 // Number the visible sections in order (hidden ones are skipped)
 let n = 0;

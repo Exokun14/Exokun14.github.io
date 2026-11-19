@@ -49,13 +49,13 @@ window.SITE = {
     // { quote: 'What they said, in their words.', name: 'Their name', role: 'Their role or company' }
   ],
   notes: [
-    { id: 'listen-first', date: 'November 2026', title: 'Listen before you fix',
+    { id: 'listen-first', kanji: '聴', date: 'November 2026', title: 'Listen before you fix',
       body: ['The first thing a person says about a problem is rarely the real problem. Working on a helpdesk taught me to slow down and ask what they were actually trying to do.',
              'Half the time the fix turns out to be different from what they first asked for.'] },
-    { id: 'plain-words', date: 'October 2026', title: 'Say it so anyone can follow',
+    { id: 'plain-words', kanji: '簡', date: 'October 2026', title: 'Say it so anyone can follow',
       body: ['If someone needs a dictionary to understand my answer, it’s not a good answer yet.',
              'Plain words and clear steps respect people’s time, and they make the next call shorter.'] },
-    { id: 'think-like-an-owner', date: 'September 2026', title: 'Think like an owner',
+    { id: 'think-like-an-owner', kanji: '主', date: 'September 2026', title: 'Think like an owner',
       body: ['I try to treat every project as if it were mine. That means caring about the whole outcome, not just my part of it.',
              'It changes the questions I ask: not “is my task done?” but “will this actually work for the people using it?”'] }
   ],

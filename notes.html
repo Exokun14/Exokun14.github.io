@@ -19,6 +19,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css?v=202611191000">
 </head>
 <body class="sub">
@@ -48,6 +49,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <main>
   <section class="chapter page-head has-art">
     <div class="art art-kneel reveal" aria-hidden="true"></div>
+    <div class="nx-vert" aria-hidden="true">随筆</div>
     <div class="inner">
       <span class="eyebrow reveal">01</span>
       <h1 class="title reveal">Notes</h1>
@@ -57,7 +59,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
   <section class="chapter has-art" style="padding-top:0">
     <div class="art art-bamboo reveal" aria-hidden="true"></div>
     <div class="art art-koi reveal" aria-hidden="true"></div>
-    <div class="inner"><div id="notes-list" class="notes reveal"></div></div>
+    <div class="nx"><aside id="nx-side" class="nx-side" aria-label="Notes index"></aside><div id="notes-list" class="nx-list"></div></div>
   </section>
   <section id="contact" class="chapter night">
     <svg class="ridge" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0,120 V70 Q120,10 240,60 T480,50 T720,30 T960,60 T1200,20 T1440,60 V120Z"/></svg>
@@ -79,6 +81,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.th
 <script src="assets/js/sections.js?v=202611191000"></script>
 <script defer src="assets/js/stats.js"></script>
 <script src="assets/js/main.js?v=202611191000"></script>
+<script defer src="assets/js/notes.js?v=202611191000"></script>
 <script defer src="assets/js/chain.js?v=202611191000"></script>
 </body>
 </html>
