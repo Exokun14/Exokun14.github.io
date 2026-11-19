@@ -180,6 +180,7 @@ const actions = [
   ['Projects', () => { location.href = 'projects.html'; }],
   ['About', () => { location.href = 'about.html'; }],
   ['Notes', () => { location.href = 'notes.html'; }],
+  ['Hire me and CV', () => { location.href = 'services.html'; }],
   ['Trail log', () => { location.href = 'trail.html'; }],
   ['Gallery', () => { location.href = 'gallery.html'; }],
   ['Playground', () => { location.href = 'playground.html'; }],

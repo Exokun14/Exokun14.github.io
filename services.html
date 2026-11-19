@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hire me · Clarence</title>
+<meta name="description" content="Services, experience and CV of Clarence Joven: web apps, QA and test automation, project delivery and technical support. Open to freelance work and full-time roles.">
+<meta name="email" content="johnclarence.joven@gmail.com">
+<meta name="github" content="https://github.com/Exokun14">
+<script>
+document.documentElement.classList.add('js');
+try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+</script>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1f3a33">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=202611191000">
+<link rel="stylesheet" href="assets/css/explore.css?v=202611191000">
+</head>
+<body class="sub about">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <filter id="ink" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".008 .03" numOctaves="3" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="28"/></filter>
+  <filter id="ink2" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".02 .05" numOctaves="3" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="9"/></filter>
+  <filter id="soft"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="10"/></filter>
+  <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m1)"/><stop offset="1" style="stop-color:var(--m1);stop-opacity:.15"/></linearGradient>
+  <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m2)"/><stop offset="1" style="stop-color:var(--m2);stop-opacity:.55"/></linearGradient>
+  <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--m3)"/><stop offset="1" style="stop-color:var(--m3)"/></linearGradient>
+  <linearGradient id="mistfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--bg);stop-opacity:0"/><stop offset=".5" style="stop-color:var(--bg);stop-opacity:.4"/><stop offset="1" style="stop-color:var(--bg);stop-opacity:0"/></linearGradient>
+</defs></svg>
+<div class="paper" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="sky" aria-hidden="true"><div class="stars"></div><div class="sun"></div></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<header class="topbar fade">
+  <a class="seal" href="index.html" aria-label="Home">C</a>
+  <nav class="links" aria-label="Main">
+    <a href="projects.html">Projects</a><a href="about.html">About</a><a class="hide-sm" href="notes.html">Notes</a><a class="hide-sm" href="services.html" aria-current="page">Hire me</a>
+    <details class="explore"><summary>Explore</summary><div class="menu"><a class="only-sm" href="services.html" aria-current="page">Hire me</a><a class="only-sm" href="notes.html">Notes</a><a href="trail.html">Trail log</a><a href="gallery.html">Gallery</a><a href="playground.html">Playground</a><a href="guestbook.html">Guestbook</a></div></details>
+    <button class="kbd" type="button" aria-label="Open command palette">Search <kbd>Ctrl K</kbd></button>
+    <button class="sound" type="button" aria-pressed="false" aria-label="Ambient sound"><i></i><i></i><i></i></button>
+    <button class="theme" type="button" aria-label="Switch light or dark theme"></button>
+  </nav>
+</header>
+<main>
+  <section class="chapter page-head has-art">
+    <div class="art art-dragon reveal" aria-hidden="true"></div>
+    <div class="inner">
+      <span class="eyebrow reveal">00</span>
+      <h1 class="title reveal">Hire me</h1>
+      <p class="intro reveal">I take projects from the first call to client training. Open to freelance work and full-time roles. Services first, then my CV.</p>
+      <p class="reveal hire-cta"><a class="btn" href="#contact" data-contact>Get in touch</a> <a class="btn ghost" href="assets/Clarence-Joven-CV.pdf" download="Clarence-Joven-CV.pdf">Download CV</a></p>
+    </div>
+  </section>
+
+  <section class="chapter" style="padding-top:0">
+    <div class="inner">
+      <div class="glance reveal">
+        <div><small>Currently</small><b>Technical Support, Project Team at GenieX</b></div>
+        <div><small>Based in</small><b>The Philippines</b></div>
+        <div><small>Strengths</small><b>Projects, support and QA</b></div>
+        <div><small>Open to</small><b>Freelance projects and full-time roles</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">00</span>
+      <h2 class="reveal">What I can do for you</h2>
+      <div class="grid svc-grid reveal" id="services-list"></div>
+    </div>
+  </section>
+
+  <svg class="brush" viewBox="0 0 600 24" aria-hidden="true"><path pathLength="1" d="M2,14 C80,4 140,22 230,12 S400,6 470,14 S560,10 598,12"/></svg>
+
+  <section class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">00</span>
+      <h2 class="reveal">How a project runs</h2>
+      <ol class="flow reveal" id="cycle-list"></ol>
+    </div>
+  </section>
+
+  <svg class="brush" viewBox="0 0 600 24" aria-hidden="true"><path pathLength="1" d="M2,14 C80,4 140,22 230,12 S400,6 470,14 S560,10 598,12"/></svg>
+
+  <section id="cv" class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">CV</span>
+      <h2 class="reveal">Experience</h2>
+      <ol class="timeline reveal" id="timeline"></ol>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">00</span>
+      <h2 class="reveal">Skills and tools</h2>
+      <div class="grid reveal" id="skills-list"></div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="inner">
+      <span class="eyebrow reveal">00</span>
+      <h2 class="reveal">Education, training and certifications</h2>
+      <div class="badges reveal" id="learning-list"></div>
+    </div>
+  </section>
+
+  <section class="chapter cta">
+    <div class="inner">
+      <p class="big reveal">Have a project, or a role in mind? <em>Let’s talk.</em></p>
+      <p class="reveal"><a class="btn" href="#contact" data-contact>Say hello</a> <a class="btn ghost" href="projects.html">See my work</a> <a class="btn ghost" href="assets/Clarence-Joven-CV.pdf" download="Clarence-Joven-CV.pdf">Download CV</a></p>
+    </div>
+  </section>
+  <section id="contact" class="chapter night">
+    <svg class="ridge" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0,120 V70 Q120,10 240,60 T480,50 T720,30 T960,60 T1200,20 T1440,60 V120Z"/></svg>
+    <div class="art art-samurai" aria-hidden="true"></div>
+    <div class="inner">
+      <span class="eyebrow reveal">Contact</span>
+      <a class="mail reveal" href="mailto:johnclarence.joven@gmail.com">johnclarence.joven@gmail.com</a>
+      <div class="copyrow reveal"><button class="seal seal-copy" type="button" aria-label="Copy email address">C</button><span>Click the seal to copy my email</span></div>
+      <div class="links reveal">
+        <a href="https://github.com/Exokun14">GitHub</a>
+        <a href="https://www.linkedin.com/in/clarence-joven-853667293/">LinkedIn</a>
+        <a href="assets/Clarence-Joven-CV.pdf" download>CV</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>© <span id="y"></span> Clarence</footer>
+<script src="data/site.js?v=202611191000"></script>
+<script src="assets/js/sections.js?v=202611191000"></script>
+<script defer src="assets/js/stats.js"></script>
+<script src="assets/js/main.js?v=202611191000"></script>
+</body>
+</html>

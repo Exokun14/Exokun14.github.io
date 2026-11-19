@@ -12,6 +12,8 @@ const nu = $('#now-updated'); if (nu) nu.textContent = 'Updated ' + S.now.update
 fill('#timeline', S.timeline.map(t => `<li><span class="yr">${esc(t.year)}</span><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p></li>`).join(''));
 fill('#cycle-list', S.cycle.map((c, i) => `<li><span class="n">${String(i + 1).padStart(2, '0')}</span><h3>${esc(c.title)}</h3><p>${esc(c.text)}</p></li>`).join(''));
 fill('#learning-list', S.learning.map(u => `<span class="badge"><b>${esc(u.title)}</b>${esc(u.text)}</span>`).join(''));
+fill('#services-list', (S.services || []).map(v => `<article class="card svc"><h3>${esc(v.title)}</h3><p>${esc(v.text)}</p><ul class="chips">${v.tags.map(t => `<li>${esc(t)}</li>`).join('')}</ul>${v.from ? `<p class="from">${esc(v.from)}</p>` : ''}</article>`).join(''));
+fill('#skills-list', (S.skills || []).map(k => `<div class="card"><h3>${esc(k.title)}</h3><p>${esc(k.text)}</p></div>`).join(''));
 fill('#beyond-list', S.beyond.map(b => `<div class="card"><h3>${esc(b.title)}</h3><p>${esc(b.text)}</p></div>`).join(''));
 
 // Trail log: stylised mountain profile with one dot per peak (oldest on the left).

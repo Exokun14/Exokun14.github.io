@@ -8,7 +8,7 @@ Static site for GitHub Pages. No build step, no framework.
 
 ```
 index.html  projects.html  about.html  notes.html
-trail.html  gallery.html  playground.html  guestbook.html
+services.html  trail.html  gallery.html  playground.html  guestbook.html
 data/site.js            text for About, Notes, trail log (trails), gallery (paintings, photos), guestbook repo
 data/projects.js        all projects (add one entry = new slide, envelope and letter)
 data/activity.json      written nightly by .github/workflows/activity.yml
@@ -16,6 +16,10 @@ assets/css  assets/js  assets/img
 tests/  playwright.config.js   Playwright checks (run by CI on every push)
 publish.bat  open-site.bat     Windows helpers
 ```
+
+## Hire me page
+
+`services.html` reads `services`, `skills`, `timeline` and `learning` from `data/site.js`. No prices are shown. To show one, add `from: 'From $X'` to a service.
 
 ## Add a climb, a photo or a painting
 

@@ -80,5 +80,22 @@ window.SITE = {
     { src: 'assets/img/art-samurai-draw.webp', title: 'Samurai, drawing', alt: 'Ink painting of a samurai drawing a sword' }
   ],
   // Guestbook: visitors sign by opening a GitHub issue titled "[Guestbook] ..." in this repo.
-  guestbook: { repo: 'Exokun14/Exokun14.github.io', prefix: '[Guestbook]' }
+  guestbook: { repo: 'Exokun14/Exokun14.github.io', prefix: '[Guestbook]' },
+  // Hire me page. No prices are listed on purpose; add a `from` field to a service if you want one.
+  services: [
+    { title: 'Web apps and dashboards', text: 'Internal tools, dashboards and trackers that replace spreadsheets and chat threads. Built with the people who use them, and kept simple enough that they actually get used.', tags: ['Next.js', 'React', 'TypeScript', 'Laravel', 'MySQL'] },
+    { title: 'QA and test automation', text: 'Manual testing on every update, plus automated checks so the same bug does not come back. Clear bug reports that developers can act on.', tags: ['Playwright', 'Robot Framework', 'Selenium'] },
+    { title: 'Project delivery', text: 'Coordinating developers and clients, writing the documentation, deploying, then running the demo and training the client team.', tags: ['Coordination', 'Documentation', 'Deployment', 'Client training'] },
+    { title: 'Desktop and workflow tools', text: 'Small desktop tools that turn a risky, many-step job into one window, like a backup and migration tool that needs no command line.', tags: ['C#', 'WPF', 'PowerShell', 'Electron'] },
+    { title: 'Support and documentation', text: 'Helpdesk and customer support experience, and the habit of writing things down so nothing lives only in one person’s head.', tags: ['Troubleshooting', 'Customer support', 'Knowledge base'] }
+  ],
+  skills: [
+    { title: 'Projects', text: 'Status coordination, working with developers, documentation, client demos and training' },
+    { title: 'Support', text: 'Customer support and troubleshooting' },
+    { title: 'QA', text: 'Manual testing, plus automation with Playwright, Robot Framework and Selenium' },
+    { title: 'Cloud', text: 'AWS and CloudFormation' },
+    { title: 'Programming', text: 'C#, Java, Python and web development, with or without AI' },
+    { title: 'Web', text: 'Next.js, React, TypeScript, Tailwind, Laravel, PHP, MySQL' },
+    { title: 'Linux', text: 'Ubuntu and Arch Linux' }
+  ]
 };
