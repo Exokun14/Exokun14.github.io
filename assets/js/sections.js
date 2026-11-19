@@ -4,6 +4,7 @@ const S = window.SITE; if (!S) return;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const $ = s => document.querySelector(s);
 const fill = (sel, html) => { const el = $(sel); if (el) el.innerHTML = html; };
+const KN = '一二三四五六七八九十';
 const hide = sel => { const el = $(sel); if (el) el.hidden = true; };
 
 fill('#now-list', S.now.items.map(i => `<div class="card"><h3>${esc(i.label)}</h3><p>${esc(i.text)}</p></div>`).join(''));
@@ -12,8 +13,8 @@ const nu = $('#now-updated'); if (nu) nu.textContent = 'Updated ' + S.now.update
 fill('#timeline', S.timeline.map(t => `<li><span class="yr">${esc(t.year)}</span><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p></li>`).join(''));
 fill('#cycle-list', S.cycle.map((c, i) => `<li><span class="n">${String(i + 1).padStart(2, '0')}</span><h3>${esc(c.title)}</h3><p>${esc(c.text)}</p></li>`).join(''));
 fill('#learning-list', S.learning.map(u => `<span class="badge"><b>${esc(u.title)}</b>${esc(u.text)}</span>`).join(''));
-fill('#services-list', (S.services || []).map(v => `<article class="card svc"><h3>${esc(v.title)}</h3><p>${esc(v.text)}</p><ul class="chips">${v.tags.map(t => `<li>${esc(t)}</li>`).join('')}</ul>${v.from ? `<p class="from">${esc(v.from)}</p>` : ''}</article>`).join(''));
-fill('#skills-list', (S.skills || []).map(k => `<div class="card"><h3>${esc(k.title)}</h3><p>${esc(k.text)}</p></div>`).join(''));
+fill('#services-list', (S.services || []).map((v, i) => `<article class="svc-row" style="--r:${i}"><span class="svc-k" aria-hidden="true">${KN[i] || i + 1}</span><div class="svc-main"><h3>${esc(v.title)}</h3><p>${esc(v.text)}</p>${v.from ? `<p class="from">${esc(v.from)}</p>` : ''}<a class="svc-ask" href="#contact" data-contact>Ask about this</a></div><ul class="chips">${v.tags.map(t => `<li>${esc(t)}</li>`).join('')}</ul></article>`).join(''));
+fill('#skills-list', (S.skills || []).map(k => `<div class="sk"><h3>${esc(k.title)}</h3><p>${esc(k.text)}</p></div>`).join(''));
 fill('#beyond-list', S.beyond.map(b => `<div class="card"><h3>${esc(b.title)}</h3><p>${esc(b.text)}</p></div>`).join(''));
 
 // Trail log: stylised mountain profile with one dot per peak (oldest on the left).

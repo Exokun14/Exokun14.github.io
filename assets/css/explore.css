@@ -106,9 +106,55 @@
 /* ---- Hire me ---- */
 .hire-cta{margin:1.75rem 0 0}
 .hire-cta .btn{margin-top:0}
-.svc-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr))}
-.svc{display:flex;flex-direction:column;gap:.75rem}
-.svc h3{margin:0}
+.hire-stamp{display:inline-flex;align-items:center;gap:.6rem;margin:1.5rem 0 0;padding:.4rem .95rem .4rem .75rem;border:1.5px solid var(--lit);border-radius:3px;color:var(--lit);font:500 .72rem/1 var(--body);letter-spacing:.24em;text-transform:uppercase;transform:rotate(-2deg);box-shadow:inset 0 0 0 3px var(--bg),inset 0 0 0 4px color-mix(in srgb,var(--lit) 45%,transparent)}
+.hire-stamp i{width:.5rem;height:.5rem;border-radius:50%;background:currentColor;animation:hirePulse 2.4s ease-in-out infinite}
+@keyframes hirePulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--lit) 55%,transparent)}50%{box-shadow:0 0 0 .45rem transparent}}
+
+/* Services as a numbered menu */
+.svc-list{margin-top:2.5rem;border-bottom:1px solid var(--line)}
+.svc-row{position:relative;display:grid;grid-template-columns:3.6rem minmax(0,1fr);gap:.5rem 1.25rem;padding:2rem 0;border-top:1px solid var(--line);transition:background .5s}
+.js .svc-row{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease) calc(var(--r,0) * .12s + .2s),transform .9s var(--ease) calc(var(--r,0) * .12s + .2s),background .5s}
+.js .svc-list.in .svc-row{opacity:1;transform:none}
+.svc-row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--lit);transition:width .9s var(--ease)}
+.svc-row:hover::before,.svc-row:focus-within::before{width:100%}
+.svc-row:hover{background:linear-gradient(90deg,rgba(var(--petal),.07),transparent 70%)}
+.svc-k{grid-row:1/3;font:800 2.8rem/1 var(--jp);color:var(--ink);opacity:.14;filter:url(#ink2);user-select:none;transition:opacity .5s,color .5s}
+.svc-row:hover .svc-k,.svc-row:focus-within .svc-k{opacity:.95;color:var(--lit)}
+.svc-main h3{margin:0 0 .5rem;font:500 clamp(1.7rem,3.4vw,2.4rem)/1.1 var(--display)}
+.svc-main p{margin:0;max-width:38rem;color:var(--muted)}
+.svc-main .from{margin-top:.5rem;font:italic 300 1.15rem var(--display);color:var(--jade)}
+.svc-ask{display:inline-block;margin-top:1.1rem;padding-bottom:.15rem;border-bottom:1px solid currentColor;color:var(--jade);font:500 .76rem/1.4 var(--body);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:color .3s,letter-spacing .5s var(--ease)}
+.svc-ask:hover,.svc-ask:focus-visible{color:var(--lit);letter-spacing:.28em}
+.svc-row .chips{grid-column:2;margin:.75rem 0 0;padding:0}
+@media(min-width:60rem){
+  .svc-row{grid-template-columns:4.5rem minmax(0,1.35fr) minmax(0,1fr);gap:0 2.5rem}
+  .svc-k{grid-row:auto;font-size:3.4rem}
+  .svc-row .chips{grid-column:3;margin:.5rem 0 0;justify-content:flex-end;align-content:flex-start}
+}
 .chips{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;margin:auto 0 0;padding:.5rem 0 0}
 .chips li{padding:.15rem .7rem;border:1px solid var(--line);border-radius:999px;font-size:.85rem;color:var(--muted)}
-.svc .from{margin:0;font:italic 300 1.15rem var(--display);color:var(--jade)}
+
+/* Process: numbered seals on the brush line */
+.hire .flow .n{border:0;border-radius:3px;background:var(--seal);color:#F6EDE6;font-style:normal;font-weight:500;transform:rotate(-4deg);box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
+.hire .flow li:nth-child(even) .n{transform:rotate(3deg)}
+
+/* Experience as an editorial CV */
+.hire .timeline{max-width:none;margin-top:2.5rem;padding:0;gap:0;border-bottom:1px solid var(--line)}
+.hire .timeline::before,.hire .timeline li::before{display:none}
+.hire .timeline li{display:grid;grid-template-columns:1fr;gap:.35rem 2.5rem;padding:1.9rem 0;border-top:1px solid var(--line);transition:padding-left .6s var(--ease)}
+.hire .timeline li:hover{padding-left:.75rem}
+.hire .timeline .yr{font-size:1.35rem;line-height:1.3}
+.hire .timeline h3{margin:0 0 .4rem;font-size:clamp(1.6rem,3vw,2.1rem)}
+.hire .timeline p{max-width:40rem}
+@media(min-width:56rem){.hire .timeline li{grid-template-columns:13rem minmax(0,1fr)}}
+
+/* Skills as a ruled list with diamond marks */
+.sk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:0 3rem;margin-top:2.5rem;border-bottom:1px solid var(--line)}
+.sk{position:relative;padding:1.4rem 0 1.4rem 1.7rem;border-top:1px solid var(--line)}
+.sk::before{content:"";position:absolute;left:.1rem;top:2.05rem;width:.5rem;height:.5rem;background:var(--lit);transform:rotate(45deg);transition:transform .6s var(--ease)}
+.sk:hover::before{transform:rotate(225deg) scale(1.35)}
+.sk h3{margin:0 0 .25rem;font:500 1.7rem/1.1 var(--display)}
+.sk p{margin:0;color:var(--muted)}
+
+/* Education badges */
+.hire .badge{padding:.85rem 1.3rem;border-radius:3px;border-left:3px solid var(--lit)}
