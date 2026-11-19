@@ -1,5 +1,5 @@
 :root{
-  --bg:#DCE3DE; --ink:#18221F; --muted:#4F625B; --line:#A9B8B0; --jade:#2F5D50; --seal:#B3261E; --petal:47,93,80; --sun:#B3261E;
+  --bg:#DCE3DE; --ink:#18221F; --muted:#4F625B; --line:#A9B8B0; --jade:#2F5D50; --seal:#B3261E; --lit:#B3261E; --petal:47,93,80; --sun:#B3261E;
   --m1:#A9BAB1; --m2:#7B9288; --m3:#2F4A41; --mist:255,255,255;
   --night-bg:#18221F; --night-ink:#DCE3DE;
   --display:"Cormorant Garamond",Georgia,serif;
@@ -8,12 +8,12 @@
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0D1517; --ink:#E1EAE6; --muted:#9DB2AB; --line:#25393B; --jade:#7FB5A2; --petal:160,200,190; --sun:#DCE8E3;
+    --bg:#0D1517; --ink:#E1EAE6; --muted:#9DB2AB; --line:#25393B; --jade:#7FB5A2; --lit:#D4493F; --petal:160,200,190; --sun:#DCE8E3;
     --m1:#16262A; --m2:#1E3335; --m3:#294342; --mist:160,190,185; --night-bg:#081012; --night-ink:#E1EAE6;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0D1517; --ink:#E1EAE6; --muted:#9DB2AB; --line:#25393B; --jade:#7FB5A2; --petal:160,200,190; --sun:#DCE8E3;
+  --bg:#0D1517; --ink:#E1EAE6; --muted:#9DB2AB; --line:#25393B; --jade:#7FB5A2; --lit:#D4493F; --petal:160,200,190; --sun:#DCE8E3;
   --m1:#16262A; --m2:#1E3335; --m3:#294342; --mist:160,190,185; --night-bg:#081012; --night-ink:#E1EAE6;
 }
 *{box-sizing:border-box}
@@ -683,18 +683,29 @@ body.ready .art-fuji{animation:inkrise 3s var(--ease) 1s forwards}
 .grid a.card h3::after{content:"\2192";margin-left:.5rem;display:inline-block;opacity:.4;transition:transform .4s var(--ease),opacity .3s}
 .grid a.card:hover h3::after,.grid a.card:focus-visible h3::after{transform:translateX(.35rem);opacity:1}
 
-/* Chain scrollbar: a chain hangs from the top edge and the seal slides down it as you scroll */
+/* Chain scrollbar (kusari): a chain hangs from a scroll-rod finial, links turn vermilion as you scroll, a hanko seal with a silk tassel slides down it */
 html.has-chain{scrollbar-width:none}
 html.has-chain::-webkit-scrollbar{display:none}
-.chain,.chain-hit,.chain-seal{position:fixed;top:0;z-index:55;display:none}
-html.has-chain.can-scroll .chain,html.has-chain.can-scroll .chain-hit,html.has-chain.can-scroll .chain-seal{display:block}
-.chain{right:3px;width:18px;height:100svh;pointer-events:none;color:#fff;mix-blend-mode:difference}
-.chain .ghost{opacity:.2}
-.chain-hit{right:0;width:22px;height:100svh;touch-action:none;cursor:grab}
+.chain-rail,.chain-ticks,.chain,.chain-hit,.chain-seal{position:fixed;top:0;display:none}
+html.has-chain.can-scroll .chain-rail,html.has-chain.can-scroll .chain-ticks,html.has-chain.can-scroll .chain,html.has-chain.can-scroll .chain-hit{display:block}
+.chain-rail{right:0;width:30px;height:100svh;z-index:54;pointer-events:none;border-left:1px solid color-mix(in srgb,var(--line) 70%,transparent);
+  background:linear-gradient(to left,color-mix(in srgb,var(--bg) 90%,transparent),color-mix(in srgb,var(--bg) 66%,transparent));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.chain-ticks{right:0;width:30px;height:100svh;z-index:55;pointer-events:none}
+.chain-ticks i{position:absolute;left:4px;width:5px;height:5px;margin-top:-2.5px;border:1px solid var(--muted);border-radius:1px;transform:rotate(45deg);opacity:.6;transition:background .4s,border-color .4s,opacity .4s}
+.chain-ticks i.on{background:var(--lit);border-color:var(--lit);opacity:1}
+.chain{right:6px;width:18px;height:100svh;z-index:56;pointer-events:none}
+.chain .ghost{opacity:.26}
+.chain-hit{right:0;width:30px;height:100svh;z-index:57;touch-action:none;cursor:grab}
 .chain-hit.drag{cursor:grabbing}
-.chain-seal{right:calc(3px + 9px - .85rem);width:1.7rem;height:1.7rem;margin-top:.5rem;display:none;place-items:center;pointer-events:none;
-  background:var(--seal);color:#F6EDE6;border-radius:3px;font:500 1.05rem/1 var(--display);transform-origin:50% -.5rem;box-shadow:0 6px 14px -6px rgba(0,0,0,.5);will-change:transform}
+.chain-seal{right:2px;z-index:58;width:26px;height:26px;margin:0;place-items:center;pointer-events:none;
+  background:radial-gradient(circle at 30% 22%,color-mix(in srgb,var(--seal) 78%,#fff),var(--seal) 62%);color:#F6EDE6;border-radius:3px;font:500 1rem/1 var(--display);
+  transform-origin:50% -9px;box-shadow:0 6px 14px -6px rgba(0,0,0,.55);will-change:transform}
 html.has-chain.can-scroll .chain-seal{display:grid}
-.chain-seal::before{content:"";position:absolute;top:-.62rem;left:50%;width:.5rem;height:.7rem;margin-left:-.25rem;border:1.5px solid var(--seal);border-radius:.3rem}
-.chain-hit:hover+.chain-seal,.chain-hit.drag+.chain-seal{box-shadow:0 8px 18px -6px rgba(0,0,0,.6)}
-@media print{.chain,.chain-hit,.chain-seal{display:none!important}}
+.chain-seal::before{content:"";position:absolute;top:-11px;left:50%;width:8px;height:12px;margin-left:-4px;border:2px solid var(--lit);border-radius:4px}
+.chain-seal::after{content:"";position:absolute;inset:3px;border:1px solid rgba(246,237,230,.5);border-radius:1.5px}
+.chain-seal span{position:relative;z-index:1}
+.chain-tassel{position:absolute;top:100%;left:50%;width:14px;height:36px;margin-left:-7px;transform-origin:50% 0;pointer-events:none;will-change:transform}
+.chain-tassel svg{display:block}
+.chain-hit:hover+.chain-seal,.chain-hit.drag+.chain-seal{box-shadow:0 8px 18px -6px rgba(0,0,0,.65)}
+.chain-petal{position:fixed;z-index:59;width:9px;height:11px;pointer-events:none;opacity:0;background:linear-gradient(135deg,#F8D3D9,#E49AA8);border-radius:80% 0 80% 0;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+@media print{.chain-rail,.chain-ticks,.chain,.chain-hit,.chain-seal,.chain-petal{display:none!important}}
